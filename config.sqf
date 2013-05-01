@@ -35,7 +35,7 @@ weaponsArray = [
 		//Assault Rifle
     ["TRG-21 EGLM","arifle_TRG21_GL_F",275,150],
     	//Rocket
-    ["NLAWr","launch_NLAW_F",300,200],
+    ["NLAW","launch_NLAW_F",300,200],
     ["RPG-42 Alamut","launch_RPG32_F",300,200],
     	//Sniper
     ["MXM","arifle_MXM_F",450,300]
@@ -46,11 +46,11 @@ weaponsArray = [
 ammoArray = [
 	["9mm 16Rnd Mag","16Rnd_9x21_Mag",10],
 	["5.56mm 20Rnd Mag","20Rnd_556x45_UW_mag",10],
-	["7.62mm 20Rnd Mag","20Rnd_762x45_Mag",10],
-    ["6.5mm 30Rnd CL Mag","30Rnd_65x39_caseless_mag",30],
-    ["6.5mm 30Rnd C Mag","30Rnd_65x39_case_mag",25],
-	["6.5mm 100Rnd Belt","100Rnd_65x39_caseless_mag_Tracer",50],
-	["6.5mm 200Rnd Belt","200Rnd_65x39_cased_Box",10],
+	["7.62mm 20Rnd Mag","20Rnd_762x45_Mag",15],
+    ["6.5mm 30Rnd CL Mag","30Rnd_65x39_caseless_mag",15],
+    ["6.5mm 30Rnd C Mag","30Rnd_65x39_case_mag",15],
+	["6.5mm 100Rnd Belt","100Rnd_65x39_caseless_mag",50],
+	["6.5mm 200Rnd Belt","200Rnd_65x39_cased_Box",100],
 	["NLAW Missile","NLAW_F",100],
     ["RPG32 Missile","RPG32_F",100],
     ["RPG32 AA Missile","RPG32_AA_F",100],
@@ -74,7 +74,7 @@ accessoriesArray = [
     ["Medkit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 100,"item"],
-    ["Suppressor 7.82mm","muzzle_snds_B", 100,"item"],
+    ["Suppressor 7.62mm","muzzle_snds_B", 100,"item"],
     ["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
     ["LMG Suppressor 6.5mm","muzzle_snds_H_MG", 100,"item"],
     ["Flash Light","acc_flashlight", 100,"item"],

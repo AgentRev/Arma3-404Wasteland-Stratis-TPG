@@ -56,15 +56,15 @@ currentStaticHelis = []; // Storage for the heli marker numbers so that we don't
 civilianVehicles = ["c_offroad","B_Quadbike_F", "O_Quadbike_F"];
 
 //Military Vehicle List - Random Spawns
-militaryVehicles = ["c_offroad","O_Galkin_F","B_Hunter_F"];
+militaryVehicles = ["c_offroad","O_Ifrit_F","B_Hunter_F"];
 
 //Armed Military Vehicle List - Random Spawns
-armedMilitaryVehicles = ["B_Hunter_F","O_Galkin_F"];
+armedMilitaryVehicles = ["B_Hunter_F","O_Ifrit_F"];
                             
 //Object List - Random Spawns.
 objectList = ["Land_Barrelwater_F",
-			"Land_Fireplace_F",
-			"Land_WoodenBox_F",
+//			"Land_Fireplace_F",
+//			"Land_WoodenBox_F",
 			"Land_HBarrier_1_F",
 			"Land_HBarrier_1_F",
 			"Land_HBarrier_5_F",
@@ -79,8 +79,9 @@ objectList = ["Land_Barrelwater_F",
 //			"Land_Razorwire_F", //isnt currently able to be picked up
 			"Land_HBarrierBig_F",
 			"Land_CargoBox_V1_F",
-			"RampConcrete",
-			"Land_Obstacle_Bridge_F"];
+//			"Land_Obstacle_Bridge_F"
+			"RampConcrete"
+			];
                                          
 //Object List - Random Spawns.
 staticWeaponsList = ["B_MK6"];
@@ -90,8 +91,7 @@ staticHeliList = ["O_Ka60_Unarmed_F",
 					"B_MH9_F"];
 
 //Random Weapon List - Change this to what you want to spawn in cars.
-vehicleWeapons = ["arifle_SDAR_F",
-				"arifle_MXM_F",
+vehicleWeapons = ["arifle_MXM_F",
 				"arifle_TRG21_F",
 				"arifle_TRG20_F",
 				"arifle_MXC_F",
@@ -102,11 +102,11 @@ vehicleWeapons = ["arifle_SDAR_F",
                 "arifle_Khaybar_F",
                 "arifle_Khaybar_C_F",
                 "arifle_Khaybar_GL_F",
-                "arifle_SDAR_F",
                 "srifle_EBR_F",
-                "LMG_Mk200_F",
-                "hgun_P07_F",
-                "hgun_Rook40_F"];
+                "LMG_Mk200_F" //,
+                //"hgun_P07_F",
+                //"hgun_Rook40_F"
+				];
 
 vehicleAddition = [
 			"Zasleh2",
@@ -128,7 +128,9 @@ vehicleAddition = [
 
 vehicleAddition2 = [
 	"Chemlight_blue",
-	"Chemlight_green"
+	"Chemlight_green",
+	"Chemlight_yellow",
+	"Chemlight_red"
 ];
  
                 

@@ -77,13 +77,18 @@ switch(_selectedBox) do {
 		_currBox addWeaponCargoGlobal ["srifle_EBR_F",2];
 		_currBox addWeaponCargoGlobal ["hgun_P07_F",2];
 		_currBox addWeaponCargoGlobal ["hgun_Rook40_F",2];
-
+		
+		// _currBox addItemCargoGlobal ["muzzle_snds_B",3];	// 7.62mm
+		// _currBox addItemCargoGlobal ["muzzle_snds_H",5];	// 6.5mm
+		// _currBox addItemCargoGlobal ["muzzle_snds_H_MG",3];	// 6.5mm LMG
+		// _currBox addItemCargoGlobal ["optic_Arco",10];
 		_currBox addItemCargoGlobal ["NVGoggles",5];
 		_currBox addWeaponCargoGlobal ["Binocular",5];
 
-		_currBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",10];
+		_currBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 		_currBox addMagazineCargoGlobal ["20Rnd_762x45_Mag",25];
-		_currBox addMagazineCargoGlobal ["100Rnd_65x39_caseless_mag_Tracer",20];
+		_currBox addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag",25];
+		_currBox addMagazineCargoGlobal ["100Rnd_65x39_caseless_mag",20];
 		_currBox addMagazineCargoGlobal ["200Rnd_65x39_cased_Box",20];		
     };
 };

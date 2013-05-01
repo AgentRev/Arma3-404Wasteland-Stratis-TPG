@@ -3,6 +3,8 @@ respawnDelay=15;
 disabledAI=1;
 //disableChannels[]={2};
 enableItemsDropping = 0;
+author = "404Games"; // Author
+onLoadName = "404 Wasteland"; // Mission name (temporary solution; actual name set in editor will be used later in the alpha)
 class Header
 {
 	gameType=Wasteland;
