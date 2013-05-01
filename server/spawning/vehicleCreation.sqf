@@ -32,8 +32,8 @@ if (_type == 0) then {
 
 	//Set original posistion then add to vehicle array
 	_car setVariable["newVehicle",1,true];
+    
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };
 
 //Create Military Vehicle
@@ -58,7 +58,6 @@ if (_type == 1) then {
 	//Set authenticity
 	_car setVariable["newVehicle",1,true];
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };
 
 //Create Armed Military Vehicle
@@ -84,5 +83,4 @@ if (_type == 2) then {
 	//Set original posistion then add to vehicle array
 	_car setVariable["newVehicle",1,true];
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };

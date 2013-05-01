@@ -21,14 +21,11 @@ diag_log format["WASTELAND SERVER - Started Main Mission State"];
     [mission_Outpost,"mission_Outpost"],
     [mission_RadarTruck,"mission_RadarTruck"]];
 */
-_MMarray = [
-	[mission_ArmedHeli,"mission_ArmedHeli"],
-	[mission_LightArmVeh,"mission_LightArmVeh"],
-	[mission_CivHeli,"mission_CivHeli"],
-	[mission_Convoy,"mission_Convoy"]
-];
+_MMarray = [[mission_ArmedHeli,"mission_ArmedHeli"],
+			[mission_LightArmVeh,"mission_LightArmVeh"],
+			[mission_CivHeli,"mission_CivHeli"]];
+            
 _lastMission = "nomission";
-
 while {true} do
 {
     //Select Mission
