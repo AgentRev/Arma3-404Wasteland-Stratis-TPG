@@ -21,7 +21,7 @@ class Mission
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="404 Wasteland v1.06b Alpha";
+		briefingName="404 Wasteland v1.06c Alpha";
 		resistanceWest=0;
 		startWeather=0.10000001;
 		startWind=0.1;
@@ -2230,7 +2230,7 @@ class Mission
 		};
 		class Item172
 		{
-			position[]={2054.9556,3.0403442,4169.7188};
+			position[]={6326.8193,22.841072,5205.7891};
 			name="Spawn_113";
 			type="Empty";
 		};
@@ -2260,7 +2260,7 @@ class Mission
 		};
 		class Item177
 		{
-			position[]={6326.8193,22.841072,5205.7891};
+			position[]={2054.9556,3.0403442,4169.7188};
 			name="Spawn_118";
 			type="Empty";
 		};

@@ -1,6 +1,6 @@
 
 //	@file Version: 1.0
-//	@file Name: buyGuns.sqf
+//	@file Name: buyItems.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy
 //	@file Created: 20/11/2012 05:13
 //	@file Args: [int (0 = buy to player 1 = buy to crate)]

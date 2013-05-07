@@ -152,6 +152,7 @@ R3F_LOG_CFG_objets_transportables =  [
 	["Land_CargoBox_V1_F", 5],
     ["O_Quadbike_F", 10],
     ["B_Quadbike_F", 10],
+	["B_supplyCrate_F", 10],
 	["Land_Obstacle_Bridge_F", 5]
 ];
 
@@ -183,6 +184,7 @@ R3F_LOG_CFG_objets_deplacables = [
 	"Land_CargoBox_V1_F",
     "O_Quadbike_F",
     "B_Quadbike_F",
+	"B_supplyCrate_F",
 	"Land_Obstacle_Bridge_F"
 ];
 

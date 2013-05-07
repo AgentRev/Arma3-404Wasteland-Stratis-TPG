@@ -20,6 +20,7 @@ removeAllWeapons _player;
 removeUniform _player;
 removeVest _player;
 removeBackpack _player;
+removeHeadgear _player;
 removeGoggles _player;
 
 switch (str(playerSide)) do
@@ -28,24 +29,28 @@ switch (str(playerSide)) do
     {
 		_player addUniform "U_B_CombatUniform_mcam";
 		_player addVest "V_PlateCarrier1_rgr";
+		_player addHeadgear "H_HelmetB";
+		//_player addBackpack "B_Kitbag_Base";
     };
 
     case "EAST":
     {
         _player addUniform "U_O_CombatUniform_ocamo";
 		_player addVest "V_HarnessO_brn";
+		_player addHeadgear "H_HelmetO_ocamo";
+		//_player addBackpack "B_Kitbag_mcamo";
     };
 	
 	default
     {
-        removeHeadgear _player;
-		_player addHeadgear (["H_HelmetB","H_HelmetO_ocamo"] call BIS_fnc_selectRandom);
 		_player addUniform (["U_B_CombatUniform_mcam","U_O_CombatUniform_ocamo"] call BIS_fnc_selectRandom);
 		_player addVest (["V_PlateCarrier1_rgr","V_HarnessO_brn"] call BIS_fnc_selectRandom);
+		_player addHeadgear (["H_HelmetB","H_HelmetO_ocamo"] call BIS_fnc_selectRandom);
+		//_player addBackpack (["B_Kitbag_Base","B_Kitbag_mcamo"] call BIS_fnc_selectRandom);
     };
 };
 
-_player addBackpack "B_AssaultPack_Base";
+_player addBackpack "B_Kitbag_Base";
 _player addMagazine "16Rnd_9x21_Mag";
 _player addMagazine "16Rnd_9x21_Mag";
 _player addWeapon "hgun_P07_F";

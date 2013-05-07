@@ -7,7 +7,7 @@
 
 if(!X_Server) exitWith {};
 
-diag_log format["WASTELAND SERVER - Initilizing Server Compile"];
+diag_log format["WASTELAND SERVER - Initializing Server Compile"];
 
 //Main Mission Compiles
 mission_ArmedHeli = compile preprocessFileLineNumbers "server\missions\mainMissions\mission_ArmedHeli.sqf";
@@ -45,6 +45,7 @@ defendArea = compile preprocessFileLineNumbers "server\functions\defendArea.sqf"
 
 //Spawning Compiles
 fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
+fn_replaceMagazines = compile preprocessFileLineNumbers "server\functions\fn_replaceMagazines.sqf";
 randomWeapons = compile preprocessFileLineNumbers "server\spawning\randomWeapon.sqf";
 vehicleCreation = compile preprocessFileLineNumbers "server\spawning\vehicleCreation.sqf";
 objectCreation = compile preprocessFileLineNumbers "server\spawning\objectCreation.sqf";

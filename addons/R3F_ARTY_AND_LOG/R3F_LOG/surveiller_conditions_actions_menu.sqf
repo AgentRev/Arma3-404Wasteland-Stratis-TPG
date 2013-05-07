@@ -143,7 +143,7 @@ while {true} do
 		
 		// Condition action heliport_larguer
 		R3F_LOG_action_heliport_larguer_valide = (driver R3F_LOG_objet_addAction == player && !isNull (R3F_LOG_objet_addAction getVariable "R3F_LOG_heliporte") &&
-			([0,0,0] distance velocity R3F_LOG_objet_addAction < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) && !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
+			/*([0,0,0] distance velocity R3F_LOG_objet_addAction < 15) && (getPos R3F_LOG_objet_addAction select 2 < 40) &&*/ !(R3F_LOG_objet_addAction getVariable "R3F_LOG_disabled"));
 	};
 	
 	sleep 0.3;

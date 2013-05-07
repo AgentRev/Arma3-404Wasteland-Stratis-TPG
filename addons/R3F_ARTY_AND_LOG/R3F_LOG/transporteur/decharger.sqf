@@ -63,7 +63,7 @@ else
 				(getPos _transporteur select 1) - ((_dimension_max+5+(random 10)-(boundingBox _transporteur select 0 select 1))*cos (getDir _transporteur - 90+random 180)),
 				0
 			];
-			_objet_a_decharger setVelocity [0, 0, 0];
+			_objet_a_decharger setVelocity [0,0,0];
 			
 			player globalChat STR_R3F_LOG_action_decharger_fait;
 		};

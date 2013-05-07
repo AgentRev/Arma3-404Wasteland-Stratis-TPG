@@ -15,42 +15,45 @@
 // Text name, classname, buy cost, sell amount
 weaponsArray = [
 		//Handgun
-	["P07","hgun_P07_F",40,20],
-    ["Rook-40","hgun_Rook40_F",40,20], 
+	["P07","hgun_P07_F",50,25],
+    ["Rook-40","hgun_Rook40_F",50,25], 
     	//Underwater Gun
-	["SDAR","arifle_SDAR_F",100,50],
+	["SDAR","arifle_SDAR_F",75,40],
     	//Assault Rifle
-	["MX","arifle_MX_F",100,50],
+	["TRG-20","arifle_TRG20_F",100,50],
 	["TRG-21","arifle_TRG21_F",100,50],
-    ["TRG-20","arifle_TRG20_F",100,50],
-    ["MXC","arifle_MXC_F",100,50],
+	["TRG-21 EGLM","arifle_TRG21_GL_F",200,100],
+	["Katiba Carabine","arifle_Khaybar_C_F",100,50],
     ["Katiba","arifle_Khaybar_F",100,50],
-    ["Katiba Carabine","arifle_Khaybar_C_F",100,50],
+	["Katiba GL","arifle_Khaybar_GL_F",200,100],
+	["MXC","arifle_MXC_F",100,50],
+	["MX","arifle_MX_F",100,50],
     ["MX 3GL","arifle_MX_GL_F",200,100],
-    ["Katiba GL","arifle_Khaybar_GL_F",200,100],
-    ["EBR","srifle_EBR_F",250,100], 
     	//Light Machine Gun
-    ["MX SW","arifle_MX_SW_F",250,100],
-    ["Mk200","LMG_Mk200_F",250,100],
-		//Assault Rifle
-    ["TRG-21 EGLM","arifle_TRG21_GL_F",275,150],
+    ["MX SW","arifle_MX_SW_F",250,125],
+    ["Mk200","LMG_Mk200_F",250,125],
+		//Sniper Rifle
+	["MXM","arifle_MXM_F",250,125],
+    ["EBR","srifle_EBR_F",250,125],
     	//Rocket
-    ["NLAW","launch_NLAW_F",300,200],
-    ["RPG-42 Alamut","launch_RPG32_F",300,200],
-    	//Sniper
-    ["MXM","arifle_MXM_F",450,300]
+    ["NLAW","launch_NLAW_F",300,150],
+    ["RPG-42 Alamut","launch_RPG32_F",300,150]
 ];
 
 //Gun Store Ammo List
 //Text name, classname, buy cost
 ammoArray = [
-	["9mm 16Rnd Mag","16Rnd_9x21_Mag",10],
-	["5.56mm 20Rnd Mag","20Rnd_556x45_UW_mag",10],
-	["7.62mm 20Rnd Mag","20Rnd_762x45_Mag",15],
-    ["6.5mm 30Rnd CL Mag","30Rnd_65x39_caseless_mag",15],
-    ["6.5mm 30Rnd C Mag","30Rnd_65x39_case_mag",15],
-	["6.5mm 100Rnd Belt","100Rnd_65x39_caseless_mag",50],
-	["6.5mm 200Rnd Belt","200Rnd_65x39_cased_Box",100],
+	["9mm 16Rnd Mag","16Rnd_9x21_Mag",10],							// P07, Rook-40
+	["5.56mm 20Rnd UW Mag","20Rnd_556x45_UW_mag",5],				// SDAR (junk ammo)
+	["5.56mm 30Rnd STANAG Mag","30Rnd_556x45_Stanag",10],			// SDAR	(good ammo)
+	["6.5mm 30Rnd Mag","30Rnd_65x39_case_mag",15],					// TRG-2x
+	["6.5mm 30Rnd Caseless Mag","30Rnd_65x39_caseless_green",15],	// Katiba
+    ["6.5mm 30Rnd STANAG Mag","30Rnd_65x39_caseless_mag",15],		// MX
+	["6.5mm 100Rnd Belt Case","100Rnd_65x39_caseless_mag",50],		// ^
+	["6.5mm 200Rnd Belt Case","200Rnd_65x39_cased_Box",100],		// Mk200
+	["7.62mm 20Rnd Mag","20Rnd_762x45_Mag",15],						// EBR
+	["40mm HE Grenade Round","1Rnd_HE_Grenade_shell",75],			// Grenade Launchers
+	["Frag Grenade","HandGrenade",75],
 	["NLAW Missile","NLAW_F",100],
     ["RPG32 Missile","RPG32_F",100],
     ["RPG32 AA Missile","RPG32_AA_F",100],
@@ -69,7 +72,7 @@ ammoArray = [
 accessoriesArray = [
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
-	["NV Goggles","NVGoggles",100,"binoc"],
+	["NV Goggles","NVGoggles",100,"item"],
     ["First Aid","FirstAidKit", 100,"item"],
     ["Medkit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
@@ -82,6 +85,8 @@ accessoriesArray = [
     ["Holosight","optic_Holosight", 100,"item"],
     ["ARCO Sight","optic_Arco", 100,"item"],
     ["ACO Sight","optic_Aco", 100,"item"],
+	["Backpack (Large)","B_Bergen_Base", 500,"backpack"],			// 25% more capacity than B_Kitbag_Base, 50% more than B_AssaultPack_Base
+	["Backpack (Extra Large)","B_Carryall_Base", 750,"backpack"],	// 10% more capacity than above
     ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", 100,"vest"],
     ["Carrier Lite (Coyote)","V_PlateCarrier1_cbr", 100,"vest"],
     ["Carrier Lite (Green)","V_PlateCarrier1_rgr", 100,"vest"],
@@ -128,7 +133,7 @@ generalStore = [
     ["Camo Net", "camonet", localize "STR_WL_ShopDescriptions_Camo", "",300,150]  
 ];
 
-// Chernarus town and city array
+// Stratis town and city array
 //Marker Name, Radius, City Name
 cityList = [
 		["Town_1",200,"Air Station Mike-28"],

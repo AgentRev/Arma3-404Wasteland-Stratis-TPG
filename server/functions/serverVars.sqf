@@ -12,7 +12,7 @@
 #include "setup.sqf"
 if(!X_Server) exitWith {};
 
-diag_log format["WASTELAND SERVER - Initilizing Server Vars"];
+diag_log format["WASTELAND SERVER - Initializing Server Vars"];
 
 CVG_weapons = [];
 CVG_weapons = CVG_rifles;
@@ -52,6 +52,9 @@ publicVariable "currentInvites";
 
 currentStaticHelis = []; // Storage for the heli marker numbers so that we don't spawn wrecks on top of live helis
 
+// Amount of vehicle spawn markers on map
+nbVehicleMarkers = 118;
+
 //Civilian Vehicle List - Random Spawns
 civilianVehicles = ["c_offroad","B_Quadbike_F", "O_Quadbike_F"];
 
@@ -78,9 +81,10 @@ objectList = ["Land_Barrelwater_F",
 			"Land_Scaffolding_F",
 //			"Land_Razorwire_F", //isnt currently able to be picked up
 			"Land_HBarrierBig_F",
-			"Land_CargoBox_V1_F",
-//			"Land_Obstacle_Bridge_F"
-			"RampConcrete"
+			"B_supplyCrate_F",
+//			"Land_Obstacle_Bridge_F",
+//			"RampConcrete",
+			"Land_CargoBox_V1_F"
 			];
                                          
 //Object List - Random Spawns.

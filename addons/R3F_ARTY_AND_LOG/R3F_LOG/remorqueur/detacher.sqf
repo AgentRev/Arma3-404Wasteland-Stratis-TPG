@@ -32,7 +32,7 @@ else
 		_objet setVariable ["R3F_LOG_est_transporte_par", objNull, true];
 		
 		detach _objet;
-		_objet setVelocity [0, 0, 0];
+		_objet setVelocity [0,0,0];
 		
 		player playMove "AinvPknlMstpSlayWrflDnon_medic";
 		sleep 7;

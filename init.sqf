@@ -14,7 +14,7 @@ X_Server = false;
 X_Client = false;
 X_JIP = false;
 hitStateVar = false;
-versionName = "v1.06b Alpha";
+versionName = "v1.06c Alpha";
 
 if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
@@ -50,7 +50,7 @@ if(X_Server) then {
 	#ifdef __DEBUG__
 	diag_log format ["T%1,DT%2,F%3", time, diag_tickTime, diag_frameno];
 	#endif
-    diag_log format["WASTELAND SERVER - Initilizing Server"];
+    diag_log format["WASTELAND SERVER - Initializing Server"];
 	[] execVM "server\init.sqf";
 };
 

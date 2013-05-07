@@ -22,7 +22,7 @@ diag_log format["WASTELAND SERVER - Started Main Mission State"];
     [mission_RadarTruck,"mission_RadarTruck"]];
 */
 _MMarray = [[mission_ArmedHeli,"mission_ArmedHeli"],
-			[mission_LightArmVeh,"mission_LightArmVeh"],
+			/*[mission_LightArmVeh,"mission_LightArmVeh"],*/
 			[mission_CivHeli,"mission_CivHeli"]];
             
 _lastMission = "nomission";
