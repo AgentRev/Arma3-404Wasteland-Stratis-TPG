@@ -23,6 +23,9 @@ for "_i" from 1 to nbVehicleMarkers step 25 do
     _safePos = [_pos, 25, 50, 1, 0, 60 * (pi / 180), 0] call BIS_fnc_findSafePos;
 	_boxInstance = createVehicle [_currBox, _safePos,[], 30, "NONE"];
 	
+	_boxInstance addEventHandler ["hit", {(_this select 0) setDamage 0;}];
+	_boxInstance addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+	
 	if (_currBox in ["Box_East_WpsSpecial_F","Box_NATO_WpsSpecial_F"]) then
 	{
 		switch (_currBox) do 

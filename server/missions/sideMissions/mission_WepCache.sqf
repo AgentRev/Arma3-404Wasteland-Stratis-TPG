@@ -45,8 +45,14 @@ _marker = createMarkerLocal ["WeaponCache_Marker", _randomPos];
 _box = createVehicle ["Box_NATO_Support_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
 
+_box addEventHandler ["hit", {(_this select 0) setDamage 0;}];
+_box addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+
 _box2 = createVehicle ["Box_East_Support_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
+
+_box2 addEventHandler ["hit", {(_this select 0) setDamage 0;}];
+_box2 addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
 
 _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>A supply drop has been spotted near the marker</t>", _missionType,  sideMissionColor, subTextColor];
 messageSystem = _hint;

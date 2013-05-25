@@ -3,8 +3,8 @@ private ["_allVehicles","_check","_vehicleType"];
 _allVehicles = vehicles;
 
 {
-	_check = _x getVariable ["newVehicle",0];
-	if(_check != 1) then 
+	_check = _x getVariable ["vehicleChecksum",0];
+	if(_check != vChecksum) then 
 	{
 		_vehicleType = Format["%1",typeOf _x];
 		if(_vehicleType isKindOf "Car") then {

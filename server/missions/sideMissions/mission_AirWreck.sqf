@@ -48,8 +48,14 @@ _vehicle = ["O_Ka60_Unarmed_F",[(_randomPos select 0) + 50, (_randomPos select 1
 _box = createVehicle ["Box_East_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
 
+_box addEventHandler ["hit", {(_this select 0) setDamage 0;}];
+_box addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+
 _box2 = createVehicle ["Box_NATO_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
+
+_box2 addEventHandler ["hit", {(_this select 0) setDamage 0;}];
+_box2 addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");

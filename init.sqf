@@ -16,6 +16,12 @@ X_JIP = false;
 hitStateVar = false;
 versionName = "v1.06c Alpha";
 
+vChecksum = 1;
+
+{
+	vChecksum = vChecksum + _x;
+} forEach (toArray versionName);
+
 if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
 if(isNull player) then {X_JIP = true;};
