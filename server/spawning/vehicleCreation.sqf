@@ -22,6 +22,7 @@ if (count _this > 1) then
 else
 {
 	_num = floor (random 100);
+	
 	if (_num < 100) then { _cartype = civilianVehicles call BIS_fnc_selectRandom; _type = 0 };
 	if (_num < 70) then { _cartype = lightMilitaryVehicles call BIS_fnc_selectRandom; _type = 1 };
 	if (_num < 25) then { _cartype = mediumMilitaryVehicles call BIS_fnc_selectRandom; _type = 2 };

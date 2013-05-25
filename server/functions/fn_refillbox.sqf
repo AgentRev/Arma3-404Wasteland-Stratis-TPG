@@ -82,7 +82,7 @@ switch(_selectedBox) do {
 		_currBox addWeaponCargoGlobal ["Binocular",10];
 
 		_currBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-		_currBox addMagazineCargoGlobal ["20Rnd_762x45_Mag",25];
+		_currBox addMagazineCargoGlobal ["20Rnd_762x51_Mag",25];
 		_currBox addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag",25];
 		_currBox addMagazineCargoGlobal ["100Rnd_65x39_caseless_mag",20];
 		_currBox addMagazineCargoGlobal ["200Rnd_65x39_cased_Box",20];		

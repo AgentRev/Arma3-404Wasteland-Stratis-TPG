@@ -51,7 +51,7 @@ ammoArray = [
     ["6.5mm 30Rnd STANAG Mag","30Rnd_65x39_caseless_mag",15],		// MX
 	["6.5mm 100Rnd Belt Case","100Rnd_65x39_caseless_mag",50],		// ^
 	["6.5mm 200Rnd Belt Case","200Rnd_65x39_cased_Box",100],		// Mk200
-	["7.62mm 20Rnd Mag","20Rnd_762x45_Mag",15],						// EBR
+	["7.62mm 20Rnd Mag","20Rnd_762x51_Mag",15],						// EBR
 	["40mm HE Grenade Round","1Rnd_HE_Grenade_shell",75],			// Grenade Launchers
 	["Frag Grenade","HandGrenade",75],
 	["NLAW Missile","NLAW_F",100],

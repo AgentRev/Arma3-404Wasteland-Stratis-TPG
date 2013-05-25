@@ -1,5 +1,5 @@
 /* ===============================================================================================================
-  Simple Vehicle Respawn Script v1.82 for Arma 3
+  Simple Vehicle Respawn Script v1.83 for Arma 3
   by Tophe of Östgöta Ops [OOPS]
   Updated by SPJESTER & modded by AgentRev
   
@@ -63,47 +63,70 @@ _dir = getDir _unit;
 _position = getPosASL _unit;
 _type = typeOf _unit;
 _dead = false;
-_nodelay = false;
-				
+_brokenTimeout = 0;
+_desertedTimeout = 0;
+
+_sleepTime = 5;
+
+{
+	if (_x < _sleepTime) then {
+		_sleepTime = ( if (_x > 1) then { _x } else { 1 } );
+	};
+} forEach [_delay, _deserted];
+
 // Start monitoring the vehicle
 while {_run} do 
 {	
-	sleep 10;
+	sleep _sleepTime;
 	
-    if (getDammage _unit > 0.8 && {alive _unit} count crew _unit == 0) then {
-		_dead = true;
-	};
-	
-	// Check if the vehicle is deserted.
-	if (_deserted > 0) then
+	if (!canMove _unit && {{alive _unit} count crew _unit == 0}) then
 	{
-		if (getPosASL _unit distance _position > 10 && {alive _unit} count crew _unit == 0) then 
+		if (_delay > 0) then
 		{
-			diag_log format ["Crew: %1", {alive _unit} count crew _unit];
-			
-			_timeout = time + _deserted;
-			sleep 0.1;
-			
-			while { _timeout > time && alive _unit && {alive _unit} count crew _unit == 0 } do
-			{
-				sleep 5;
-				
-				// R3F HELL YEA
-				if (!isNull (_unit getVariable ["R3F_LOG_est_transporte_par", objNull]) || {!isNull (_unit getVariable ["R3F_LOG_est_deplace_par", objNull])}) then
-				{
-					_timeout = time + _deserted;
-				};
-			};
-			
-			if ({alive _unit} count crew _unit > 0) then
-			{
-				_dead = false;
+			if (_brokenTimeout == 0) then {
+				_brokenTimeout = time + _delay;
 			}
 			else
 			{
-				_dead = true;
-				if (alive _unit) then { _nodelay = true } else { _nodelay = false };
+				if (_brokenTimeout <= time) then {
+					_dead = true;
+				};
 			};
+		}
+		else
+		{
+			_dead = true;
+		};
+	}
+	else
+	{
+		if (_brokenTimeout != 0) then {
+			_brokenTimeout = 0;
+		};
+	};
+	
+	
+	// Check if the vehicle is deserted.
+	if (_deserted > 0 && 
+	   {getPosASL _unit distance _position > 10} && 
+	   {{alive _unit} count crew _unit == 0} && 
+	   {isNull (_unit getVariable ["R3F_LOG_est_transporte_par", objNull])} && 
+	   {isNull (_unit getVariable ["R3F_LOG_est_deplace_par", objNull])}) then 
+	{
+		if (_desertedTimeout == 0) then {
+			_desertedTimeout = time + _deserted;
+		}
+		else
+		{
+			if (_desertedTimeout <= time) then {
+				_dead = true;
+			};
+		};
+	}
+	else
+	{
+		if (_desertedTimeout != 0) then {
+			_desertedTimeout = 0;
 		};
 	};
 	
@@ -128,12 +151,10 @@ while {_run} do
 			_towedUnit setVelocity [0,0,0];
 		};
 		
-		if (_nodelay) then {sleep 0.1; _nodelay = false;} else {sleep _delay;};
-		
 		if (typename _static == "ARRAY") then { _position = _static; }
 		else { _position = getPosASL _unit; _dir = getDir _unit; };
 		
-		if (_explode) then {_effect = "M_AT" createVehicle getPosASL _unit; _effect setPosASL getPosASL _unit;};
+		if (_explode) then { ("M_AT" createVehicle getPos _unit) setPosASL getPosASL _unit };
 		
 		sleep 0.1;
 		_carType = typeOf _unit;

@@ -30,12 +30,12 @@ for "_i" from 1 to nbVehicleMarkers step 25 do
 			case ("Box_East_WpsSpecial_F"):
 			{
 				// Add couple extra mags
-				_boxInstance addMagazineCargoGlobal ["20Rnd_762x45_Mag", 5];
+				_boxInstance addMagazineCargoGlobal ["20Rnd_762x51_Mag", 5];
 			};
 			case ("Box_NATO_WpsSpecial_F"):
 			{				
 				// Temporary fix for Bug #7522
-				[_boxInstance, "20Rnd_762x45_Mag", "30Rnd_65x39_caseless_mag"] call fn_replaceMagazines;
+				[_boxInstance, "20Rnd_762x51_Mag", "30Rnd_65x39_caseless_mag"] call fn_replaceMagazines;
 				
 				// Add couple extra mags
 				_boxInstance addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
