@@ -37,7 +37,7 @@ else
 				_tempobj = _objet;		_countTowedVehicles = 1;
 				while{!isNull(_tempobj getVariable["R3F_LOG_remorque", objNull])} do {_countTowedVehicles = _countTowedVehicles + 1; _tempobj = _tempobj getVariable["R3F_LOG_remorque", objNull];};
                 
-                if(_countTransportedBy + _countTowedVehicles <= 3) then
+                if(_countTransportedBy + _countTowedVehicles <= 2) then
                 {
                 	// On mémorise sur le réseau que le véhicule remorque quelque chose
 					_remorqueur setVariable ["R3F_LOG_remorque", _objet, true];
