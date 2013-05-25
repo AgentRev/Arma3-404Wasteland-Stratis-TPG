@@ -47,7 +47,7 @@
 			<English>&lt;t color='#FF9E9E' size='2.5' &gt;Instructions&lt;br/&gt;&lt;t color='#FFFFFF' size='1.5' &gt;* You are in &lt;img size="1.5" image="%1"/&gt; &lt;t color="%2"&gt;%3&lt;/t&gt; team.&lt;br/&gt;* You are &lt;t color="#00aa00"&gt;FREE TO ATTACK ANYONE.&lt;/t&gt;&lt;br/&gt;* No VOIP/VON in GLOBAL&lt;br/&gt;* The server does restart unexpectedly.&lt;/t&gt;</English>
 		</Key>
 		<Key ID="STR_WL_MapMoreInfo">
-			<English>&lt;t color='#FFFFFF' size='1.5' &gt;Welcome to 404Wasteland ArmA 3 Alpha. &lt;br/&gt;Please report all bugs/problems to http://teamplayergaming.com/arma-3/&lt;br/&gt;For more info, please see the map.&lt;br/&gt;&lt;br/&gt;[Revision C3]&lt;br/&gt;&lt;/t&gt;</English>
+			<English>&lt;t color='#FFFFFF' size='1.5' &gt;Welcome to 404Wasteland ArmA 3 Alpha. &lt;br/&gt;Please report all bugs/problems to http://teamplayergaming.com/arma-3/&lt;br/&gt;For more info, please see the map.&lt;br/&gt;&lt;br/&gt;[Revision C4]&lt;br/&gt;&lt;/t&gt;</English>
 		</Key>
 	</Package>
 	<Package name="TeamKillWarningMessage">
