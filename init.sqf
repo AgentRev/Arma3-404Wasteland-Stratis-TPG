@@ -64,3 +64,14 @@ if(X_Server) then {
 [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
 [] execVM "addons\proving_Ground\init.sqf";
 //[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+
+if (X_Server) then
+{
+	[] execVM "server\ANTIHACK.sqf";
+}
+else
+{
+	"SADTOYCATS" addPublicVariableEventHandler { [] spawn (_this select 1); };
+    ahClientStarted = player;
+    publicVariableServer "ahClientStarted";
+};

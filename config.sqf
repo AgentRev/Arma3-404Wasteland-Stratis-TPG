@@ -73,7 +73,7 @@ accessoriesArray = [
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
 	["NV Goggles","NVGoggles",100,"item"],
-    ["First Aid","FirstAidKit", 100,"item"],
+    ["First Aid","FirstAidKit", 50,"item"],
     ["Medkit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 100,"item"],
@@ -84,7 +84,8 @@ accessoriesArray = [
     ["RCO Sight","optic_Hamr", 100,"item"],
     ["Holosight","optic_Holosight", 100,"item"],
     ["ARCO Sight","optic_Arco", 100,"item"],
-    ["ACO Sight","optic_Aco", 100,"item"],
+    ["ACO Sight (Red)","optic_Aco", 100,"item"],
+	["ACO Sight (Green)","optic_ACO_grn", 100,"item"],
 	["Backpack (Large)","B_Bergen_Base", 500,"backpack"],			// 25% more capacity than B_Kitbag_Base, 50% more than B_AssaultPack_Base
 	["Backpack (Extra Large)","B_Carryall_Base", 750,"backpack"],	// 10% more capacity than above
     ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", 100,"vest"],

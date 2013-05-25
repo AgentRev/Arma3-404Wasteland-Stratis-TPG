@@ -23,9 +23,9 @@ removeBackpack _player;
 removeHeadgear _player;
 removeGoggles _player;
 
-switch (str(playerSide)) do
+switch (playerSide) do
 {
-    case "WEST":
+    case west:
     {
 		_player addUniform "U_B_CombatUniform_mcam";
 		_player addVest "V_PlateCarrier1_rgr";
@@ -33,7 +33,7 @@ switch (str(playerSide)) do
 		//_player addBackpack "B_Kitbag_Base";
     };
 
-    case "EAST":
+    case east:
     {
         _player addUniform "U_O_CombatUniform_ocamo";
 		_player addVest "V_HarnessO_brn";
