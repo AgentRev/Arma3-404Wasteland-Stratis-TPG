@@ -3,7 +3,7 @@ private["_array", "_player", "_hackType", "_hackValue"];
 SADTOYCATS =
 {
 	// diag_log "ANTI-HACK 0.6.4 starting...";
-	//if (isServer) exitWith {};
+	if (isServer) exitWith {};
 	
 	_commonPaths = ["used for hacking", "wuat\screen.sqf", "scripts\defaultmenu.sqf", "menu\initmenu.sqf", "scr\exec.sqf", "scripts\exec.sqf", "menu\exec.sqf", "wuat\exec.sqf", "crinkly\keymenu.sqf", "scripts\ajmenu.sqf", "startup.sqf", "wookie_wuat\startup.sqf", "@DevCon\DevCon.pbo", "addons\@DevCon\DevCon.pbo", "DevCon.pbo", "ShadowyFaze\exec.sqf", "jestersMENU\exec.sqf"];
 	
@@ -42,7 +42,8 @@ SADTOYCATS =
 				if !(isNil _x) exitWith 
 				{
 					// diag_log "ANTI-HACK 0.6.4: Found a hack variable!";
- 
+					
+					player globalChat "[ANTI-HACK] This user has cheating scripts.";
 					hackFlag = [player, "hacked variable", _x];
 					publicVariableServer "hackFlag";
 					sleep 5;
@@ -71,7 +72,8 @@ SADTOYCATS =
 			if (!isNull findDisplay 3030 || {!isNull findDisplay 155}) then
 			{
 				// diag_log "ANTI-HACK 0.6.4: Found a hack menu!";
-
+				
+				player globalChat "[ANTI-HACK] This user has cheating scripts.";
 				hackFlag = [player, "hack menu", _x];
 				publicVariableServer "hackFlag";
 				sleep 5;
@@ -99,6 +101,7 @@ SADTOYCATS =
 			if (unitRecoilCoefficient player != _recoilSettings) exitWith 
 			{
 					// diag_log "ANTI-HACK 0.6.4: Detected recoil hack!";
+					player globalChat "[ANTI-HACK] This user has cheating scripts.";
 					hackFlag = [player, "no recoil", "null"];
 					publicVariableServer "hackFlag";
 					sleep 5;
