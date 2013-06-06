@@ -56,10 +56,10 @@ currentStaticHelis = []; // Storage for the heli marker numbers so that we don't
 civilianVehicles = ["c_offroad","B_Quadbike_F", "O_Quadbike_F"];
 
 //Military Vehicle List - Random Spawns
-militaryVehicles = ["c_offroad","O_Ifrit_F","B_Hunter_F"];
+militaryVehicles = ["c_offroad","O_Galkin_F","B_Hunter_F"];
 
 //Armed Military Vehicle List - Random Spawns
-armedMilitaryVehicles = ["B_Hunter_F","O_Ifrit_F"];
+armedMilitaryVehicles = ["B_Hunter_F","O_Galkin_F"];
                             
 //Object List - Random Spawns.
 objectList = ["Land_Barrelwater_F",
@@ -79,7 +79,6 @@ objectList = ["Land_Barrelwater_F",
 //			"Land_Razorwire_F", //isnt currently able to be picked up
 			"Land_HBarrierBig_F",
 			"Land_CargoBox_V1_F",
-			"RampConcrete",
 			"Land_Obstacle_Bridge_F"];
                                          
 //Object List - Random Spawns.

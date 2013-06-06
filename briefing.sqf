@@ -69,6 +69,18 @@ player createDiaryRecord["changelog",
 ]
 ];
 
+player createDiaryRecord["changelog",
+[
+"1.07",
+"
+<br/>
+		[Fixed] Fixed vehicle spawning now using the new bis_mp command rather than vehicleInit.<br/>
+		[Fixed] Fixed unamed mission problem now using the new description.ext values.<br/>
+		[Fixed] Updated to work with the new arma 3 release. <br/>
+"
+]
+];
+
 player createDiaryRecord["404games",
 [
 "Credits",

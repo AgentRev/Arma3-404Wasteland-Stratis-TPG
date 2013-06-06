@@ -23,5 +23,6 @@ administrators = [];
 //Bombeh
 publicVariable "administrators";
 
-serverAdministrators = [];
+serverAdministrators = ["76561197967539931",
+						"76561197971701813"];
 publicVariable "serverAdministrators";

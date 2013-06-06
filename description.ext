@@ -3,6 +3,11 @@ respawnDelay=15;
 disabledAI=1;
 //disableChannels[]={2};
 enableItemsDropping = 0;
+
+author="404Games";
+OnLoadName = "Wasteland";
+joinUnassigned = 0;
+
 class Header
 {
 	gameType=Wasteland;

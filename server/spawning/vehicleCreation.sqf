@@ -16,8 +16,7 @@ if (_type == 0) then {
 	//Car Initilization, Pick Car Type.
     _cartype = civilianVehicles select (random (count civilianVehicles - 1));
     _car = createVehicle [_cartype,_pos,[], 20,"None"];
-	_car setVehicleInit "nul=[this, 60, 1200, 0, false] execVM 'server\functions\vehicle.sqf'";
-	processInitCommands;
+	[[[_car],"server\functions\vehicle.sqf"], "BIS_fnc_execVM", _car, true] spawn BIS_fnc_MP;
     
 	//Clear Cars Inventory
     clearMagazineCargoGlobal _car;
@@ -32,8 +31,8 @@ if (_type == 0) then {
 
 	//Set original posistion then add to vehicle array
 	_car setVariable["newVehicle",1,true];
+    
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };
 
 //Create Military Vehicle
@@ -41,8 +40,7 @@ if (_type == 1) then {
 	//Car Initilization, Pick Car Type.
     _cartype = militaryVehicles select (random (count militaryVehicles - 1));
     _car = createVehicle [_cartype,_pos, [], 30, "None"];
-	_car setVehicleInit "nul=[this, 60, 1200, 0, false] execVM 'server\functions\vehicle.sqf'";
-	processInitCommands;
+	[[[_car],"server\functions\vehicle.sqf"], "BIS_fnc_execVM", _car, true] spawn BIS_fnc_MP;
     
 	//Clear Cars Inventory
     clearMagazineCargoGlobal _car;
@@ -58,7 +56,6 @@ if (_type == 1) then {
 	//Set authenticity
 	_car setVariable["newVehicle",1,true];
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };
 
 //Create Armed Military Vehicle
@@ -66,8 +63,7 @@ if (_type == 2) then {
 	//Car Initilization, Pick Car Type.
     _cartype = armedMilitaryVehicles select (random (count armedMilitaryVehicles - 1));
     _car = createVehicle [_cartype,_pos, [], 30, "None"];
-    _car setVehicleInit "nul=[this, 60, 1200, 0, false] execVM 'server\functions\vehicle.sqf'";
-	processInitCommands;
+    [[[_car],"server\functions\vehicle.sqf"], "BIS_fnc_execVM", _car, true] spawn BIS_fnc_MP;
 
 	//Clear Cars Inventory
     clearMagazineCargoGlobal _car;
@@ -84,5 +80,4 @@ if (_type == 2) then {
 	//Set original posistion then add to vehicle array
 	_car setVariable["newVehicle",1,true];
     _car setPosATL [getpos _car select 0,getpos _car select 1,0];
-	_car setVelocity [0,0,0.1];
 };

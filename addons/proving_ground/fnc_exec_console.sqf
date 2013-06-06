@@ -61,8 +61,7 @@ switch (_mode) do {
 			GET_CTRL(balca_debug_console_history_IDC) lbAdd str _command;
 			GET_CTRL(balca_debug_console_history_IDC) lbSetData [(lbSize GET_CTRL(balca_debug_console_history_IDC))-1,_command];
 		};
-		player setVehicleInit _command;
-		processInitCommands;
+		["{_command}","BIS_fnc_spawn",true,true] spawn BIS_fnc_MP;
 	};
 	case 5: {//exec on server
 		GET_CTRL(balca_debug_console_result_IDC) ctrlSetText '';
@@ -74,9 +73,7 @@ switch (_mode) do {
 			GET_CTRL(balca_debug_console_history_IDC) lbAdd str _command;
 			GET_CTRL(balca_debug_console_history_IDC) lbSetData [(lbSize GET_CTRL(balca_debug_console_history_IDC))-1,_command];
 		};
-		player setVariable ['PG_result',[]];
-		player setVehicleInit ("if isServer then {this setVariable [""PG_result"",[call {"+_command+"}],true]}");
-		processInitCommands;
+		["{_command}","BIS_fnc_spawn",false,true] spawn BIS_fnc_MP;
 
 		[] spawn {
 			_time = time+2;
