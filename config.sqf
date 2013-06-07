@@ -33,6 +33,8 @@ weaponsArray = [
     ["MX SW","arifle_MX_SW_F",250,125],
     ["Mk200","LMG_Mk200_F",250,125],
 		//Sniper Rifle
+	["M320 LRR","srifle_LRR_SOS_F",450,175],
+	["GM6 LYNX","srifle_GM6_SOS_F",450,175],
 	["MXM","arifle_MXM_F",250,125],
     ["EBR","srifle_EBR_F",250,125],
     	//Rocket
@@ -52,11 +54,13 @@ ammoArray = [
 	["6.5mm 100Rnd Belt Case","100Rnd_65x39_caseless_mag",50],		// ^
 	["6.5mm 200Rnd Belt Case","200Rnd_65x39_cased_Box",100],		// Mk200
 	["7.62mm 20Rnd Mag","20Rnd_762x51_Mag",15],						// EBR
+	[".408 7Rnd Mag","7Rnd_408_Mag",20],							// M320 LRR .408
+	["12.7mm 5Rnd Mag","5Rnd_127x108_Mag",20],						// GM6 Lynx 12.7mm
 	["40mm HE Grenade Round","1Rnd_HE_Grenade_shell",75],			// Grenade Launchers
 	["Frag Grenade","HandGrenade",75],
-	["NLAW Missile","NLAW_F",100],
-    ["RPG32 Missile","RPG32_F",100],
-    ["RPG32 AA Missile","RPG32_AA_F",100],
+	["NLAW Missile","NLAW_F",200],
+    ["RPG32 Missile","RPG32_F",200],
+    ["RPG32 AA Missile","RPG32_AA_F",200],
 	["Explosive Charge","DemoCharge_Remote_Mag",100],
     ["Explosive Satchel","SatchelCharge_Remote_Mag",100],
     ["AT Mine","ATMine_Range_Mag",100],
@@ -72,6 +76,7 @@ ammoArray = [
 accessoriesArray = [
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
+	["Rangefinders","Rangefinder", 150,"binoc"],
 	["NV Goggles","NVGoggles",100,"item"],
     ["First Aid","FirstAidKit", 50,"item"],
     ["Medkit","Medikit", 100,"item"],
@@ -82,6 +87,7 @@ accessoriesArray = [
     ["LMG Suppressor 6.5mm","muzzle_snds_H_MG", 100,"item"],
     ["Flash Light","acc_flashlight", 100,"item"],
     ["RCO Sight","optic_Hamr", 100,"item"],
+	["SOS Sight","optic_SOS", 200,"item"],
     ["Holosight","optic_Holosight", 100,"item"],
     ["ARCO Sight","optic_Arco", 100,"item"],
     ["ACO Sight (Red)","optic_Aco", 100,"item"],
@@ -103,7 +109,9 @@ accessoriesArray = [
     ["Rebreather 2","V_RebreatherIR", 100,"vest"],
     ["Combat Fatigues (MTP)","U_B_CombatUniform_mcam", 100,"uni"],
     ["Combat Fatigues (Tee)","U_B_CombatUniform_mcam_tshirt", 100,"uni"],
-    ["Wetsuit Blue","U_B_Wetsuit", 100,"uni"],
+	["Ghillie Suit","U_O_GhillieSuit", 200,"uni"],
+    ["Ghillie Suit","U_B_GhillieSuit", 200,"uni"],
+	["Wetsuit Blue","U_B_Wetsuit", 100,"uni"],
     ["Wetsuit Red","U_OI_Wetsuit", 100,"uni"],
     ["ECH","H_HelmetB", 100,"hat"],
     ["ECH (Light)","H_HelmetB_light", 100,"hat"],

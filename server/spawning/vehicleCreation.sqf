@@ -41,8 +41,17 @@ clearWeaponCargoGlobal _car;
 //Set Cars Attributes
 _car setFuel (0.50);
 _car setDamage (random 0.50);
+
+if (_type in [0,1]) then
+{
+	_car setHit ["wheel_1_1_steering", 0];
+	_car setHit ["wheel_1_2_steering", 0];
+	_car setHit ["wheel_2_1_steering", 0];
+	_car setHit ["wheel_2_2_steering", 0];
+};
+
 _car setDir (random 360);
-if (_type > 1) then { _car setVehicleAmmo (random 0.90) };
+if (_type > 1) then { _car setVehicleAmmo (random 1.0) };
 _car disableTIEquipment true;
 [_car] call randomWeapons;
 

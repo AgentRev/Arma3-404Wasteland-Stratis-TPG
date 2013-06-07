@@ -45,7 +45,7 @@ if(X_Client) then {
 	if(count units group player > 1) then
 	{  
 		diag_log "Player Group Wiped";
-		[player] join grpNull;    
+		[player] join grpNull;
 	};
 
 	[] execVM "client\init.sqf";
@@ -71,7 +71,7 @@ if (X_Server) then
 }
 else
 {
-	"SADTOYCATS" addPublicVariableEventHandler { [] spawn (_this select 1); };
-    ahClientStarted = player;
-    publicVariableServer "ahClientStarted";
+	"ALLMUSTDIE" addPublicVariableEventHandler { [] spawn (_this select 1); };
+    acClientStarted = player;
+    publicVariableServer "acClientStarted";
 };
