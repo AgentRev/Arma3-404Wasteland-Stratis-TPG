@@ -57,9 +57,9 @@ switch(_selectedBox) do {
 		_currBox addWeaponCargoGlobal ["launch_NLAW_F",3];
 		_currBox addWeaponCargoGlobal ["launch_RPG32_F",3];
 		// Add ammunition
-		_currBox addMagazineCargoGlobal ["RPG32_AA_F",10];
-		_currBox addMagazineCargoGlobal ["RPG32_F",10];
-		_currBox addMagazineCargoGlobal ["NLAW_F",10];
+		_currBox addMagazineCargoGlobal ["RPG32_AA_F",5];
+		_currBox addMagazineCargoGlobal ["RPG32_F",5];
+		_currBox addMagazineCargoGlobal ["NLAW_F",5];
 		_currBox addMagazineCargoGlobal ["DemoCharge_Remote_Mag",10];
 		_currBox addMagazineCargoGlobal ["APERSMine_Range_Mag",15];
     };
@@ -75,6 +75,8 @@ switch(_selectedBox) do {
 		_currBox addWeaponCargoGlobal ["arifle_MX_SW_F",2];
 		_currBox addWeaponCargoGlobal ["arifle_MXM_F",2];
 		_currBox addWeaponCargoGlobal ["srifle_EBR_F",2];
+		_currBox addWeaponCargoGlobal ["srifle_LRR_SOS_F",1];
+		_currBox addWeaponCargoGlobal ["srifle_GM6_SOS_F",1];
 		_currBox addWeaponCargoGlobal ["hgun_P07_F",2];
 		_currBox addWeaponCargoGlobal ["hgun_Rook40_F",2];
 		
@@ -83,6 +85,8 @@ switch(_selectedBox) do {
 
 		_currBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
 		_currBox addMagazineCargoGlobal ["20Rnd_762x51_Mag",25];
+		_currBox addMagazineCargoGlobal ["5Rnd_127x108_Mag",5];
+		_currBox addMagazineCargoGlobal ["7Rnd_408_Mag",5];
 		_currBox addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag",25];
 		_currBox addMagazineCargoGlobal ["100Rnd_65x39_caseless_mag",20];
 		_currBox addMagazineCargoGlobal ["200Rnd_65x39_cased_Box",20];		
