@@ -55,6 +55,11 @@ if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide =
 	};
 };
 
+/*if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide == resistance) && (side _killer == resistance)) then
+{
+	[compile format ["(objectFromNetId '%1') addScore 2", netId _player], "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
+};*/
+
 if(!isNull(pvar_PlayerTeamKiller)) then {
 	publicVar_teamkillMessage = pvar_PlayerTeamKiller;
 	publicVariable "publicVar_teamkillMessage";

@@ -11,6 +11,7 @@ onKeyPress = compile preprocessFile "client\clientEvents\onKeyPress.sqf";
 
 // Functions
 fn_fitsInventory = compile preprocessFileLineNumbers "client\functions\fn_fitsInventory.sqf";
+findHackedVehicles = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\findHackedVehicles.sqf";
 
 // Player details and actions
 loadPlayerMenu = compile preprocessFile "client\systems\playerMenu\init.sqf";

@@ -12,10 +12,10 @@ _counter = 0;
 
 _nerfBoxes = ["Box_East_Support_F","Box_East_Wps_F","Box_East_WpsSpecial_F","Box_NATO_Support_F","Box_NATO_Wps_F","Box_NATO_WpsSpecial_F"];
 
-for "_i" from 1 to nbVehicleMarkers step 25 do
+for "_i" from 1 to (call nbVehicleMarkers) step 25 do
 {
-	if (_i > nbVehicleMarkers) then {
-		_i = nbVehicleMarkers;
+	if (_i > call nbVehicleMarkers) then {
+		_i = call nbVehicleMarkers;
 	};
 	
 	_pos = getMarkerPos format ["Spawn_%1", _i];
@@ -28,19 +28,13 @@ for "_i" from 1 to nbVehicleMarkers step 25 do
 	
 	if (_currBox in ["Box_East_WpsSpecial_F","Box_NATO_WpsSpecial_F"]) then
 	{
+		// Add couple extra mags
 		switch (_currBox) do 
 		{
-			case ("Box_East_WpsSpecial_F"):
-			{
-				// Add couple extra mags
+			case ("Box_East_WpsSpecial_F"): {
 				_boxInstance addMagazineCargoGlobal ["20Rnd_762x51_Mag", 5];
 			};
-			case ("Box_NATO_WpsSpecial_F"):
-			{				
-				// Temporary fix for Bug #7522
-				[_boxInstance, "20Rnd_762x51_Mag", "30Rnd_65x39_caseless_mag"] call fn_replaceMagazines;
-				
-				// Add couple extra mags
+			case ("Box_NATO_WpsSpecial_F"): {
 				_boxInstance addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag", 5];
 			};
 		};
@@ -49,8 +43,12 @@ for "_i" from 1 to nbVehicleMarkers step 25 do
 		[_boxInstance, "20Rnd_556x45_UW_mag", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;
 	};
 	
-	// Replace full tracer mags by full ball mags for more stealth	
-	[_boxInstance, "30Rnd_65x39_case_mag_Tracer", "30Rnd_65x39_case_mag"] call fn_replaceMagazines;					// TRG-2x
+	// Temporary fix for Bug #9218
+	[_boxInstance, "30Rnd_65x39_case_mag", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;							// TRG-2x
+	[_boxInstance, "30Rnd_65x39_case_mag_Tracer", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;					// TRG-2x
+	
+	// Replace full tracer mags by full ball mags for more stealth
+	[_boxInstance, "30Rnd_556x45_Stanag_Tracer_Green", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;				// TRG-2x
 	[_boxInstance, "30Rnd_65x39_caseless_mag_Tracer", "30Rnd_65x39_caseless_mag"] call fn_replaceMagazines;			// MX
 	[_boxInstance, "30Rnd_65x39_caseless_green_mag_Tracer", "30Rnd_65x39_caseless_green"] call fn_replaceMagazines;	// Katiba
 	

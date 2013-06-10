@@ -1,4 +1,4 @@
-// ARMA3 function fn_vehicleInit v0.2 - by SPUn / lostvar & AgentRev
+// ARMA3 function fn_vehicleInit v0.3 - by SPUn / lostvar & AgentRev
 // Function to set custom init commands for units
 // Call this from another scripts with syntax:
 // [_unit, _customInit, _persistence] spawn fn_vehicleInit;
@@ -60,4 +60,4 @@ for "_i" from 0 to (_strLen - 1) do
 	};
 };
 
-[call compile format ["[objectFromNetId '%1', {%2}]", netId _unit, toString _command], "BIS_fnc_spawn", true, _persistence] spawn BIS_fnc_MP;
+[compile format ["(objectFromNetId '%1') call {%2}", netId _unit, toString _command], "BIS_fnc_spawn", true, _persistence] call BIS_fnc_MP;

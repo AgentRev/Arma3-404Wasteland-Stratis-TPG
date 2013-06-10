@@ -9,7 +9,7 @@ class Header
 {
 	gameType=Wasteland;
 	minPlayers=1;
-	maxPlayers=64;
+	maxPlayers=65;
 };
 
 //Dialog includes

@@ -14,7 +14,7 @@ _i = 0;
 
 while {_counter < 8} do // 8 helis spawn at the beginning
 {
-	_selectedMarker = floor (random 24);
+	_selectedMarker = floor (random (call nbHeliMarkers));
     if(_selectedMarker in currentStaticHelis) then
     {
         //Failed to find a marker.
@@ -43,7 +43,7 @@ diag_log format["WASTELAND SERVER - %1 Static helis Spawned",_countActual];
 
 /*
 {diag_log format["Heli %1 = %2",_forEachIndex, _x];} forEach currentStaticHelis;
-for "_i" from 1 to 24 do {
+for "_i" from 1 to (call nbHeliMarkers) do {
     _doSpawnWreck = true;
     
     { // Check if current iteration already exists as a live heli...

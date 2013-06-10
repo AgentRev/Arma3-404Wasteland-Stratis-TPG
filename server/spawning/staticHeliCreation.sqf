@@ -23,7 +23,7 @@ if (_isWreck == 0) then {
 	clearWeaponCargoGlobal _currHeli;
 	
 	//Set original status to stop ner-do-wells
-	_currHeli setVariable["vehicleChecksum",vChecksum,true];
+	_currHeli setVariable["vehicleChecksum",call vChecksum,true];
 } else {
 	//diag_log "Spawning heli wreck...";
     /*
@@ -36,7 +36,7 @@ if (_isWreck == 0) then {
 	clearWeaponCargoGlobal _currHeli;
 	
 	//Set original status to stop ner-do-wells
-	_currHeli setVariable["vehicleChecksum",vChecksum,true];
+	_currHeli setVariable["vehicleChecksum",call vChecksum,true];
     
     _currHeli setDamage 1; // Destroy this heli on the spot so it looks like a realistic crash.
    	*/

@@ -47,13 +47,15 @@ currentDate = [];
 publicVariable "currentDate";
 currentInvites = [];
 publicVariable "currentInvites";
-                  
+
 "PlayerCDeath" addPublicVariableEventHandler {_id = (_this select 1) spawn server_playerDied};
 
 currentStaticHelis = []; // Storage for the heli marker numbers so that we don't spawn wrecks on top of live helis
 
 // Amount of vehicle spawn markers on map
-nbVehicleMarkers = 118;
+nbVehicleMarkers = compileFinal "118";
+nbHeliMarkers = compileFinal "24";
+nbBoatMarkers = compileFinal "12";
 
 //Civilian Vehicle List - Random Spawns
 civilianVehicles = ["c_offroad"];
@@ -63,30 +65,32 @@ lightMilitaryVehicles = ["B_Quadbike_F","O_Quadbike_F"];
 
 //Medium Military Vehicle List - Random Spawns
 mediumMilitaryVehicles = ["B_Hunter_F","O_Ifrit_F"];
+
+//Boats List - Random Spawns
+waterVehicles = ["B_Assaultboat","O_Assaultboat","B_SpeedBoat","O_SpeedBoat"];
                             
 //Object List - Random Spawns.
-objectList = ["Land_Barrelwater_F",
-//			"Land_Fireplace_F",
-//			"Land_WoodenBox_F",
-			"Land_HBarrier_1_F",
-			"Land_HBarrier_1_F",
-			"Land_HBarrier_5_F",
-			"Land_HBarrier_5_F",
-			"Land_HBarrierBig_F",
-			"Land_HBarrierBig_F",
-			"Land_HBarrier_3_F",
-//			"Land_CncBarrier_F", // broken map items
-//			"Land_Mound01_8m_F",
-//			"Land_Mound02_8m_F",
-			"Land_Scaffolding_F",
-//			"Land_Razorwire_F", //isnt currently able to be picked up
-			"Land_HBarrierBig_F",
-			"B_supplyCrate_F",
-//			"Land_Obstacle_Bridge_F",
-//			"RampConcrete",
-			"Land_CargoBox_V1_F"
+objectList = [
+				"Land_HBarrier_1_F",
+				"Land_HBarrier_1_F",
+				"Land_HBarrier_5_F",
+				"Land_HBarrier_5_F",
+				"Land_HBarrierBig_F",
+				"Land_HBarrierBig_F",
+				"Land_HBarrier_3_F",
+				"Land_Scaffolding_F",
+				"Land_HBarrierBig_F",
+//				"Land_Barrelwater_F",
+//				"Land_Fireplace_F",
+//				"Land_WoodenBox_F",
+				"B_supplyCrate_F",
+				"Land_CargoBox_V1_F",
+				"Land_Mil_WallBig_4m_F",
+				"Land_Mil_WallBig_4m_F",
+				"Land_Mil_WallBig_4m_F",
+				"Land_Mil_WallBig_4m_F"
 			];
-                                         
+
 //Object List - Random Spawns.
 staticWeaponsList = ["B_MK6"];
 

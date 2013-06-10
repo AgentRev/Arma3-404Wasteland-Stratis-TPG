@@ -111,7 +111,7 @@ switch (_switch) do
 								hint format [_notEnoughSpace,_name];
 							};
                         };
-						case "backpack":
+						case "bpack":
 						{
 							if (backpack player == "") then
 							{
@@ -159,9 +159,21 @@ switch (_switch) do
 								hint format["You already have headgear, please drop it before buying a new one"]; 
                             };
                         };
+						case "gogg":
+                        {
+                            if (goggles player == "") then
+                            {
+                                player addGoggles _class;
+                            }
+                            else
+                            {
+								gunStoreCart = gunStoreCart - (_x select 2);
+								hint format["You already have goggles, please drop them before buying new ones"]; 
+                            };
+                        };
                     };
 				};
-            } forEach accessoriesArray;
+            } forEach (accessoriesArray + gearArray);
 		};
 
 		player setVariable["cmoney",_playerMoney - gunStoreCart,true];

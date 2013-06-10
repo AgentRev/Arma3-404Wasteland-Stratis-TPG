@@ -22,8 +22,8 @@ _mag = (getArray (configFile >> "Cfgweapons" >> _weapon >> "magazines")) select 
 switch (_mag) do
 {
 	// TRG-2x
-	case "30Rnd_65x39_case_mag_Tracer": {
-		_mag = "30Rnd_65x39_case_mag";
+	case "30Rnd_556x45_Stanag_Tracer_Green": {
+		_mag = "30Rnd_556x45_Stanag";
 	};
 	// MX
 	case "30Rnd_65x39_caseless_mag_Tracer": {

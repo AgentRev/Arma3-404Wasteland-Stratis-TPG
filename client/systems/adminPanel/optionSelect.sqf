@@ -134,9 +134,9 @@ if ((_uid in moderators) OR (_uid in administrators) OR (_uid in serverAdministr
 					_leader addMagazine "RPG32_F";
 					_leader addMagazine "RPG32_F";
 					_leader addWeapon "launch_RPG32_F";
-					_leader addMagazine "30Rnd_65x39_case_mag";
-					_leader addMagazine "30Rnd_65x39_case_mag";
-					_leader addMagazine "30Rnd_65x39_case_mag";
+					_leader addMagazine "30Rnd_556x45_Stanag";
+					_leader addMagazine "30Rnd_556x45_Stanag";
+					_leader addMagazine "30Rnd_556x45_Stanag";
 					_leader addWeapon "arifle_TRG20_F";
 			    };
 			};		

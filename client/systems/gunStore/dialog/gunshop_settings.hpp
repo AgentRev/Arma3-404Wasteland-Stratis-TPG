@@ -148,7 +148,7 @@ class gunshopd {
 
 		};
 
-		class BuyToCrate: w_RscButton
+		/*class BuyToCrate: w_RscButton
 		{
 			idc = -1;
 			onButtonClick = "[1] execVM 'client\systems\gunStore\buyGuns.sqf'";
@@ -160,7 +160,7 @@ class gunshopd {
 			h = 0.040 * safezoneH;
 			color[] = {0.1,0.95,0.1,1};
 
-		};
+		};*/
 
 		class BuyToPlayer: w_RscButton
 		{
@@ -237,6 +237,19 @@ class gunshopd {
 
 			x = 0.203125 * safezoneW + safezoneX;
 			y = 0.325 * safezoneH + safezoneY;
+			w = 0.088 * safezoneW;
+			h = 0.040 * safezoneH;
+
+		};
+		
+		class StoreButton3: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[3] execVM 'client\systems\gunStore\populateGunStore.sqf'";
+			text = "Gear";
+
+			x = 0.203125 * safezoneW + safezoneX;
+			y = 0.375 * safezoneH + safezoneY;
 			w = 0.088 * safezoneW;
 			h = 0.040 * safezoneH;
 

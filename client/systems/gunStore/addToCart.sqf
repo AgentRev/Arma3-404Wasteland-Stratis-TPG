@@ -30,6 +30,7 @@ if (local player) then {
 	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach weaponsArray;
 	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach ammoArray;
 	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach accessoriesArray;
+	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach gearArray;
 
 	gunStoreCart = gunStoreCart + _price;
 	_totalText CtrlsetText format["Total: $%1", gunStoreCart];

@@ -65,6 +65,21 @@ _gunlisttext ctrlSetText format [""];
 	_weap_type = _x select 1; 
 	_price = _x select 2;
 	
+	_weapon = (configFile >> "CfgWeapons" >> _weap_type);
+	_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", getText(_weapon >> "displayName"), getText(_weapon >> "descriptionShort")]);
+    
+	_gunpicture ctrlSettext "";
+	
+    _picture = getText(_weapon >> "picture");
+	_itempicture ctrlSettext _picture;
+    
+	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
+}}forEach accessoriesArray;
+
+{if(_itemText == _x select 0) then{
+	_weap_type = _x select 1; 
+	_price = _x select 2;
+	
 	_weapon = "";
 	
 	if (_x select 3 == "backpack") then {
@@ -94,4 +109,4 @@ _gunlisttext ctrlSetText format [""];
 	_itempicture ctrlSettext _picture;
     
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
-}}forEach accessoriesArray;
+}}forEach gearArray;

@@ -53,6 +53,7 @@ switch (playerSide) do
 _player addBackpack "B_Kitbag_Base";
 _player addMagazine "16Rnd_9x21_Mag";
 _player addMagazine "16Rnd_9x21_Mag";
+_player addMagazine "16Rnd_9x21_Mag";
 _player addWeapon "hgun_P07_F";
 _player selectWeapon "hgun_P07_F";
 

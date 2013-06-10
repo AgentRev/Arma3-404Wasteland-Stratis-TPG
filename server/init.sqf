@@ -10,7 +10,10 @@ if(!X_Server) exitWith {};
 sideMissions = 1;
 serverSpawning = 1;
 
+vChecksum = compileFinal format ["'%1'", call generateKey];
+
 //Execute Server Side Scripts.
+[] execVM "server\antihack\setup.sqf";
 [] execVM "server\admins.sqf";
 [] execVM "server\functions\serverVars.sqf";
 _serverCompiledScripts = [] execVM "server\functions\serverCompile.sqf";
@@ -28,6 +31,8 @@ if (serverSpawning == 1) then {
     diag_log format["WASTELAND SERVER - Initializing Server Spawning"];
 	_vehSpawn = [] ExecVM "server\functions\vehicleSpawning.sqf";
 	waitUntil{sleep 0.1; scriptDone _vehSpawn};
+	_boatSpawn = [] ExecVM "server\functions\boatSpawning.sqf";
+	waitUntil{sleep 0.1; scriptDone _boatSpawn};
     _objSpawn = [] ExecVM "server\functions\objectsSpawning.sqf";
 	waitUntil{sleep 0.1; scriptDone _objSpawn};
     _boxSpawn = [] ExecVM "server\functions\boxSpawning.sqf";

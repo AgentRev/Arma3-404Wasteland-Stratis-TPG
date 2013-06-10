@@ -151,7 +151,7 @@ while {_run} do
 			_towedUnit setVelocity [0,0,0];
 		};
 		
-		if (typename _static == "ARRAY") then { _position = _static; }
+		if (typeName _static == typeName []) then { _position = _static; }
 		else { _position = getPosASL _unit; _dir = getDir _unit; };
 		
 		if (_explode) then { ("M_AT" createVehicle getPos _unit) setPosASL getPosASL _unit };

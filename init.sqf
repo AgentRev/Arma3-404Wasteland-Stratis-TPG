@@ -14,13 +14,7 @@ X_Server = false;
 X_Client = false;
 X_JIP = false;
 hitStateVar = false;
-versionName = "v1.06c Alpha";
-
-vChecksum = 1;
-
-{
-	vChecksum = vChecksum + _x;
-} forEach (toArray versionName);
+versionName = "v1.07d Alpha";
 
 if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
@@ -38,6 +32,8 @@ true spawn {
 [] execVM "config.sqf";
 [] execVM "briefing.sqf";
 
+generateKey = compileFinal preprocessFileLineNumbers "server\functions\generateKey.sqf";
+
 if(X_Client) then {
 	waitUntil {player == player};
 
@@ -45,7 +41,7 @@ if(X_Client) then {
 	if(count units group player > 1) then
 	{  
 		diag_log "Player Group Wiped";
-		[player] join grpNull;    
+		[player] join grpNull;
 	};
 
 	[] execVM "client\init.sqf";
@@ -64,14 +60,3 @@ if(X_Server) then {
 [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
 [] execVM "addons\proving_Ground\init.sqf";
 //[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
-
-if (X_Server) then
-{
-	[] execVM "server\ANTIHACK.sqf";
-}
-else
-{
-	"SADTOYCATS" addPublicVariableEventHandler { [] spawn (_this select 1); };
-    ahClientStarted = player;
-    publicVariableServer "ahClientStarted";
-};
