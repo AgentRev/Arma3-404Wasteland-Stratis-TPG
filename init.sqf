@@ -45,6 +45,7 @@ if(X_Client) then {
 	};
 
 	[] execVM "client\init.sqf";
+	[] execVM "fog.sqf";
 };
 
 if(X_Server) then {
@@ -54,6 +55,7 @@ if(X_Server) then {
 	#endif
     diag_log format["WASTELAND SERVER - Initializing Server"];
 	[] execVM "server\init.sqf";
+	[] execVM "daytime.sqf";
 };
 
 //init 3rd Party Scripts
