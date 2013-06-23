@@ -118,6 +118,7 @@ _gunlisttext ctrlSetText format [""];
 		};
 		case "ghillie":
 		{
+			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
 			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Disguise as a swamp monster"]);
 		};	
 		default
