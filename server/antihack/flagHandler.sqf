@@ -1,6 +1,6 @@
 
 //	@file Version: 1.0
-//	@file Name: setup.sqf
+//	@file Name: flagHandler.sqf
 //	@file Author: AgentRev
 //	@file Created: 04/06/2013 21:31
 
