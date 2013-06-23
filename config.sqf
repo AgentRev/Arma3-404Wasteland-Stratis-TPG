@@ -12,7 +12,7 @@
 // --------------------------------------------------------------------------------------------------- \\
 
 enableBoats = true;
-                                                                                                
+
 //Gunstore Weapon List - Gun Store Base List
 // Text name, classname, buy cost, sell amount
 weaponsArray = [
@@ -90,6 +90,7 @@ accessoriesArray = [
     ["First Aid Kit","FirstAidKit", 25,"item"],
     ["Medikit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
+	["Mine Detector","MineDetector", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 50,"item"],
     ["Suppressor 7.62mm","muzzle_snds_B", 100,"item"],
     ["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
@@ -99,7 +100,7 @@ accessoriesArray = [
 	["ACO Sight (Green)","optic_ACO_grn", 50,"item"],
 	["Holosight","optic_Holosight", 50,"item"],
 	["RCO Sight","optic_Hamr", 100,"item"],
-	["ARCO Sight","optic_Arco", 100,"item"],
+	["ARCO Sight","optic_Arco", 150,"item"],
 	["SOS Sight","optic_SOS", 200,"item"]
 ];
 
@@ -108,8 +109,8 @@ accessoriesArray = [
 gearArray = [
 	["Backpack (Large)","B_Bergen_Base", 500,"bpack"],			// 25% more capacity than default backpack (B_Kitbag_Base), 50% more than older backpack (B_AssaultPack_Base)
 	["Backpack (Extra Large)","B_Carryall_Base", 750,"bpack"],	// 40% more capacity than default backpack (B_Kitbag_Base)
-	["Ghillie Suit (Green)","U_B_GhillieSuit", 200,"uni"],
-	["Ghillie Suit (Brown)","U_O_GhillieSuit", 200,"uni"], 
+	["Ghillie Suit","U_B_GhillieSuit", 200,"ghillie"],
+	//["Ghillie Suit (Brown)","U_O_GhillieSuit", 200,"uni"], 	// Temporarily removed due to underwear glitch
     ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", 100,"vest"],
     ["Carrier Lite (Coyote)","V_PlateCarrier1_cbr", 100,"vest"],
     ["Carrier Lite (Green)","V_PlateCarrier1_rgr", 100,"vest"],

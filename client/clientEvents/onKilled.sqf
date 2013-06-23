@@ -55,10 +55,10 @@ if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide =
 	};
 };
 
-/*if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide == resistance) && (side _killer == resistance)) then
+if ((_player != _killer) && (vehicle _player != vehicle _killer) && (side _player == resistance) && (side _killer == resistance)) then
 {
-	[compile format ["(objectFromNetId '%1') addScore 2", netId _player], "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
-};*/
+	[[_killer], "removeNegativeScore", false, false] call BIS_fnc_MP;
+};
 
 if(!isNull(pvar_PlayerTeamKiller)) then {
 	publicVar_teamkillMessage = pvar_PlayerTeamKiller;
@@ -73,6 +73,7 @@ _to_delete_quick = [];
 if((_player getVariable "cmoney") > 0) then {
 	_m = "Land_Sack_F" createVehicle (position _player);
 	_m setVariable["money", (_player getVariable "cmoney"), true];
+	_player setVariable["cmoney",0,true];
 	_m setVariable ["owner", "world", true];
 	_to_delete = _to_delete + [_m];
 };

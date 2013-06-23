@@ -36,30 +36,46 @@ class balca_loader_main
 //background
 	class balca_loader_background_veh
 	{
-		idc = -1;
+		/*idc = -1;
 		type = CT_STATIC;
-		style = ST_PICTURE;
+		style = ST_PICTURE;*/
 		x = safezoneX; w = display_weight;
 		y = safezoneY; h = display_height/2;
-		colorText[] = {1, 1, 1, 1};
+		/*colorText[] = {1, 1, 1, 1};
 		colorBackground[] = {0,0,0,0};
 		text = "\ca\ui\data\ui_gameoptions_background_ca.paa";
 		font = "Zeppelin32";
-		sizeEx = 0.032;
+		sizeEx = 0.032;*/
+		colorBackground[] = {0, 0, 0, 0.6};
+		text              = "";
+		type              = CT_STATIC;
+		idc               = -1;
+		style             = ST_LEFT;
+		font              = "";
+		colorText[]       = {1, 1, 1, 1};
+		sizeEx            = 0.04;
 	};
 
 	class balca_loader_background_ammo
 	{
-		idc = -1;
+		/*idc = -1;
 		type = CT_STATIC;
-		style = ST_PICTURE;
+		style = ST_PICTURE;*/
 		x = safezoneX; w = display_weight;
 		y = display_height/2+border_offsetY; h = display_height/2;
-		colorText[] = {1, 1, 1, 1};
+		/*colorText[] = {1, 1, 1, 1};
 		colorBackground[] = {0,0,0,0};
 		text = "\ca\ui\data\ui_gameoptions_background_ca.paa";
 		font = "Zeppelin32";
-		sizeEx = 0.032;
+		sizeEx = 0.032;*/
+		colorBackground[] = {0, 0, 0, 0.6};
+		text              = "";
+		type              = CT_STATIC;
+		idc               = -1;
+		style             = ST_LEFT;
+		font              = "";
+		colorText[]       = {1, 1, 1, 1};
+		sizeEx            = 0.04;
 	};
 //abstract classes
 
@@ -217,16 +233,24 @@ class balca_loader_main
 
 	class balca_loader_pict
 	{
-		idc = -1;
+		/*idc = -1;
 		type = CT_STATIC;
-		style = ST_PICTURE;
+		style = ST_PICTURE;*/
 		x = 0.25; w = 0.5;
 		y = 0.1; h = 0.8;
-		colorText[] = {1, 1, 1, 1};
+		/*colorText[] = {1, 1, 1, 1};
 		colorBackground[] = {0,0,0,0};
 		text = "\ca\ui\data\ui_gameoptions_background_ca.paa";
 		font = "Zeppelin32";
-		sizeEx = 0.032;
+		sizeEx = 0.032;*/
+		colorBackground[] = {0, 0, 0, 0.6};
+		text              = "";
+		type              = CT_STATIC;
+		idc               = -1;
+		style             = ST_LEFT;
+		font              = "";
+		colorText[]       = {1, 1, 1, 1};
+		sizeEx            = 0.04;
 	};
 
 //controls

@@ -1,29 +1,28 @@
 
 //	@file Version: 1.0
-//	@file Name: setup.sqf
+//	@file Name: payload.sqf
 //	@file Author: AgentRev (also many thanks to the unknown author of the original ANTI-HACK v0.6.3)
 //	@file Created: 01/06/2013 21:31
 
 if (isServer) exitWith {};
 
 private ["_cheatFlag", "_defaultRecoil"];
+_defaultRecoil = unitRecoilCoefficient player;
 
-// diag_log "ANTI-HACK 0.7.0 starting...";
+// diag_log "ANTI-HACK 0.7.1 starting...";
 
 {
 	if (loadFile _x != "") exitWith
 	{
-		// diag_log "ANTI-HACK 0.7.0: Found a hack menu!";
+		// diag_log "ANTI-HACK 0.7.1: Found a hack menu!";
 
 		_cheatFlag = ["hack menu", _x];
 	};
 } forEach ["used for hacking", "@DevCon\DevCon.pbo", "@ExtData\addons\loki_lost_key.pbo", "@ExtData\addons\loki_lost_key_models.pbo", "@ExtData\loki_lost_key.pbo", "@ExtData\loki_lost_key_models.pbo", "addons\@DevCon\DevCon.pbo", "addons\@ExtData\addons\loki_lost_key.pbo", "addons\@ExtData\addons\loki_lost_key_models.pbo", "addons\@ExtData\loki_lost_key.pbo", "addons\@ExtData\loki_lost_key_models.pbo", "crinkly\keymenu.sqf", "DevCon.pbo", "fazeddays.sqf", "jestersMENU\exec.sqf", "LystoArma3\start.sqf", "menu\exec.sqf", "menu\initmenu.sqf", "scripts\ajmenu.sqf", "scripts\defaultmenu.sqf", "scripts\exec.sqf", "scr\start.sqf", "ShadowyFaze\exec.sqf", "startup.sqf", "vet@folder\vet@start.sqf", "WookieMenu.sqf", "Wookie_Beta\start.sqf", "wookie_wuat\startup.sqf", "wuat\exec.sqf", "wuat\screen.sqf"];
 
-// diag_log "ANTI-HACK 0.7.0: Starting loop!";
+// diag_log "ANTI-HACK 0.7.1: Starting loop!";
 
-// diag_log "ANTI-HACK 0.7.0: Detection of hack variables started!";
-
-_defaultRecoil = unitRecoilCoefficient player;
+// diag_log "ANTI-HACK 0.7.1: Detection of hack variables started!";
 
 while { true } do
 {			
@@ -34,7 +33,7 @@ while { true } do
 		{
 			if (!isNil _x) exitWith
 			{
-				// diag_log "ANTI-HACK 0.7.0: Found a hack variable!";
+				// diag_log "ANTI-HACK 0.7.1: Found a hack variable!";
 				
 				_cheatFlag = ["hacked variable", _x];
 			};
@@ -43,14 +42,14 @@ while { true } do
 	
 	if (isNil "_cheatFlag") then 
 	{
-		// diag_log "ANTI-HACK 0.7.0: Recoil hack check started!";
+		// diag_log "ANTI-HACK 0.7.1: Recoil hack check started!";
 		
 		private ["_currentRecoil", "_recoilDifference"];
 		_currentRecoil = unitRecoilCoefficient player;
 		
 		if (_currentRecoil != _defaultRecoil) then
 		{
-			// diag_log "ANTI-HACK 0.7.0: Detected recoil hack!";
+			// diag_log "ANTI-HACK 0.7.1: Detected recoil hack!";
 			
 			_recoilDifference = ((_currentRecoil / _defaultRecoil) - 1) * 100;
 			

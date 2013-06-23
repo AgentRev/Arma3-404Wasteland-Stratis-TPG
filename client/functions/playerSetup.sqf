@@ -11,6 +11,8 @@ _player setskill 0;
 {_player disableAI _x} foreach ["move","anim","target","autotarget"];
 _player setVariable ["BIS_noCoreConversations", true];
 
+_player addEventHandler ["HandleDamage", {false}];
+
 enableSentences false;
 _player removeWeapon "ItemRadio";
 _player removeWeapon "ItemGPS";
@@ -63,7 +65,7 @@ _player switchMove "amovpknlmstpsraswpstdnon_gear";
 thirstLevel = 100;
 hungerLevel = 100;
 
-_player setVariable["cmoney",100,true];
+//_player setVariable["cmoney",100,true];
 _player setVariable["canfood",1,false];
 _player setVariable["medkits",0,false];
 _player setVariable["water",1,false];

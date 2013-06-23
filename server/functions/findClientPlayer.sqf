@@ -5,12 +5,12 @@
 
 private ["_clientID", "_player"];
 _clientID = _this select 0;
-_player = "";
+_player = objNull;
 
 {
 	if (owner _x == _clientID) exitWith
 	{
-		_player = name _x;
+		_player = _x;
 	};
 }
 forEach playableUnits;

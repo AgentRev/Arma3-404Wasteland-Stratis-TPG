@@ -8,7 +8,7 @@ waituntil {!isnil "bis_fnc_init"};
 
 private ["_townName","_randomLoc","_pos"];
 
-_randomLoc = cityList select (random (count cityList - 1));
+_randomLoc = cityList call BIS_fnc_selectRandom;
 
 _pos = getMarkerPos (_randomLoc select 0);
 _pos = [_pos,1,(_randomLoc select 1),1,0,0,0] call BIS_fnc_findSafePos;

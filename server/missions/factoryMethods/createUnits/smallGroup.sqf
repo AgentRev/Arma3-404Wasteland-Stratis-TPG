@@ -48,5 +48,9 @@ _man4 addMagazine "30Rnd_65x39_caseless_mag";
 _man4 addMagazine "30Rnd_65x39_caseless_mag";
 _man4 addWeapon "arifle_MXM_F";
 
+{
+	_x addEventHandler ["Killed", { [_this select 1] call removeNegativeScore }];
+} forEach units _group;
+
 _leader = leader _group;
 [_group, _pos] call defendArea;

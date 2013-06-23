@@ -7,6 +7,9 @@
 _switch = _this select 0;
 _button = _this select 1;
 
+player removeAllEventHandlers "HandleDamage";
+player setVariable["cmoney",100,true];
+
 switch(_switch) do 
 {
     case 0:{execVM "client\functions\spawnRandom.sqf"};

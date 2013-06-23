@@ -19,7 +19,7 @@ playerCompiledScripts = false;
 playerSetupComplete = false;
 
 waitUntil {!isNull player};
-waitUntil{time > 2};
+waitUntil{time > 0.1};
 
 //Call client compile list.
 player call compile preprocessFileLineNumbers "client\functions\clientCompile.sqf";

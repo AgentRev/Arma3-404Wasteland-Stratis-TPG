@@ -32,14 +32,31 @@ else
 		_objet setVariable ["R3F_LOG_est_transporte_par", objNull, true];
 		
 		detach _objet;
+		
+		_objetPos = getPosATL _objet;
+		
+		if (_objetPos select 2 < 0) then {
+			_objet setPosATL [_objetPos select 0, _objetPos select 1, 0.5];
+		};
+		
 		_objet setVelocity [0,0,0];
 		
 		player playMove "AinvPknlMstpSlayWrflDnon_medic";
-		sleep 7;
+		
+		player addEventHandler ["AnimDone", 
+		{
+			if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
+			{
+				player playMove "";
+				player removeAllEventHandlers "AnimDone";
+			};
+		}];
+		
+		sleep 6;
 		
 		if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 		{
-			// Si personne n'a re-remorquer l'objet pendant le sleep 7
+			// Si personne n'a re-remorquer l'objet pendant le sleep 6
 			if (isNull (_remorqueur getVariable "R3F_LOG_remorque") &&
 				(isNull (_objet getVariable "R3F_LOG_est_transporte_par")) &&
 				(isNull (_objet getVariable "R3F_LOG_est_deplace_par"))

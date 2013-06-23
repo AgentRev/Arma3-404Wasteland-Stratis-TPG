@@ -33,14 +33,14 @@ diag_log format["WASTELAND SERVER - Side Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-/*
+#ifdef __DEBUG__
 _marker = createMarkerLocal ["AirWreck_Marker", _randomPos];
 "AirWreck_Marker" setMarkerShapeLocal "ICON";
 "AirWreck_Marker" setMarkerTypeLocal "mil_dot";
 "AirWreck_Marker" setMarkerColorLocal "ColorRed";
 "AirWreck_Marker" setMarkerSizeLocal [1,1];
 "AirWreck_Marker" setMarkerTextLocal "Mission Here";
-*/
+#endif
 
 //Vehicle Class, Posistion, Fuel, Ammo, Damage
 _vehicle = ["O_Ka60_Unarmed_F",[(_randomPos select 0) + 50, (_randomPos select 1) + 50,0],0,0,1,"NONE"] call createMissionVehicle;
@@ -48,14 +48,12 @@ _vehicle = ["O_Ka60_Unarmed_F",[(_randomPos select 0) + 50, (_randomPos select 1
 _box = createVehicle ["Box_East_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
 
-_box addEventHandler ["hit", {(_this select 0) setDamage 0;}];
-_box addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+_box addEventHandler ["handledamage", {false}];
 
 _box2 = createVehicle ["Box_NATO_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
 
-_box2 addEventHandler ["hit", {(_this select 0) setDamage 0;}];
-_box2 addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+_box2 addEventHandler ["handledamage", {false}];
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
@@ -95,7 +93,7 @@ if(_result == 1) then
     deleteVehicle _vehicle;
     {deleteVehicle _x;}forEach units CivGrps;
     deleteGroup CivGrpS;
-    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
+    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time.</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
 	messageSystem = _hint;
     publicVariable "messageSystem";
     diag_log format["WASTELAND SERVER - Side Mission Failed: %1",_missionType];
@@ -103,7 +101,7 @@ if(_result == 1) then
 	//Mission Complete.
     deleteVehicle _vehicle;
     deleteGroup CivGrpS;
-    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The ammo caches have been collected well done team</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
+    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The airwreck supplies have been collected, well done team.</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
 	messageSystem = _hint;
     publicVariable "messageSystem";
     diag_log format["WASTELAND SERVER - Side Mission Success: %1",_missionType];

@@ -1,5 +1,5 @@
 //	@file Version: 1.0
-//	@file Name: mission_Heli.sqf
+//	@file Name: mission_CivHeli.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy
 //	@file Created: 08/12/2012 15:19
 //	@file Args:
@@ -33,18 +33,20 @@ diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-/*
+#ifdef __DEBUG__
 _marker = createMarkerLocal ["CivHeli_Marker", _randomPos];
 "CivHeli_Marker" setMarkerShapeLocal "ICON";
 "CivHeli_Marker" setMarkerTypeLocal "mil_dot";
 "CivHeli_Marker" setMarkerColorLocal "ColorRed";
 "CivHeli_Marker" setMarkerSizeLocal [1,1];
 "CivHeli_Marker" setMarkerTextLocal "Mission Here";
-*/
+#endif
 _vehicleClass = ["O_Ka60_Unarmed_F","B_MH9_F"] call BIS_fnc_selectRandom;
 
 // Vehicle spawning: Name, Position, Fuel, Ammo, Damage, "NONE"
 _vehicle = [_vehicleClass,_randomPos,0.5,1,0,"NONE"] call createMissionVehicle;
+_vehicle spawn vehicleRepair;
+_vehicle spawn cleanHeliWreck;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");

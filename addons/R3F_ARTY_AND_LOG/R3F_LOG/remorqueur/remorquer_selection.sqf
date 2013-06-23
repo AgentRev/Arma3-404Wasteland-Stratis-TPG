@@ -44,24 +44,69 @@ else
 					// On mémorise aussi sur le réseau que le canon est attaché en remorque
 					_objet setVariable ["R3F_LOG_est_transporte_par", _remorqueur, true];
 					
-					// On place le joueur sur le côté du véhicule, ce qui permet d'éviter les blessure et rend l'animation plus réaliste
-					player attachTo [_remorqueur, [
-						(boundingBox _remorqueur select 1 select 0),
-						(boundingBox _remorqueur select 0 select 1) + 1,
-						(boundingBox _remorqueur select 0 select 2) - (boundingBox player select 0 select 2)
-					]];
+					if ((getPosASL player) select 2 > 0) then
+					{
 					
-					player setDir 270;
-					player setPos (getPos player);
+						// On place le joueur sur le côté du véhicule, ce qui permet d'éviter les blessure et rend l'animation plus réaliste
+						player attachTo [_remorqueur, [
+							(boundingBox _remorqueur select 1 select 0),
+							(boundingBox _remorqueur select 0 select 1) + 1,
+							(boundingBox _remorqueur select 0 select 2) - (boundingBox player select 0 select 2)
+						]];
+						
+						player setDir 270;
+						player setPos (getPos player);
+					};
 					
 					player playMove "AinvPknlMstpSlayWrflDnon_medic";
+					
+					player addEventHandler ["AnimDone", 
+					{
+						if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
+						{
+							player playMove "";
+							player removeAllEventHandlers "AnimDone";
+						};
+					}];
+					
 					sleep 2;
 					
+					_speedBoatCompensateZ = 0;
+					_mh9CompensateY = 0;
+					_mh9CompensateZ = 0;
+					_ka60CompensateY = 0;
+					_ka60CompensateZ = 0;
+					
+					if ((typeOf _remorqueur) isKindOf "Speedboat_Base" && !((typeOf _objet) isKindOf "Speedboat_Base")) then
+					{
+						_speedBoatCompensateZ = 1.5;
+					};
+					if (!((typeOf _remorqueur) isKindOf "Speedboat_Base") && (typeOf _objet) isKindOf "Speedboat_Base") then
+					{
+						_speedBoatCompensateZ = -0.5;
+					};
+					if ((typeOf _objet) isKindOf "MH9_Base_F") then
+					{
+						_mh9CompensateY = -1.25;
+						_mh9CompensateZ = -2.2;
+					};
+					if ((typeOf _objet) isKindOf "Ka60_Base_F") then
+					{
+						_ka60CompensateY = 3;
+						_ka60CompensateZ = 0.25;
+					};
+										
 					// Attacher à l'arrière du véhicule au ras du sol
 					_objet attachTo [_remorqueur, [
 						0,
-						(boundingBox _remorqueur select 0 select 1) + (boundingBox _objet select 0 select 1) + 3,
-						(boundingBox _remorqueur select 0 select 2) - (boundingBox _objet select 0 select 2)
+						
+						((boundingCenter _objet select 1) - (boundingCenter _remorqueur select 1)) +
+						((boundingBoxReal _remorqueur select 0 select 1) + (boundingCenter _remorqueur select 1)) + 
+						((boundingBoxReal _objet select 0 select 1) + (boundingCenter _objet select 1)) - 0.1 + _mh9CompensateY + _ka60CompensateY,
+						
+						((boundingCenter _objet select 2) - (boundingCenter _remorqueur select 2)) +
+						((boundingBoxReal _remorqueur select 0 select 2) + (boundingCenter _remorqueur select 2)) + 
+						((boundingBoxReal _objet select 1 select 2) - (boundingCenter _objet select 2)) + 0.1 + _speedBoatCompensateZ + _mh9CompensateZ + _ka60CompensateZ
 					]];
 					
 					R3F_LOG_objet_selectionne = objNull;
@@ -93,8 +138,9 @@ else
 						};
 					};
 					
-					sleep 5;    
-                } else {
+					sleep 5;
+                }
+				else {
                 	player globalChat "You can't tow more than one vehicle.";    
                 };
 			}

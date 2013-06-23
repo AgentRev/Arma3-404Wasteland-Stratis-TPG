@@ -8,11 +8,10 @@
 if(!X_Server) exitWith {};
 
 _objPos = _this select 0;
-_Objtype = objectList select (random (count objectList - 1));
+_Objtype = objectList call BIS_fnc_selectRandom;
 _obj = createVehicle [_Objtype,_objPos,[], 50,"None"]; 
 
-_obj addEventHandler ["hit", {(_this select 0) setDamage 0;}];
-_obj addEventHandler ["dammaged", {(_this select 0) setDamage 0;}];
+_obj addEventHandler ["handledamage", {false}];
 
 switch (_Objtype) do
 {

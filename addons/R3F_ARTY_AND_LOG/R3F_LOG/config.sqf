@@ -32,7 +32,9 @@ R3F_LOG_CFG_remorqueurs = [
     "B_Hunter_RCWS_F",
     "B_Hunter_HMG_F",
     "O_Ifrit_F",
-    "O_Ifrit_GMG_F"
+    "O_Ifrit_GMG_F",
+	"B_SpeedBoat",
+	"O_SpeedBoat"
 ];
 
 /**
@@ -46,7 +48,15 @@ R3F_LOG_CFG_objets_remorquables = [
     "B_Hunter_RCWS_F",
     "B_Hunter_HMG_F",
     "O_Ifrit_F",
-    "O_Ifrit_GMG_F"
+    "O_Ifrit_GMG_F",
+	"B_Assaultboat",
+	"O_Assaultboat",
+	"B_SpeedBoat",
+	"O_SpeedBoat",
+	"O_Ka60_Unarmed_F",
+	"B_MH9_F",
+	"O_Ka60_F",
+	"B_AH9_F"
 ];
 
 /****** LIFT WITH VEHICLE / HELIPORTER AVEC VEHICULE ******/

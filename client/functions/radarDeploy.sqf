@@ -115,7 +115,7 @@ for "_iteration" from 1 to _actionDuration do {
        
         player setVariable ['PG_result',[]];
         _command = format["if isServer then {this setVariable [""PG_result"",[call {[%1,%2,%3,%4] execVM 'server\functions\radarMarkerUpdate.sqf'}],true]}",str(_uniqueID),str(_radarStationPos),str(_playerSide),_markerState];
-		[player, _command] spawn fn_vehicleInit;
+		[player, _command] call fn_vehicleInit;
 		// processInitCommands;      
 	};     
 };        		

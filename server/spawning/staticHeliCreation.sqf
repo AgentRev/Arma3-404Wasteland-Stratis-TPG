@@ -11,10 +11,10 @@ private["_spawnPos", "_spawnType", "_currHeli"];
 
 _isWreck = _this select 0;
 _spawnPos = _this select 1;
+_spawnType = _this select 2;
 
 if (_isWreck == 0) then {
 	//diag_log "Spawning heli complete...";
-	_spawnType = staticHeliList select (random (count staticHeliList - 1));
 	_currHeli = createVehicle [_spawnType,_spawnPos,[], 50,"None"]; 
 	
 	_currHeli setpos [getpos _currHeli select 0,getpos _currHeli select 1,0];
@@ -22,12 +22,15 @@ if (_isWreck == 0) then {
 	clearMagazineCargoGlobal _currHeli;
 	clearWeaponCargoGlobal _currHeli;
 	
+	_currHeli spawn vehicleRepair;
+	_currHeli spawn cleanHeliWreck;
+	
 	//Set original status to stop ner-do-wells
 	_currHeli setVariable["vehicleChecksum",call vChecksum,true];
 } else {
 	//diag_log "Spawning heli wreck...";
     /*
-	_spawnType = staticHeliList select (random (count staticHeliList - 1));
+	_spawnType = staticHeliList call BIS_fnc_selectRandom;
 	_currHeli = createVehicle [_spawnType,_spawnPos,[], 50,"None"]; 
 	
 	_currHeli setpos [getpos _currHeli select 0,getpos _currHeli select 1,0];

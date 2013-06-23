@@ -40,7 +40,26 @@ _gunlisttext ctrlSetText format [""];
     
 	_itempicture ctrlSettext "";
 	
-    _picture = getText(_weapon >> "picture");
+	private ["_weapArr", "_weapLen"];
+	_weapArr = toArray _weap_type;
+	_weapLen = count _weapArr;
+	_picture = getText(_weapon >> "picture");
+	
+	// Show scope on gunstore's sniper pictures
+	if (toString [_weapArr select (_weapLen - 6), _weapArr select (_weapLen - 5), _weapArr select (_weapLen - 4), _weapArr select (_weapLen - 3), _weapArr select (_weapLen - 2), _weapArr select (_weapLen - 1)] ==
+		"_SOS_F") then
+	{
+		private ["_picArr", "_picLen"];
+		_picArr = toArray _picture;
+		_picLen = count _picArr;
+		
+		if (toString [_picArr select (_picLen - 8)] == "X") then
+		{
+			_picArr set [(_picLen - 8), (toArray "T") select 0];
+			_picture = toString _picArr;
+		};
+	};
+	
 	_gunpicture ctrlSettext _picture;
     
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
@@ -82,25 +101,30 @@ _gunlisttext ctrlSetText format [""];
 	
 	_weapon = "";
 	
-	if (_x select 3 == "backpack") then {
-		_weapon = (configFile >> "CfgVehicles" >> _weap_type);
-		_description = "";
-		
-		switch (_weap_type) do
+	switch (_x select 3) do
+	{
+		case "bpack":
 		{
-			case "B_Bergen_Base": {
-				_description = "25% more capacity than normal backpack";
+			_weapon = (configFile >> "CfgVehicles" >> _weap_type);
+			_description = "";
+			
+			switch (_weap_type) do
+			{
+				case "B_Bergen_Base": { _description = "25% more capacity than normal backpack" };
+				case "B_Carryall_Base": { _description = "40% more capacity than normal backpack" };
 			};
-			case "B_Carryall_Base": {
-				_description = "40% more capacity than normal backpack";
-			};
+			
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, _description]);
 		};
-		
-		_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, _description]);
-	}
-	else {
-		_weapon = (configFile >> "CfgWeapons" >> _weap_type);
-		_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", getText(_weapon >> "displayName"), getText(_weapon >> "descriptionShort")]);
+		case "ghillie":
+		{
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Disguise as a swamp monster"]);
+		};	
+		default
+		{
+			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", getText(_weapon >> "displayName"), getText(_weapon >> "descriptionShort")]);
+		};
 	};
     
 	_gunpicture ctrlSettext "";

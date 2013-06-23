@@ -201,7 +201,8 @@ class PlayersMenu
 		{
 			idc = -1;
 			text = "Check Gear";
-			onButtonClick = "[7] execVM 'client\systems\adminPanel\playerSelect.sqf'";
+			//onButtonClick = "[7] execVM 'client\systems\adminPanel\playerSelect.sqf'";
+			onButtonClick = "['This feature is currently disabled due to freezing the game. See bug #9593 for more infos.', 'Check Gear'] spawn BIS_fnc_guiMessage";
 			x = 0.485 * safezoneW + safezoneX;
 			y = 0.750 * safezoneH + safezoneY;
 			w = 0.05 * safezoneW;

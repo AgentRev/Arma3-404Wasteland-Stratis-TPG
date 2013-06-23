@@ -42,11 +42,12 @@ createMissionVehicle = compile preprocessFileLineNumbers "server\missions\factor
 createSupplyDrop = compile preprocessFileLineNumbers "server\missions\factoryMethods\createSupplyDrop.sqf";
 createCargoItem = compile preprocessFileLineNumbers "server\missions\factoryMethods\createCargoItem.sqf";
 defendArea = compile preprocessFileLineNumbers "server\functions\defendArea.sqf";
+removeNegativeScore = compile preprocessFileLineNumbers "server\functions\removeNegativeScore.sqf";
 
 //Spawning Compiles
-fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
 fn_replaceMagazines = compile preprocessFileLineNumbers "server\functions\fn_replaceMagazines.sqf";
 checkHackedVehicles = compileFinal preprocessFileLineNumbers "server\functions\checkHackedVehicles.sqf";
+vehicleRepair = compile preprocessFileLineNumbers "server\functions\vehicleRepair.sqf";
 findSafePos = compile preprocessFileLineNumbers "server\functions\findSafePos.sqf";
 findClientPlayer = compileFinal preprocessFileLineNumbers "server\functions\findClientPlayer.sqf";
 randomWeapons = compile preprocessFileLineNumbers "server\spawning\randomWeapon.sqf";
@@ -55,6 +56,7 @@ objectCreation = compile preprocessFileLineNumbers "server\spawning\objectCreati
 staticGunCreation = compile preprocessFileLineNumbers "server\spawning\staticGunCreation.sqf";
 staticHeliCreation = compile preprocessFileLineNumbers "server\spawning\staticHeliCreation.sqf";
 fn_refillbox = compile preprocessFileLineNumbers "server\functions\fn_refillbox.sqf";
+cleanHeliWreck = compile preprocessFileLineNumbers "server\functions\cleanHeliWreck.sqf";
 
 //Player Management
 server_playerDied = compile preprocessFileLineNumbers "server\functions\serverPlayerDied.sqf";

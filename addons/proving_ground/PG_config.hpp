@@ -199,7 +199,7 @@ class balca_debug_main
 				x = column_weight*2; w = column_weight-column_div;
 				y = btn_height*4;
 				text = "BIS help";
-				action = "closeDialog 0;[] execVM 'ca\modules\functions\misc\fn_help.sqf'"; 
+				action = "closeDialog 0;[] call BIS_fnc_help"; 
 			};
 
 			class balca_BIS_cfgviewer_btn : balca_debug_btn
@@ -207,7 +207,7 @@ class balca_debug_main
 				x = column_weight*2; w = column_weight-column_div;
 				y = btn_height*5;
 				text = "BIS cfgviewer";
-				action = "closeDialog 0;[] execVM 'ca\modules_e\functions\misc\fn_configviewer.sqf'"; 
+				action = "closeDialog 0;[] call BIS_fnc_configviewer"; 
 			};
 			class balca_close_btn : balca_debug_btn
 			{

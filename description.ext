@@ -3,7 +3,7 @@ respawnDelay=15;
 disabledAI=1;
 //disableChannels[]={2};
 enableItemsDropping = 0;
-author = "404Games"; // Author
+author = "404Games and AgentRev"; // Author
 onLoadName = "404Wasteland"; // Mission name (temporary solution; actual name set in editor will be used later in the alpha)
 class Header
 {

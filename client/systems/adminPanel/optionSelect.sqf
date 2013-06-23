@@ -12,7 +12,7 @@ disableSerialization;
 
 private ["_panelType","_displayAdmin","_displayMod","_displayServerAdmin","_displayDebug","_modSelect","_adminSelect","_serverAdminSelect","_debugSelect"];
 _uid = getPlayerUID player;
-if ((_uid in moderators) OR (_uid in administrators) OR (_uid in serverAdministrators)) then {
+if (_uid call isAdmin) then {
 	_panelType = _this select 0;
 	
 	_displayAdmin = uiNamespace getVariable "AdminMenu";

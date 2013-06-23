@@ -99,7 +99,7 @@ class R3F_LOG_dlg_contenu_vehicule
 		animTextureNormal = "client\ui\ui_button_normal_ca.paa";
 		animTextureDisabled = "client\ui\ui_button_disabled_ca.paa";
 		animTextureOver = "client\ui\ui_button_over_ca.paa";
-		animTextureFocused = "client\ui\ui_button_focus_ca.01.paa";
+		animTextureFocused = "client\ui\ui_button_focus_ca.paa";
 		animTexturePressed = "client\ui\ui_button_down_ca.paa";
 		animTextureDefault = "client\ui\ui_button_default_ca.paa";
 		period = 0.4;
@@ -173,16 +173,24 @@ class R3F_LOG_dlg_contenu_vehicule
 	
 	class R3F_LOG_dlg_CV_arriere_plan
 	{
-		idc = -1;
+		/*idc = -1;
 		type = CT_STATIC;
-		style = ST_PICTURE;
-		x = 0.25; w = 0.5;
-		y = 0.1; h = 0.8;
-		colorText[] = {1, 1, 1, 1};
+		style = ST_PICTURE;*/
+		x = 0.2375; w = 0.5;
+		y = 0.1; h = 0.68;
+		/*colorText[] = {1, 1, 1, 1};
 		colorBackground[] = {0,0,0,0};
 		text = "\ca\ui\data\ui_gameoptions_background_ca.paa";
 		font = "Zeppelin32";
-		sizeEx = 0.032;
+		sizeEx = 0.032;*/
+		colorBackground[] = {0, 0, 0, 0.6};
+		text              = "";
+		type              = CT_STATIC;
+		idc               = -1;
+		style             = ST_LEFT;
+		font              = "";
+		colorText[]       = {1, 1, 1, 1};
+		sizeEx            = 0.04;
 	};
 	
 	class R3F_LOG_dlg_CV_titre : R3F_LOG_dlg_CV_texte

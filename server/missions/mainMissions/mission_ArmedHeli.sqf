@@ -1,5 +1,5 @@
 //	@file Version: 1.0
-//	@file Name: mission_Heli.sqf
+//	@file Name: mission_ArmedHeli.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy
 //	@file Created: 08/12/2012 15:19
 //	@file Args:
@@ -33,14 +33,14 @@ diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-/*
+#ifdef __DEBUG__
 _marker = createMarkerLocal ["ArmedHeli_Marker", _randomPos];
 "ArmedHeli_Marker" setMarkerShapeLocal "ICON";
 "ArmedHeli_Marker" setMarkerTypeLocal "mil_dot";
 "ArmedHeli_Marker" setMarkerColorLocal "ColorRed";
 "ArmedHeli_Marker" setMarkerSizeLocal [1,1];
 "ArmedHeli_Marker" setMarkerTextLocal "Mission Here";
-*/
+#endif
 _vehicleClass = ["O_Ka60_F","B_AH9_F"] call BIS_fnc_selectRandom;
 
 // Vehicle spawning: Name, Position, Fuel, Ammo, Damage, "NONE"
@@ -52,8 +52,13 @@ switch (_vehicleClass) do
 	};
 	case "O_Ka60_F": {	// Ka60 has twice less default ammo capacity than AH9
 		_vehicle = [_vehicleClass,_randomPos,0.5,1,0,"NONE"] call createMissionVehicle;
+		_vehicle removeMagazinesTurret ["180Rnd_CMFlare_Chaff_Magazine", [-1]];
+		_vehicle addMagazineTurret ["180Rnd_CMFlare_Chaff_Magazine", [-1]];
 	};
 };
+
+_vehicle spawn vehicleRepair;
+_vehicle spawn cleanHeliWreck;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");

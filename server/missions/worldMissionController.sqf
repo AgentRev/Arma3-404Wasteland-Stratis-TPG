@@ -28,7 +28,7 @@ while {true} do
 	if(!worldMissionRunning) then
     {
         sleep 120;
-        _mission = _MMarray select (random (count _MMarray - 1));
+        _mission = _MMarray call BIS_fnc_selectRandom;
         execVM format ["server\missions\otherMissions\%1.sqf",_mission];
 		worldMissionRunning = true;
         diag_log format["WASTELAND SERVER - Execute New Mission"];

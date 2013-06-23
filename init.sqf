@@ -14,7 +14,7 @@ X_Server = false;
 X_Client = false;
 X_JIP = false;
 hitStateVar = false;
-versionName = "v1.07d Alpha";
+versionName = "v1.07e Alpha";
 
 if(isServer) then { X_Server = true;};
 if(!isDedicated) then { X_Client = true;};
@@ -28,11 +28,13 @@ true spawn {
 	};
 };
 
+// Server & Client Functions
+fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
+generateKey = compileFinal preprocessFileLineNumbers "server\antihack\generateKey.sqf";
+
 //init Wasteland Core
 [] execVM "config.sqf";
 [] execVM "briefing.sqf";
-
-generateKey = compileFinal preprocessFileLineNumbers "server\functions\generateKey.sqf";
 
 if(X_Client) then {
 	waitUntil {player == player};

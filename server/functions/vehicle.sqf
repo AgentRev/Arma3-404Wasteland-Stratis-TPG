@@ -1,5 +1,5 @@
 /* ===============================================================================================================
-  Simple Vehicle Respawn Script v1.83 for Arma 3
+  Simple Vehicle Respawn Script v1.90 for Arma 3
   by Tophe of Östgöta Ops [OOPS]
   Updated by SPJESTER & modded by AgentRev
   
@@ -15,8 +15,12 @@
   
   Delay: Default respawn delay is 30 seconds, to set a custom respawn delay time, put that in the init as well. 
 
-  Deserted timer: Default respawn time when vehicle is deserted, but not destroyed is 120 seconds. To set a custom timer for this 
+  Deserted timer: Default respawn time when vehicle is deserted, but not broken is 120 seconds. To set a custom timer for this 
                   first set respawn delay, then the deserted vehicle timer. (0 = disabled) 
+  
+  Proximity deserted timer: Respawn time when the last driver is within the defined proximity distance. Default is 240 seconds. (0 = disabled) 
+  
+  Proximity distance: Distance from the vehicle within which the last vehicle driver triggers the proximity deserted timer. Default is 200m. (0 = disabled) 
   
   Respawns: By default the number of respawns is infinite. To set a limit first set preceding values then the number of respawns you want (0 = infinite).
 
@@ -28,10 +32,10 @@
           First set all preceding values then set a respawn position for static, or FALSE for dynamic.
   
   Example with all parameters:
-  veh = [this, 15, 10, 5, TRUE, getPosASL this] execVM "vehicle.sqf"
+  veh = [this, 15, 30, 60, 100, 5, TRUE, getPosASL this] execVM "vehicle.sqf"
   
   Default values of all settings are:
-  veh = [this, 30, 120, 0, FALSE, FALSE] execVM "vehicle.sqf"
+  veh = [this, 30, 120, 240, 100, 0, FALSE, FALSE] execVM "vehicle.sqf"
   
 	
 Contact & Bugreport: cwadensten@gmail.com
@@ -48,9 +52,11 @@ if (!isServer) exitWith {};
 _unit = _this select 0;
 _delay = if (count _this > 1) then {_this select 1} else {30};
 _deserted = if (count _this > 2) then {_this select 2} else {120};
-_respawns = if (count _this > 3) then {_this select 3} else {0};
-_explode = if (count _this > 4) then {_this select 4} else {false};
-_static = if (count _this > 5) then {_this select 5} else {false};
+_proxyExtra = if (count _this > 3) then {_this select 3} else {240};
+_proxyDistance = if (count _this > 4) then {_this select 4} else {200};
+_respawns = if (count _this > 5) then {_this select 5} else {0};
+_explode = if (count _this > 6) then {_this select 6} else {false};
+_static = if (count _this > 7) then {_this select 7} else {false};
 
 _run = true;
 
@@ -65,6 +71,10 @@ _type = typeOf _unit;
 _dead = false;
 _brokenTimeout = 0;
 _desertedTimeout = 0;
+_desertedExtra = 0;
+_blownTire = false;
+
+_proxyExtra = _proxyExtra - _deserted;
 
 _sleepTime = 5;
 
@@ -74,12 +84,22 @@ _sleepTime = 5;
 	};
 } forEach [_delay, _deserted];
 
+_unit spawn vehicleRepair;
+
 // Start monitoring the vehicle
 while {_run} do 
 {	
 	sleep _sleepTime;
 	
-	if (!canMove _unit && {{alive _unit} count crew _unit == 0}) then
+	if (alive _unit) then
+	{
+		_blownTire = _unit getHitPointDamage "HitLFWheel" == 1 ||
+					{_unit getHitPointDamage "HitLF2Wheel" == 1} ||
+					{_unit getHitPointDamage "HitRFWheel" == 1} ||
+					{_unit getHitPointDamage "HitRF2Wheel" == 1};
+	};
+	
+	if ((_blownTire || {!canMove _unit}) && {{alive _unit} count crew _unit == 0}) then
 	{
 		if (_delay > 0) then
 		{
@@ -115,12 +135,28 @@ while {_run} do
 	{
 		if (_desertedTimeout == 0) then {
 			_desertedTimeout = time + _deserted;
-		}
-		else
+		};
+		
+		if (_proxyExtra > 0 && {owner _unit > 1}) then
 		{
-			if (_desertedTimeout <= time) then {
-				_dead = true;
+			_lastDriver = [owner _unit] call findClientPlayer;
+			
+			if (isPlayer _lastDriver && {_lastDriver distance _unit <= _proxyDistance}) then
+			{
+				if (_desertedExtra == 0) then {
+					_desertedExtra = _proxyExtra;
+				};
+			}
+			else
+			{
+				if (_desertedExtra != 0) then {
+					_desertedExtra = 0;
+				};
 			};
+		};
+	
+		if (_desertedTimeout + _desertedExtra <= time) then {
+			_dead = true;
 		};
 	}
 	else
@@ -151,7 +187,7 @@ while {_run} do
 			_towedUnit setVelocity [0,0,0];
 		};
 		
-		if (typeName _static == typeName []) then { _position = _static; }
+		if (typeName _static == "ARRAY") then { _position = _static; }
 		else { _position = getPosASL _unit; _dir = getDir _unit; };
 		
 		if (_explode) then { ("M_AT" createVehicle getPos _unit) setPosASL getPosASL _unit };

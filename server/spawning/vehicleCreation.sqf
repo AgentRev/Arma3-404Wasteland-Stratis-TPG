@@ -30,20 +30,20 @@ else
 };
 
 _pos = [
-			_markerPos,										// Base position
-			0,												// Min distance
-			30, 											// Max distance
-			( if (_type == 1) then { 2 } else { 5 } ),		// Safe radius
-			( if (_type == 3) then { 2 } else { 0 } ),		// Water mode
-			60 * (pi / 180),								// Max slope
-			0,												// Shore mode
-			_vehicleType									// Vehicle type
+			_markerPos,	                                // Base position
+			0,                                          // Min distance
+			30,                                         // Max distance
+			( if (_type == 1) then { 2 } else { 5 } ),	// Safe radius
+			( if (_type == 3) then { 2 } else { 0 } ),	// Water mode
+			60 * (pi / 180),                            // Max slope
+			0,                                          // Shore mode
+			_vehicleType                                // Vehicle type
 		]
 		call findSafePos;
 
 //Vehicle Initialization
 _vehicle = createVehicle [_vehicleType, _pos, [], 0, "None"];
-[_vehicle, 1800, 3600, 0, false, _markerPos] execVM "server\functions\vehicle.sqf";
+[_vehicle, 900, 1800, 3600, 500, 0, false, _markerPos] execVM "server\functions\vehicle.sqf";
 
 //Clear Vehicle Inventory
 clearMagazineCargoGlobal _vehicle;
@@ -65,15 +65,58 @@ if (_type in [0,1]) then
 
 _vehicle setDir (random 360);
 
-if (_type == 2) then { _vehicle setVehicleAmmo (random 1.0) };
+if (_type == 2) then { _vehicle setVehicleAmmo (random 1.0) }; // For smokes
 
-if (_type == 3) then
+if (_vehicleType isKindOf "Speedboat_Base") then
 {
-	_vehicle setVehicleAmmo 0;
-	_vehicle removeMagazinesTurret ["200Rnd_40mm_G_belt", [0]];
-	_vehicle removeMagazinesTurret ["2000Rnd_65x39_Belt_Tracer_Red", [1]];
-	_vehicle removeMagazinesTurret ["200Rnd_127x99_mag_Tracer_Green", [1]];
-	_vehicle lockTurret [[0,1], true];
+	private ["_vehicleCfg", "_turretsCfg", "_turretsCount", "_turretPath", "_turret"];
+	_vehicleCfg = configFile >> "CfgVehicles" >> _vehicleType;
+	
+	//_vehicle setVehicleAmmo 0;
+	
+	{
+		_vehicle removeMagazinesTurret [_x, [-1]];
+	} forEach getArray (_vehicleCfg >> "magazines");
+	
+	_turretsCfg = configFile >> "CfgVehicles" >> _vehicleType >> "Turrets";
+	_turretsCount = count _turretsCfg;
+	_turretPath = 0;
+	
+	for "_t" from 0 to (_turretsCount - 1) do 
+	{
+		_turret = _turretsCfg select _t;
+		
+		if (getNumber (_turret >> "hasGunner") > 0) then
+		{
+			{
+				_vehicle removeMagazinesTurret [_x, [_turretPath]];
+			} forEach getArray (_turret >> "magazines");
+			
+			_turretPath = _turretPath + 1;
+		};
+	};
+	
+	switch (_vehicleType) do
+	{
+		case "B_SpeedBoat":
+		{
+			_vehicle addMagazineTurret ["2000Rnd_65x39_Belt_Tracer_Red", [1]];
+			_vehicle setVehicleAmmo 0.1;
+		};
+		case "O_SpeedBoat":
+		{
+			_vehicle addMagazineTurret ["200Rnd_127x99_mag_Tracer_Green", [1]];
+			_vehicle setVehicleAmmo 0.125;
+		};
+	};
+	
+	for "_i" from 0 to (floor (random 3.0) - 1) do
+	{
+		_vehicle addMagazineTurret ["SmokeLauncherMag_boat", [-1]];
+	};
+	
+	sleep 0.1;	
+	reload _vehicle;
 };
 
 _vehicle disableTIEquipment true;
