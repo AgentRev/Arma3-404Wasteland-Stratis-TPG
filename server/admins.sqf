@@ -2,7 +2,7 @@
 
 if(!X_Server) exitWith {};
 
-// Admin menu access levels 
+// Admin menu access levels
 
 // Moderators: manage players, remove hacked vehicles
 moderators = compileFinal

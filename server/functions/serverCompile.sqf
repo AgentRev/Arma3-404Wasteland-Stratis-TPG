@@ -48,7 +48,6 @@ removeNegativeScore = compile preprocessFileLineNumbers "server\functions\remove
 fn_replaceMagazines = compile preprocessFileLineNumbers "server\functions\fn_replaceMagazines.sqf";
 checkHackedVehicles = compileFinal preprocessFileLineNumbers "server\functions\checkHackedVehicles.sqf";
 vehicleRepair = compile preprocessFileLineNumbers "server\functions\vehicleRepair.sqf";
-findSafePos = compile preprocessFileLineNumbers "server\functions\findSafePos.sqf";
 findClientPlayer = compileFinal preprocessFileLineNumbers "server\functions\findClientPlayer.sqf";
 randomWeapons = compile preprocessFileLineNumbers "server\spawning\randomWeapon.sqf";
 vehicleCreation = compile preprocessFileLineNumbers "server\spawning\vehicleCreation.sqf";

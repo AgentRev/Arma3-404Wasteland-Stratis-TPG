@@ -25,6 +25,6 @@ if (typeName _this == "ARRAY" && {count _this > 4}) then
 		sleep 0.5;
 		
 		[[format ["[ANTI-HACK NOTICE] %1 was kicked for using cheating scripts.", _playerName], _playerID, _flagChecksum], "chatBroadcast", true, false] call BIS_fnc_MP;
-		diag_log format ["ANTI-HACK 0.7.1: %1 (%2) was kicked for [%3] with the value [%4]", _playerName, _playerID, _hackType, _hackValue];
+		diag_log format ["ANTI-HACK 0.7.2: %1 (%2) was kicked for [%3] with the value [%4]", _playerName, _playerID, _hackType, _hackValue];
 	};
 };

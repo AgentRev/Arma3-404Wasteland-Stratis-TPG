@@ -152,8 +152,6 @@ gearArray = [
 	["GA Carrier Lite (Digi)","V_PlateCarrierIA1_dgtl", 100,"vest"],
 	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", 140,"vest"],
 	["GA Carrier GL Rig (Digi)","V_PlateCarrierIAGL_dgtl", 150,"vest"],
-    ["Camouflaged Vest","V_TacVestCamo_khk", 100,"vest"],
-    ["Raven Vest","V_TacVestIR_blk", 180,"vest"],
 	
 	["Diving Goggles","G_Diving", 50,"gogg"],
 	["Rebreather 1","V_RebreatherB", 100,"vest"],

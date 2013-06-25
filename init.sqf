@@ -29,8 +29,9 @@ true spawn {
 };
 
 // Server & Client Functions
-fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
 generateKey = compileFinal preprocessFileLineNumbers "server\antihack\generateKey.sqf";
+fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
+findSafePos = compile preprocessFileLineNumbers "server\functions\findSafePos.sqf";
 
 //init Wasteland Core
 [] execVM "config.sqf";
