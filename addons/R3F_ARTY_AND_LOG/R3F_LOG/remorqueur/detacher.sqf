@@ -34,10 +34,7 @@ else
 		detach _objet;
 		
 		_objetPos = getPosATL _objet;
-		
-		if (_objetPos select 2 < 0) then {
-			_objet setPosATL [_objetPos select 0, _objetPos select 1, 0.5];
-		};
+		_objet setPosATL [_objetPos select 0, _objetPos select 1, 0];
 		
 		_objet setVelocity [0,0,0];
 		
@@ -47,7 +44,7 @@ else
 		{
 			if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
 			{
-				player playMove "";
+				player switchMove "";
 				player removeAllEventHandlers "AnimDone";
 			};
 		}];

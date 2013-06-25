@@ -21,26 +21,12 @@ _mag = (getArray (configFile >> "Cfgweapons" >> _weapon >> "magazines")) select 
 // Fuck tracers
 switch (_mag) do
 {
-	// TRG-2x
-	case "30Rnd_556x45_Stanag_Tracer_Green": {
-		_mag = "30Rnd_556x45_Stanag";
-	};
-	// MX
-	case "30Rnd_65x39_caseless_mag_Tracer": {
-		_mag = "30Rnd_65x39_caseless_mag";
-	};
-	// Katiba
-	case "30Rnd_65x39_caseless_green_mag_Tracer": {
-		_mag = "30Rnd_65x39_caseless_green";
-	};
-	// MX
-	case "100Rnd_65x39_caseless_mag_Tracer": {
-		_mag = "100Rnd_65x39_caseless_mag";
-	};
-	// Mk200
-	case "200Rnd_65x39_cased_Box_Tracer": {
-		_mag = "200Rnd_65x39_cased_Box";
-	};
+	case "30Rnd_556x45_Stanag_Tracer_Green": 		{ _mag = "30Rnd_556x45_Stanag" };			// TRG-2x, Mk20
+	case "30Rnd_65x39_caseless_green_mag_Tracer": 	{ _mag = "30Rnd_65x39_caseless_green" };	// Katiba
+	case "30Rnd_65x39_caseless_mag_Tracer":			{ _mag = "30Rnd_65x39_caseless_mag" };		// MX
+	case "100Rnd_65x39_caseless_mag_Tracer": 		{ _mag = "100Rnd_65x39_caseless_mag" };		// MX
+	case "200Rnd_65x39_cased_Box_Tracer": 			{ _mag = "200Rnd_65x39_cased_Box" };		// Mk200
+	case "150Rnd_762x51_Box_Tracer":				{ _mag = "150Rnd_762x51_Box" };				// Zafir 
 };
 
 _additionOne = _additionArray call BIS_fnc_selectRandom;

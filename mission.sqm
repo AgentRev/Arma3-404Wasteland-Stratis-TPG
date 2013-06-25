@@ -6,22 +6,24 @@ class Mission
 		"a3_map_stratis",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
-		"A3_Weapons_F",
+		"A3_Characters_F_INDEP",
+		"A3_Characters_F_Civil",
 		"A3_Structures_F_Mil_Radar",
-		"A3_Characters_F_Civil"
+		"A3_Weapons_F"
 	};
 	addOnsAuto[]=
 	{
+		"a3_map_stratis",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
+		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Civil",
-		"A3_Structures_F_Mil_Radar",
-		"a3_map_stratis"
+		"A3_Structures_F_Mil_Radar"
 	};
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="404 Wasteland v1.07e Alpha";
+		briefingName="404 Wasteland v1.08f Beta";
 		resistanceWest=0;
 		startWeather=0.10000001;
 		startWind=0.1;
@@ -781,7 +783,7 @@ class Mission
 					special="NONE";
 					id=56;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -801,7 +803,7 @@ class Mission
 					special="NONE";
 					id=57;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -821,7 +823,7 @@ class Mission
 					special="NONE";
 					id=58;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -841,7 +843,7 @@ class Mission
 					special="NONE";
 					id=59;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -861,7 +863,7 @@ class Mission
 					special="NONE";
 					id=60;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -881,7 +883,7 @@ class Mission
 					special="NONE";
 					id=61;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -901,7 +903,7 @@ class Mission
 					special="NONE";
 					id=62;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -921,7 +923,7 @@ class Mission
 					special="NONE";
 					id=63;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -941,7 +943,7 @@ class Mission
 					special="NONE";
 					id=64;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -961,7 +963,7 @@ class Mission
 					special="NONE";
 					id=65;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -981,7 +983,7 @@ class Mission
 					special="NONE";
 					id=66;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1001,7 +1003,7 @@ class Mission
 					special="NONE";
 					id=67;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1021,7 +1023,7 @@ class Mission
 					special="NONE";
 					id=68;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1041,7 +1043,7 @@ class Mission
 					special="NONE";
 					id=69;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1061,7 +1063,7 @@ class Mission
 					special="NONE";
 					id=70;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1081,7 +1083,7 @@ class Mission
 					special="NONE";
 					id=71;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1101,7 +1103,7 @@ class Mission
 					special="NONE";
 					id=72;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1121,7 +1123,7 @@ class Mission
 					special="NONE";
 					id=73;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1141,7 +1143,7 @@ class Mission
 					special="NONE";
 					id=74;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1161,7 +1163,7 @@ class Mission
 					special="NONE";
 					id=75;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1181,7 +1183,7 @@ class Mission
 					special="NONE";
 					id=76;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1201,7 +1203,7 @@ class Mission
 					special="NONE";
 					id=77;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1221,7 +1223,7 @@ class Mission
 					special="NONE";
 					id=78;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1241,7 +1243,7 @@ class Mission
 					special="NONE";
 					id=79;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1261,7 +1263,7 @@ class Mission
 					special="NONE";
 					id=80;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1281,7 +1283,7 @@ class Mission
 					special="NONE";
 					id=81;
 					side="GUER";
-					vehicle="O_soldier_repair_F";
+					vehicle="I_soldier_repair_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1301,7 +1303,7 @@ class Mission
 					special="NONE";
 					id=82;
 					side="GUER";
-					vehicle="O_medic_F";
+					vehicle="I_medic_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";
@@ -1321,7 +1323,7 @@ class Mission
 					special="NONE";
 					id=83;
 					side="GUER";
-					vehicle="O_soldier_exp_F";
+					vehicle="I_soldier_exp_F";
 					player="PLAY CDG";
 					leader=1;
 					lock="UNLOCKED";

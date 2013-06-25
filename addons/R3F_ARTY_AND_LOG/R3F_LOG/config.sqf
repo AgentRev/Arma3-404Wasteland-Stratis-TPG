@@ -25,38 +25,30 @@
  * List of class names of (ground or air) vehicles which can tow towables objects.
  * Liste des noms de classes des véhicules terrestres pouvant remorquer des objets remorquables.
  */
-R3F_LOG_CFG_remorqueurs = [
-	"c_offroad",
-	"O_Ifrit_MG_F",
-    "B_Hunter_F",
-    "B_Hunter_RCWS_F",
-    "B_Hunter_HMG_F",
-    "O_Ifrit_F",
-    "O_Ifrit_GMG_F",
-	"B_SpeedBoat",
-	"O_SpeedBoat"
+R3F_LOG_CFG_remorqueurs =
+[
+	"Offroad_01_base_F",
+    "MRAP_01_base_F",
+	"MRAP_02_base_F",
+	"MRAP_03_base_F",
+	"Boat_Armed_01_base_F"
 ];
 
 /**
  * List of class names of towables objects.
  * Liste des noms de classes des objets remorquables.
  */
-R3F_LOG_CFG_objets_remorquables = [
-	"c_offroad",
-	"O_Ifrit_MG_F",
-    "B_Hunter_F",
-    "B_Hunter_RCWS_F",
-    "B_Hunter_HMG_F",
-    "O_Ifrit_F",
-    "O_Ifrit_GMG_F",
-	"B_Assaultboat",
-	"O_Assaultboat",
-	"B_SpeedBoat",
-	"O_SpeedBoat",
-	"O_Ka60_Unarmed_F",
-	"B_MH9_F",
-	"O_Ka60_F",
-	"B_AH9_F"
+R3F_LOG_CFG_objets_remorquables =
+[
+	"Offroad_01_base_F",
+    "MRAP_01_base_F",
+	"MRAP_02_base_F",
+	"MRAP_03_base_F",
+	"Rubber_duck_base_F",
+	"Boat_Armed_01_base_F",
+	"Heli_Light_01_base_F",
+	"Heli_Light_02_base_F",
+	"Heli_Attack_01_base_F"
 ];
 
 /****** LIFT WITH VEHICLE / HELIPORTER AVEC VEHICULE ******/
@@ -65,30 +57,23 @@ R3F_LOG_CFG_objets_remorquables = [
  * List of class names of air vehicles which can lift liftables objects.
  * Liste des noms de classes des véhicules aériens pouvant héliporter des objets héliportables.
  */
-R3F_LOG_CFG_heliporteurs = [
-	"O_Ka60_Unarmed_F",
-	"B_MH9_F",
-	"O_Ka60_F",
-	"B_AH9_F"
+R3F_LOG_CFG_heliporteurs =
+[
+	"Helicopter_Base_F"
 ];
 
 /**
  * List of class names of liftables objects.
  * Liste des noms de classes des objets héliportables.
  */
-R3F_LOG_CFG_objets_heliportables = [
-
-	"c_offroad",
-	"O_Ifrit_F",
-	"O_Ifrit_MG_F",
-    "O_Ifrit_GMG_F",
-    "B_Hunter_F",
-    "B_Hunter_RCWS_F",
-    "B_Hunter_HMG_F",
-	"B_Assaultboat",
-	"O_Assaultboat",
-	"B_SpeedBoat",
-	"O_SpeedBoat"
+R3F_LOG_CFG_objets_heliportables =
+[
+	"Offroad_01_base_F",
+    "MRAP_01_base_F",
+	"MRAP_02_base_F",
+	"MRAP_03_base_F",
+	"Rubber_duck_base_F",
+	"Boat_Armed_01_base_F"
 ];
 
 
@@ -121,24 +106,18 @@ R3F_LOG_CFG_objets_heliportables = [
  * Liste des noms de classes des véhicules (terrestres ou aériens) pouvant transporter des objets transportables.
  * Le deuxième élément des tableaux est la capacité de chargement (en relation avec le coût de capacité des objets).
  */
-R3F_LOG_CFG_transporteurs = [
-	["c_offroad", 30],
-	["B_Hunter_F", 20],
-	["B_Hunter_HMG_F", 20],
-	["B_Hunter_RCWS_F", 20],
-	["O_Ifrit_F", 20],
-	["O_Ifrit_MG_F", 20],
-	["O_Ifrit_GMG_F", 20],
-	["B_MH9_F", 10],
-	["B_AH9_F", 10],
-	["O_Ka60_F", 20],
-	["O_Ka60_Unarmed_F", 20],
-	["B_Quadbike_F", 5],
-    ["O_Quadbike_F", 5],
-	["B_Assaultboat",15],
-	["O_Assaultboat",15],
-	["B_SpeedBoat",20],
-	["O_SpeedBoat",20]
+R3F_LOG_CFG_transporteurs =
+[
+	["Quadbike_01_base_F", 5],
+	["Offroad_01_base_F", 30],
+	["MRAP_01_base_F", 20],
+	["MRAP_02_base_F", 20],
+	["MRAP_03_base_F", 20],
+	["Rubber_duck_base_F", 15],
+	["Boat_Armed_01_base_F", 20],
+	["Heli_Light_01_base_F", 10],
+	["Heli_Light_02_base_F", 20],
+	["Heli_Attack_01_base_F", 10]
 ];
 
 /**
@@ -149,32 +128,19 @@ R3F_LOG_CFG_transporteurs = [
  * Le deuxième élément des tableaux est le coût de capacité (en relation avec la capacité des véhicules).
  */
  
-R3F_LOG_CFG_objets_transportables =  [
-	["Box_East_Support_F", 5],
-	["Box_East_Wps_F", 5],
-	["Box_East_WpsSpecial_F", 5],
-	["Box_NATO_Support_F", 5],
-	["Box_NATO_Wps_F", 5],
-	["Box_NATO_WpsSpecial_F", 5],
+R3F_LOG_CFG_objets_transportables = 
+[
+	["ReammoBox_F", 5],
+	["HBarrier_base_F", 5],
+	["BagBunker_base_F", 5],
+	["BagFence_base_F", 5],
+	["Wall_F", 5],
+    ["Quadbike_01_base_F", 10],
+	["Land_Scaffolding_F", 5],
+	["Land_CargoBox_V1_F", 5],
 	["Land_Barrelwater_F", 5],
 	["Land_Fireplace_F", 5],
-	["Land_WoodenBox_F", 5],
-	["Land_HBarrier_1_F", 1],
-	["Land_HBarrierBig_F", 5],
-	["Land_HBarrier_3_F", 5],
-    ["Land_HBarrier_5_F", 5],
-	["Land_CncBarrier_F", 5],
-	["Land_Mound01_8m_F", 5],
-	["Land_Scaffolding_F", 5],
-	["Land_Razorwire_F", 1],
-	["Land_CargoBox_V1_F", 5],
-    ["O_Quadbike_F", 10],
-    ["B_Quadbike_F", 10],
-	["B_supplyCrate_F", 10],
-	["Land_Obstacle_Bridge_F", 5],
-	["Land_Stone_8m_F", 5],
-	["Land_Mil_WallBig_4m_F", 5],
-	["Land_Pipes_Large_F", 5]
+	["Land_WoodenBox_F", 5]
 ];
 
 /****** MOVABLE-BY-PLAYER OBJECTS / OBJETS DEPLACABLES PAR LE JOUEUR ******/
@@ -184,32 +150,19 @@ R3F_LOG_CFG_objets_transportables =  [
  * Liste des noms de classes des objets transportables par le joueur.
  */
 
-R3F_LOG_CFG_objets_deplacables = [
-	"Box_East_Support_F",
-	"Box_East_Wps_F",
-	"Box_East_WpsSpecial_F",
-	"Box_NATO_Support_F",
-	"Box_NATO_Wps_F",
-	"Box_NATO_WpsSpecial_F",
+R3F_LOG_CFG_objets_deplacables =
+[
+	"ReammoBox_F",
+	"HBarrier_base_F",
+	"BagBunker_base_F",
+	"BagFence_base_F",
+	"Wall_F",
+	"Quadbike_01_base_F",
+	"Land_Scaffolding_F",
+	"Land_CargoBox_V1_F",
 	"Land_Barrelwater_F",
 	"Land_Fireplace_F",
-	"Land_WoodenBox_F",
-	"Land_HBarrier_1_F",
-	"Land_HBarrierBig_F",
-	"Land_HBarrier_3_F",
-    "Land_HBarrier_5_F",
-//	"Land_CncBarrier_F",
-//	"Land_Mound01_8m_F",
-	"Land_Scaffolding_F",
-//	"Land_Razorwire_F",
-	"Land_CargoBox_V1_F",
-    "O_Quadbike_F",
-    "B_Quadbike_F",
-	"B_supplyCrate_F",
-	"Land_Obstacle_Bridge_F",
-	"Land_Stone_8m_F",
-	"Land_Mil_WallBig_4m_F",
-	"Land_Pipes_Large_F"
+	"Land_WoodenBox_F"
 ];
 
 /*

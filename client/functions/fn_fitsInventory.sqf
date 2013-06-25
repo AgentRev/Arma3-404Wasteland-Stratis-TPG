@@ -1,5 +1,5 @@
 //	@file Version: 1.0
-//	@file Name: fn_fitsInInventory.sqf
+//	@file Name: fn_fitsInventory.sqf
 //	@file Author: AgentRev
 //	@file Created: 05/05/2013 00:22
 //	@file Args: _player, _item

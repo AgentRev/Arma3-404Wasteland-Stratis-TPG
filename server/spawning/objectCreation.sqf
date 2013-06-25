@@ -22,6 +22,9 @@ switch (_Objtype) do
 		_obj setVariable["food",20,true];
 	};
 	case "B_supplyCrate_F": {
+		clearWeaponCargoGlobal _obj;
+		clearMagazineCargoGlobal _obj;
+		clearItemCargoGlobal _obj;
 		_obj addMagazineCargoGlobal ["16Rnd_9x21_Mag", 10];
 		_obj addItemCargoGlobal ["FirstAidKit", 10];
 		_obj addWeaponCargoGlobal ["Binocular", 3];

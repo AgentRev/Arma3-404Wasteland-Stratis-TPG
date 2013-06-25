@@ -81,8 +81,8 @@ while {_attempts < 10000} do
 	
 	//Blacklist check.
 	//TODO: Do not use function when the blacklist is empty?
-	if (!([_testPos, _blacklist] call BIS_fnc_isPosBlacklisted)) then
-	{
+	//if (!([_testPos, _blacklist] call BIS_fnc_isPosBlacklisted)) then
+	//{
 			if ((_pos distance _testPos) >= _minDist) then
 			{
 				if (!((count (_testPos isFlatEmpty [_objDist, 0, _maxGradient, _objDist max 5, _waterMode, _shoreMode, objNull])) == 0)) then 
@@ -91,7 +91,7 @@ while {_attempts < 10000} do
 					breakTo "main";
 				};
 			};
-	};
+	//};
 
 	_attempts = _attempts + 1;
 };

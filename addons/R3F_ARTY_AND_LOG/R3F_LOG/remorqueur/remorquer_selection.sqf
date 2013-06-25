@@ -64,7 +64,7 @@ else
 					{
 						if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
 						{
-							player playMove "";
+							player switchMove "";
 							player removeAllEventHandlers "AnimDone";
 						};
 					}];
@@ -72,28 +72,26 @@ else
 					sleep 2;
 					
 					_speedBoatCompensateZ = 0;
-					_mh9CompensateY = 0;
-					_mh9CompensateZ = 0;
-					_ka60CompensateY = 0;
-					_ka60CompensateZ = 0;
+					_lightHeliCompensateY = 0;
+					_lightHeliCompensateZ = 0;
 					
-					if ((typeOf _remorqueur) isKindOf "Speedboat_Base" && !((typeOf _objet) isKindOf "Speedboat_Base")) then
+					if ((typeOf _remorqueur) isKindOf "Boat_Armed_01_base_F" && !((typeOf _objet) isKindOf "Boat_Armed_01_base_F")) then
 					{
 						_speedBoatCompensateZ = 1.5;
 					};
-					if (!((typeOf _remorqueur) isKindOf "Speedboat_Base") && (typeOf _objet) isKindOf "Speedboat_Base") then
+					if (!((typeOf _remorqueur) isKindOf "Boat_Armed_01_base_F") && (typeOf _objet) isKindOf "Boat_Armed_01_base_F") then
 					{
 						_speedBoatCompensateZ = -0.5;
 					};
-					if ((typeOf _objet) isKindOf "MH9_Base_F") then
+					if ((typeOf _objet) isKindOf "Heli_Light_01_base_F") then
 					{
-						_mh9CompensateY = -1.25;
-						_mh9CompensateZ = -2.2;
+						_lightHeliCompensateY = -1.25;
+						_lightHeliCompensateZ = -2.2;
 					};
-					if ((typeOf _objet) isKindOf "Ka60_Base_F") then
+					if ((typeOf _objet) isKindOf "Heli_Light_02_base_F") then
 					{
-						_ka60CompensateY = 3;
-						_ka60CompensateZ = 0.25;
+						_lightHeliCompensateY = 3;
+						_lightHeliCompensateZ = 0.25;
 					};
 										
 					// Attacher à l'arrière du véhicule au ras du sol
@@ -102,11 +100,11 @@ else
 						
 						((boundingCenter _objet select 1) - (boundingCenter _remorqueur select 1)) +
 						((boundingBoxReal _remorqueur select 0 select 1) + (boundingCenter _remorqueur select 1)) + 
-						((boundingBoxReal _objet select 0 select 1) + (boundingCenter _objet select 1)) - 0.1 + _mh9CompensateY + _ka60CompensateY,
+						((boundingBoxReal _objet select 0 select 1) + (boundingCenter _objet select 1)) - 0.1 + _lightHeliCompensateY,
 						
 						((boundingCenter _objet select 2) - (boundingCenter _remorqueur select 2)) +
 						((boundingBoxReal _remorqueur select 0 select 2) + (boundingCenter _remorqueur select 2)) + 
-						((boundingBoxReal _objet select 1 select 2) - (boundingCenter _objet select 2)) + 0.1 + _speedBoatCompensateZ + _mh9CompensateZ + _ka60CompensateZ
+						((boundingBoxReal _objet select 1 select 2) - (boundingCenter _objet select 2)) + 0.1 + _speedBoatCompensateZ + _lightHeliCompensateZ
 					]];
 					
 					R3F_LOG_objet_selectionne = objNull;

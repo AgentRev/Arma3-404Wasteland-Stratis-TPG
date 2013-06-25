@@ -155,6 +155,7 @@ switch (_switch) do
 								{
 									case "BLU_F": { player addUniform "U_B_GhillieSuit" };
 									case "OPF_F": { player addUniform "U_O_GhillieSuit" };
+									case "IND_F": { player addUniform "U_I_GhillieSuit" };
 								};
                             }
                             else

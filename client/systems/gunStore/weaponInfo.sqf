@@ -108,10 +108,10 @@ _gunlisttext ctrlSetText format [""];
 			_weapon = (configFile >> "CfgVehicles" >> _weap_type);
 			_description = "";
 			
-			switch (_weap_type) do
+			switch (true) do
 			{
-				case "B_Bergen_Base": { _description = "25% more capacity than normal backpack" };
-				case "B_Carryall_Base": { _description = "40% more capacity than normal backpack" };
+				case (_weap_type isKindOf "B_Bergen_Base"): { _description = "25% more capacity than default backpack" };
+				case (_weap_type isKindOf "B_Carryall_Base"): { _description = "40% more capacity than default backpack" };
 			};
 			
 			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, _description]);

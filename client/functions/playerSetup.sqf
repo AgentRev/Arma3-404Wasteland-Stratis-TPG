@@ -32,7 +32,6 @@ switch (playerSide) do
 		_player addUniform "U_B_CombatUniform_mcam";
 		_player addVest "V_PlateCarrier1_rgr";
 		_player addHeadgear "H_HelmetB";
-		//_player addBackpack "B_Kitbag_Base";
     };
 
     case east:
@@ -40,15 +39,13 @@ switch (playerSide) do
         _player addUniform "U_O_CombatUniform_ocamo";
 		_player addVest "V_HarnessO_brn";
 		_player addHeadgear "H_HelmetO_ocamo";
-		//_player addBackpack "B_Kitbag_mcamo";
     };
 	
 	default
     {
-		_player addUniform (["U_B_CombatUniform_mcam","U_O_CombatUniform_ocamo"] call BIS_fnc_selectRandom);
-		_player addVest (["V_PlateCarrier1_rgr","V_HarnessO_brn"] call BIS_fnc_selectRandom);
-		_player addHeadgear (["H_HelmetB","H_HelmetO_ocamo"] call BIS_fnc_selectRandom);
-		//_player addBackpack (["B_Kitbag_Base","B_Kitbag_mcamo"] call BIS_fnc_selectRandom);
+		_player addUniform "U_I_CombatUniform";
+		_player addVest "V_PlateCarrierIA1_dgtl";
+		_player addHeadgear "H_HelmetIA";
     };
 };
 
@@ -60,7 +57,7 @@ _player addWeapon "hgun_P07_F";
 _player selectWeapon "hgun_P07_F";
 
 _player addrating 1000000;
-_player switchMove "amovpknlmstpsraswpstdnon_gear";
+_player switchMove "AmovPknlMstpSrasWpstDnon_gear";
 
 thirstLevel = 100;
 hungerLevel = 100;

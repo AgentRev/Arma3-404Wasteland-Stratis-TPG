@@ -56,7 +56,7 @@ for "_i" from 1 to (call nbHeliMarkers) do {
     
     if (_doSpawnWreck) then {
     	_position = getMarkerPos format ["heliSpawn_%1", _i];
-    	_newPos = [_position, 25, 50, 1, 0, 60 * (pi / 180), 0] call BIS_fnc_findSafePos;
+    	_newPos = [_position, 25, 50, 1, 0, 60 * (pi / 180), 0] call findSafePos;
 		[1, _newPos] call staticHeliCreation;
         
     	_markerName = format["marker%1",_i];
