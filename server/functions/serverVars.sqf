@@ -155,16 +155,18 @@ vehicleWeapons =
 
 vehicleAddition =
 [
+	"muzzle_snds_M"
 	"muzzle_snds_H",
 	"muzzle_snds_L",
 	"muzzle_snds_B",
 	"muzzle_snds_H_MG",
+	"optic_MRCO",
 	"optic_Arco",
-	"optic_Hamr", 
-	"optic_Aco", 
-	"optic_ACO_grn", 
-	"optic_Holosight", 
-	"acc_flashlight", 
+	"optic_Hamr",
+	"optic_Aco",
+	"optic_ACO_grn",
+	"optic_Holosight",
+	"acc_flashlight",
 	"acc_pointer_IR",
 	"Medikit",
 	"FirstAidKit",

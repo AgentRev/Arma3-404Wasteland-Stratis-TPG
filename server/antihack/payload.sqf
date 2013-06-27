@@ -1,7 +1,7 @@
 
 //	@file Version: 1.0
 //	@file Name: payload.sqf
-//	@file Author: AgentRev (also many thanks to the unknown author of the original ANTI-HACK v0.6.3)
+//	@file Author: Originally made by AXA from OpenDayZ.net, improved by AgentRev
 //	@file Created: 01/06/2013 21:31
 
 if (isServer) exitWith {};

@@ -101,12 +101,12 @@ if (_vehicleType isKindOf "Boat_Armed_01_base_F") then
 		case (_vehicleType isKindOf "Boat_Armed_01_minigun_base_F"):
 		{
 			_vehicle addMagazineTurret ["2000Rnd_65x39_Belt_Tracer_Red", [1]];
-			_vehicle setVehicleAmmo 0.1;
+			_vehicle setVehicleAmmo 0.25;
 		};
 		default
 		{
 			_vehicle addMagazineTurret ["200Rnd_127x99_mag_Tracer_Green", [1]];
-			_vehicle setVehicleAmmo 0.125;
+			_vehicle setVehicleAmmo 0.25;
 		};
 	};
 	

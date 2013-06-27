@@ -1,8 +1,8 @@
 waitUntil {!isNull player && isPlayer player};
 
-player createDiarySubject ["404games", "404Games Information"];
-player createDiarySubject ["changelog", "404Games Change Log"];
-player createDiarySubject ["wasteland", "What is Wasteland?"];
+player createDiarySubject ["credits", "Credits"];
+player createDiarySubject ["changelog", "Change Log"];
+// player createDiarySubject ["wasteland", "What is Wasteland?"];
 
 player createDiaryRecord["changelog",
 [
@@ -69,16 +69,33 @@ player createDiaryRecord["changelog",
 ]
 ];
 
-player createDiaryRecord["404games",
+player createDiaryRecord["changelog",
+[
+"1.07+",
+"
+<br/>
+		See all changes in the "404 Wasteland TPG Edition" thread on http://teamplayergaming.com/arma-3/<br/>
+"
+]
+];
+
+player createDiaryRecord["credits",
 [
 "Credits",
 "
 <br/>
-	404 Team:<br/><br/>
+	404Games:<br/><br/>
 	Deadbeat<br/>
 	Costlyy<br/>
 	Pulse<br/>
-	Domuk<br/>
+	Domuk<br/><br/>
+	TeamPlayerGaming:<br/><br/>
+	AgentRev<br/>
+	BigHub<br/><br/>
+	GoT:<br/><br/>
+	JoSchaap<br/><br/>
+	OpenDayZ:<br/><br/>
+	AXA<br/>
 "
 ]
 ];

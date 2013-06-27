@@ -30,6 +30,54 @@ _gunpicture ctrlSettext _picture;
 _itempicture ctrlSettext _picture;
 _gunlisttext ctrlSetText format [""];
 
+_descCapacity =
+{
+	private ["_item", "_type", "_text", "_containerClass", "_defaultCapacity", "_newCapacity", "_diff"];
+	_item = _this select 0;
+	_type = _this select 1;
+	_text = "";
+	_defaultCapacity = 0;
+	_newCapacity = 0;
+	
+	switch (_type) do
+	{
+		case "vest":
+		{
+			_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrier1_rgr" >> "ItemInfo" >> "containerClass");
+			_defaultCapacity = getNumber (configFile >> "CfgVehicles" >> _containerClass >> "maximumLoad");
+			
+			_containerClass = getText (configFile >> "CfgWeapons" >> _item >> "ItemInfo" >> "containerClass");
+			_newCapacity = getNumber (configFile >> "CfgVehicles" >> _containerClass >> "maximumLoad");
+			
+			_text = "vest";
+		};
+		case "bpack":
+		{
+			_defaultCapacity = getNumber (configFile >> "CfgVehicles" >> "B_Kitbag_Base" >> "maximumLoad");
+			_newCapacity = getNumber (configFile >> "CfgVehicles" >> _item >> "maximumLoad");
+			
+			_text = "backpack";
+		};
+	};
+	
+	_diff = round (((_newCapacity / _defaultCapacity) - 1) * 100);
+	
+	if (_diff > 0) then
+	{
+		_text = format ["%1", abs _diff] + "% more capacity than default " + _text;
+	};
+	if (_diff < 0) then
+	{
+		_text = format ["%1", abs _diff] + "% less capacity than default " + _text;
+	};
+	if (_diff == 0) then
+	{
+		_text = "Same capacity as default " + _text;
+	};
+	
+	_text
+};
+
 //Check Items Price
 {if(_itemText == _x select 0) then{
 	_weap_type = _x select 1; 
@@ -100,18 +148,39 @@ _gunlisttext ctrlSetText format [""];
 	_price = _x select 2;
 	
 	_weapon = "";
+	_description = "";
+	_name = "";
 	
 	switch (_x select 3) do
 	{
 		case "bpack":
 		{
 			_weapon = (configFile >> "CfgVehicles" >> _weap_type);
-			_description = "";
 			
-			switch (true) do
+			if (_weap_type == "B_Parachute") then
 			{
-				case (_weap_type isKindOf "B_Bergen_Base"): { _description = "25% more capacity than default backpack" };
-				case (_weap_type isKindOf "B_Carryall_Base"): { _description = "40% more capacity than default backpack" };
+				_name = getText (_weapon >> "displayName");
+				_description = "Safely jump from above";
+			}
+			else
+			{
+				_name = _x select 0;
+				_description = [_weap_type, "bpack"] call _descCapacity;
+			};
+			
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _name, _description]);
+		};
+		case "vest":
+		{
+			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
+			
+			if (["Rebreather", _weap_type] call BIS_fnc_inString) then
+			{
+				_description = "Underwater oxygen supply";
+			}
+			else
+			{
+				_description = [_weap_type, "vest"] call _descCapacity;
 			};
 			
 			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, _description]);
@@ -120,11 +189,36 @@ _gunlisttext ctrlSetText format [""];
 		{
 			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
 			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Disguise as a swamp monster"]);
-		};	
+		};
+		case "gogg":
+		{
+			_weapon = (configFile >> "CfgGlasses" >> _weap_type);
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Increases underwater visibility"]);
+		};
 		default
 		{
 			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
-			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", getText(_weapon >> "displayName"), getText(_weapon >> "descriptionShort")]);
+			
+			if (_weap_type == "U_B_Wetsuit") then
+			{
+				_name = "Wetsuit";
+				_description = "Allows for faster swimming";
+			}
+			else
+			{
+				if (_x select 3 == "hat") then
+				{
+					_name = _x select 0;
+				}
+				else
+				{
+					_name = getText (_weapon >> "displayName");
+				};
+				
+				_description = getText( _weapon >> "descriptionShort");
+			};
+			
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _name, _description]);
 		};
 	};
     

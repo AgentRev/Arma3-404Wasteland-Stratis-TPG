@@ -100,30 +100,34 @@ accessoriesArray =
 [
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
-	["Rangefinder","Rangefinder", 150,"binoc"], 
 	["NV Goggles","NVGoggles",100,"item"],
+	["Rangefinder","Rangefinder", 150,"binoc"],
+	["Laser Designator","Laserdesignator", 100,"binoc"],
+	["Laser Batteries","Laserbatteries", 50,"item"],
     ["First Aid Kit","FirstAidKit", 25,"item"],
     ["Medikit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
 	["Mine Detector","MineDetector", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 50,"item"],
-    ["Suppressor 7.62mm","muzzle_snds_B", 100,"item"],
+	["Suppressor 5.56mm","muzzle_snds_M", 75,"item"],
     ["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
-    ["LMG Suppressor 6.5mm","muzzle_snds_H_MG", 100,"item"],
+	["Suppressor 7.62mm","muzzle_snds_B", 125,"item"],
+	["LMG Suppressor 6.5mm","muzzle_snds_H_MG", 100,"item"],
     ["Flash Light","acc_flashlight", 50,"item"],
     ["ACO Sight (Red)","optic_Aco", 50,"item"],
 	["ACO Sight (Green)","optic_ACO_grn", 50,"item"],
 	["Holosight","optic_Holosight", 50,"item"],
+	["MRCO","optic_MRCO", 75,"item"],
 	["RCO Sight","optic_Hamr", 100,"item"],
-	["ARCO Sight","optic_Arco", 150,"item"],
-	["SOS Sight","optic_SOS", 200,"item"]
+	["ARCO Sight","optic_Arco", 100,"item"],
+	["SOS Sight","optic_SOS", 150,"item"]
 ];
 
 //Gun Store Gear List
 //Text name, classname, buy cost
 gearArray = [
 	["Bergen Backpack (MTP)","B_Bergen_mcamo", 500,"bpack"],		// 25% more capacity than default backpack (B_Kitbag_Base), 50% more than older backpack (B_AssaultPack_Base)
-	["Bergen Backpack (Desert)","B_Bergen_sgg", 500,"bpack"],
+	["Bergen Backpack (Tan)","B_Bergen_sgg", 500,"bpack"],
 	["Bergen Backpack (Black)","B_Bergen_blk", 500,"bpack"],
 	["Carryall Backpack (MTP)","B_Carryall_mcamo", 750,"bpack"],	// 40% more capacity than default backpack (B_Kitbag_Base)
 	["Carryall Backpack (Khaki)","B_Carryall_khk", 750,"bpack"],
@@ -131,35 +135,34 @@ gearArray = [
 	
 	["Parachute","B_Parachute", 500,"bpack"],
 	
-	["Ghillie Suit","U_B_GhillieSuit", 200,"ghillie"],
-	//["Ghillie Suit (Brown)","U_O_GhillieSuit", 200,"uni"], 	// Temporarily removed due to underwear glitch
+	["Ghillie Suit","U_I_GhillieSuit", 200,"ghillie"],
+	
+	// Most vest camos are not implemented yet
 	
 	["Carrier Lite (Green)","V_PlateCarrier1_rgr", 100,"vest"],
-	["Carrier Lite (Black)","V_PlateCarrier1_blk", 100,"vest"],
-	["Carrier Lite (Coyote)","V_PlateCarrier1_cbr", 100,"vest"],
-	["Carrier Rig (Green)","V_PlateCarrier2_rgr", 125,"vest"],
-	["Carrier Rig (Black)","V_PlateCarrier2_blk", 125,"vest"],
-	["Carrier Rig (Coyote)","V_PlateCarrier2_cbr", 125,"vest"],
+	// ["Carrier Lite (Black)","V_PlateCarrier1_blk", 100,"vest"],
+	// ["Carrier Lite (Coyote)","V_PlateCarrier1_cbr", 100,"vest"],
+	["Carrier Rig (Green)","V_PlateCarrier2_rgr", 140,"vest"],
+	// ["Carrier Rig (Black)","V_PlateCarrier2_blk", 140,"vest"],
+	// ["Carrier Rig (Coyote)","V_PlateCarrier2_cbr", 140,"vest"],
     ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", 150,"vest"],
-	["Carrier GL Rig (Black)","V_PlateCarrierGL_blk", 150,"vest"],
-	["Carrier GL Rig (Coyote)","V_PlateCarrierGL_cbr", 150,"vest"],
-	["LBV Harness","V_HarnessO_brn", 100,"vest"],
-	["LBV Harness (Gray)","V_HarnessO_gry", 100,"vest"],
+	// ["Carrier GL Rig (Black)","V_PlateCarrierGL_blk", 150,"vest"],
+	// ["Carrier GL Rig (Coyote)","V_PlateCarrierGL_cbr", 150,"vest"],
+	["LBV Harness","V_HarnessO_brn", 180,"vest"],
+	// ["LBV Harness (Gray)","V_HarnessO_gry", 180,"vest"],
 	["LBV Grenadier Harness","V_HarnessOGL_brn", 200,"vest"],
-	["LBV Grenadier Harness (Gray)","V_HarnessOGL_gry", 200,"vest"],
+	// ["LBV Grenadier Harness (Gray)","V_HarnessOGL_gry", 200,"vest"],
 	["ELBV Harness","V_HarnessOSpec_brn", 220,"vest"],
-	["ELBV Harness (Gray)","V_HarnessOSpec_gry", 220,"vest"],
+	// ["ELBV Harness (Gray)","V_HarnessOSpec_gry", 220,"vest"],
 	["GA Carrier Lite (Digi)","V_PlateCarrierIA1_dgtl", 100,"vest"],
 	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", 140,"vest"],
 	["GA Carrier GL Rig (Digi)","V_PlateCarrierIAGL_dgtl", 150,"vest"],
 	
 	["Diving Goggles","G_Diving", 50,"gogg"],
+	["Wetsuit","U_B_Wetsuit", 100,"uni"],
 	["Rebreather 1","V_RebreatherB", 100,"vest"],
     ["Rebreather 2","V_RebreatherIR", 100,"vest"],
 	["Rebreather 3","V_RebreatherIA", 100,"vest"],
-    ["Wetsuit 1","U_B_Wetsuit", 100,"uni"],
-    ["Wetsuit 2","U_O_Wetsuit", 100,"uni"],
-	["Wetsuit 3","U_I_Wetsuit", 100,"uni"],
 	
 	["Booniehat (MTP)","H_Booniehat_mcamo", 50,"hat"],
     ["Booniehat (Hex)","H_Booniehat_ocamo", 50,"hat"],

@@ -37,7 +37,7 @@ switch (playerSide) do
     case east:
     {
         _player addUniform "U_O_CombatUniform_ocamo";
-		_player addVest "V_HarnessO_brn";
+		_player addVest "V_PlateCarrier1_cbr";
 		_player addHeadgear "H_HelmetO_ocamo";
     };
 	
