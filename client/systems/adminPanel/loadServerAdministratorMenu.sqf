@@ -15,9 +15,9 @@ if ([_uid, 3] call isAdmin) then {
 	_displayServerAdmin = uiNamespace getVariable "ServerAdminMenu";
 	_serverAdminSelect = _displayServerAdmin displayCtrl serverAdminMenu_option;
 	
-	_panelOptions = ["Player Menu",
+	_panelOptions = ["Player Management",
 					"Vehicle Management",
-					"Tags",
+					"Player Tags",
 					"Teleport",
 	                "Money",
 	                "Debug Menu"

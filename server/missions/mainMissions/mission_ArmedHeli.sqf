@@ -13,7 +13,7 @@ private ["_result","_missionMarkerName","_missionType","_startTime","_returnData
 //Mission Initialization.
 _result = 0;
 _missionMarkerName = "ArmedHeli_Marker";
-_missionType = "Immobile Armed Helicopter";
+_missionType = "Armed Helicopter";
 #ifdef __A2NET__
 _startTime = floor(netTime);
 #else
@@ -33,40 +33,56 @@ diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-#ifdef __DEBUG__
-_marker = createMarkerLocal ["ArmedHeli_Marker", _randomPos];
-"ArmedHeli_Marker" setMarkerShapeLocal "ICON";
-"ArmedHeli_Marker" setMarkerTypeLocal "mil_dot";
-"ArmedHeli_Marker" setMarkerColorLocal "ColorRed";
-"ArmedHeli_Marker" setMarkerSizeLocal [1,1];
-"ArmedHeli_Marker" setMarkerTextLocal "Mission Here";
-#endif
-_vehicleClass = ["O_Heli_Light_02_F","B_Heli_Light_01_armed_F","B_Heli_Attack_01_F"] call BIS_fnc_selectRandom;
+_vehicleClass = ["B_Heli_Light_01_armed_F", "B_Heli_Transport_01_F", "B_Heli_Attack_01_F", "O_Heli_Light_02_F", "O_Heli_Attack_02_F"] call BIS_fnc_selectRandom;
 
 // Vehicle spawning: Name, Position, Fuel, Ammo, Damage, "NONE"
 
-_vehAmmo = 0.5;
+private "_vehAmmo";
+_vehAmmo = 1;
 
-switch (_vehicleClass) do
+switch (true) do
 {
-	case "O_Heli_Light_02_F":		{ _vehAmmo = 1 };
-	case "B_Heli_Light_01_armed_F":	{ _vehAmmo = 0.75 };
-	case "B_Heli_Attack_01_F": 		{ _vehAmmo = 0.6 };
+	case (_vehicleClass isKindOf "Heli_Light_01_base_F"):        { _vehAmmo = 0.5 };
+	case (_vehicleClass isKindOf "Heli_Transport_01_base_F"):    { _vehAmmo = 0.5 };
+	case (_vehicleClass isKindOf "Heli_Attack_01_base_F"):       { _vehAmmo = 0.2 };
+	case (_vehicleClass isKindOf "Heli_Light_02_base_F"):        { _vehAmmo = 1 };
+	case (_vehicleClass isKindOf "Heli_Attack_02_base_F"):       { _vehAmmo = 0.8 };
 };
 
 _vehicle = [_vehicleClass,_randomPos,1,_vehAmmo,0,"NONE"] call createMissionVehicle;
 
-_vehicle spawn vehicleRepair;
-_vehicle spawn cleanHeliWreck;
+if ("CMFlareLauncher" in getArray (configFile >> "CfgVehicles" >> _vehicleClass >> "weapons")) then
+{
+	_vehicle removeMagazinesTurret ["168Rnd_CMFlare_Chaff_Magazine", [-1]];
+	_vehicle removeMagazinesTurret ["192Rnd_CMFlare_Chaff_Magazine", [-1]];
+	_vehicle removeMagazinesTurret ["240Rnd_CMFlare_Chaff_Magazine", [-1]];
+	_vehicle addMagazineTurret ["168Rnd_CMFlare_Chaff_Magazine", [-1]];
+};
+if (_vehicle isKindOf "Heli_Attack_01_base_F") then
+{
+	_vehicle removeMagazinesTurret ["24Rnd_PG_missiles", [0]];
+	_vehicle removeMagazinesTurret ["4Rnd_AAA_missiles", [0]];
+	_vehicle addMagazineTurret ["24Rnd_PG_missiles", [0]];
+	_vehicle addMagazineTurret ["2Rnd_AAA_missiles", [0]];
+};
+if (_vehicle isKindOf "Heli_Attack_02_base_F") then
+{
+	_vehicle removeMagazinesTurret ["250Rnd_30mm_APDS_shells", [0]];
+	_vehicle removeMagazinesTurret ["38Rnd_80mm_rockets", [0]];
+	_vehicle removeMagazinesTurret ["8Rnd_LG_scalpel", [0]];
+	_vehicle addMagazineTurret ["14Rnd_80mm_rockets", [0]];
+	_vehicle addMagazineTurret ["2Rnd_LG_scalpel", [0]];
+};
+
+reload _vehicle;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
-_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A<t color='%4'> %3</t>, has been immobilized go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
-messageSystem = _hint;
-publicVariable "messageSystem";
+_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A <t color='%4'>%3</t> has been immobilized, go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
+[_hint] call hintBroadcast;
 
-CivGrpM = createGroup civilian;
-[CivGrpM,_randomPos] spawn createMidGroup;
+_CivGrpM = createGroup civilian;
+[_CivGrpM,_randomPos] spawn createMidGroup;
 
 diag_log format["WASTELAND SERVER - Main Mission Waiting to be Finished: %1",_missionType];
 #ifdef __A2NET__
@@ -85,7 +101,7 @@ waitUntil
 	#endif
     if(_currTime - _startTime >= mainMissionTimeout) then {_result = 1;};
     {if((isPlayer _x) AND (_x distance _vehicle <= missionRadiusTrigger)) then {_playerPresent = true};}forEach playableUnits;
-    _unitsAlive = ({alive _x} count units CivGrpM);
+    _unitsAlive = ({alive _x} count units _CivGrpM);
     (_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1)) OR ((damage _vehicle) == 1)
 };
 
@@ -96,18 +112,16 @@ if(_result == 1) then
 {
 	//Mission Failed.
     deleteVehicle _vehicle;
-    {deleteVehicle _x;}forEach units CivGrpM;
-    deleteGroup CivGrpM;
-    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
-	messageSystem = _hint;
-	publicVariable "messageSystem";
+    {deleteVehicle _x;}forEach units _CivGrpM;
+    deleteGroup _CivGrpM;
+    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time.</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Failed: %1",_missionType];
 } else {
 	//Mission Complete.
-    deleteGroup CivGrpM;
-    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The helicopter has been captured, now go destroy the enemy</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
-	messageSystem = _hint;
-	publicVariable "messageSystem";
+    deleteGroup _CivGrpM;
+    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The armed helicopter has been captured, brace yourselves.</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Success: %1",_missionType];
 };
 

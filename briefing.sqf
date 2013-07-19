@@ -74,7 +74,7 @@ player createDiaryRecord["changelog",
 "1.07+",
 "
 <br/>
-		See all changes in the "404 Wasteland TPG Edition" thread on http://teamplayergaming.com/arma-3/<br/>
+See all changes in the ""404 Wasteland TPG Edition"" thread on http://teamplayergaming.com/arma-3/<br/>
 "
 ]
 ];
@@ -84,18 +84,29 @@ player createDiaryRecord["credits",
 "Credits",
 "
 <br/>
-	404Games:<br/><br/>
-	Deadbeat<br/>
-	Costlyy<br/>
-	Pulse<br/>
-	Domuk<br/><br/>
-	TeamPlayerGaming:<br/><br/>
-	AgentRev<br/>
-	BigHub<br/><br/>
-	GoT:<br/><br/>
-	JoSchaap<br/><br/>
-	OpenDayZ:<br/><br/>
-	AXA<br/>
+<font face='PuristaBold' size='16'>TAW</font><br/>
+Tonic<br/><br/><br/>
+<font face='PuristaBold' size='16'>ARMA.SU</font><br/>
+Sa-Matra<br/><br/><br/>
+<font face='PuristaBold' size='16'>OcUK</font><br/>
+MarKeR<br/><br/><br/>
+<font face='PuristaBold' size='16'>404Games</font><br/>
+Deadbeat<br/>
+Costlyy<br/>
+Pulse<br/>
+Domuk<br/><br/><br/>
+<font face='PuristaBold' size='16'>TeamPlayerGaming</font><br/>
+AgentRev<br/>
+BigHub<br/><br/><br/>
+<font face='PuristaBold' size='16'>GoT</font><br/>
+JoSchaap<br/><br/><br/>
+<font face='PuristaBold' size='16'>OpenDayZ</font><br/>
+AXA<br/><br/><br/>
+<font face='PuristaBold' size='16'>Others</font><br/>
+Sanjo<br/>
+meat147<br/>
+spunFIN<br/>
+SPJESTER<br/>
 "
 ]
 ];

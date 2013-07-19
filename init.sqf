@@ -11,34 +11,34 @@ StartProgress = false;
 enableSaving[false,false];
 
 X_Server = false;
-X_Client = false;
-X_JIP = false;
 hitStateVar = false;
-versionName = "v1.08f Beta";
+versionName = "v1.08g Beta";
 
-if(isServer) then { X_Server = true;};
-if(!isDedicated) then { X_Client = true;};
-if(isNull player) then {X_JIP = true;};
+if (isServer) then { X_Server = true };
 
 true spawn {
 	if(!isDedicated) then {
 		titleText ["Please wait for your player to setup", "BLACK", 0];
-		waitUntil {player == player};
+		waitUntil {!isNull player};
 		client_initEH = player addEventHandler ["Respawn", {removeAllWeapons (_this select 0);}];
 	};
 };
 
 // Server & Client Functions
 generateKey = compileFinal preprocessFileLineNumbers "server\antihack\generateKey.sqf";
+fn_findString = compileFinal preprocessFileLineNumbers "server\functions\fn_findString.sqf";
+fn_filterString = compileFinal preprocessFileLineNumbers "server\functions\fn_filterString.sqf";
 fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
 findSafePos = compile preprocessFileLineNumbers "server\functions\findSafePos.sqf";
+removeNegativeScore = compile preprocessFileLineNumbers "server\functions\removeNegativeScore.sqf";
+detachTowedObject = compile preprocessFileLineNumbers "server\functions\detachTowedObject.sqf";
 
 //init Wasteland Core
 [] execVM "config.sqf";
 [] execVM "briefing.sqf";
 
-if(X_Client) then {
-	waitUntil {player == player};
+if (!isDedicated) then {
+	waitUntil {!isNull player};
 
 	//Wipe Group.
 	if(count units group player > 1) then
@@ -61,5 +61,10 @@ if(X_Server) then {
 
 //init 3rd Party Scripts
 [] execVM "addons\R3F_ARTY_AND_LOG\init.sqf";
+
+"requestDetachTowedObject" addPublicVariableEventHandler { [_this select 1] call detachTowedObject };
+
 [] execVM "addons\proving_Ground\init.sqf";
 //[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+
+execVM "server\functions\adjustBuildings.sqf";

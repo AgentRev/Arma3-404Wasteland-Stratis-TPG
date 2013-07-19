@@ -15,7 +15,7 @@ if ([_uid, 1] call isAdmin) then {
 	_displayMod = uiNamespace getVariable "ModMenu";
 	_modSelect = _displayMod displayCtrl modMenu_option;
 	
-	_panelOptions = ["Player Menu",
+	_panelOptions = ["Player Management",
 					"Vehicle Management"
 	];
 	

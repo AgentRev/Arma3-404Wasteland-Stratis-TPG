@@ -6,9 +6,9 @@
 //	
 //	NOTE: Only use during mission init, as it ignores ammo and will replace all magazines with full ones.
 
-if(!X_Server) exitWith {};
+if (!isServer) exitWith {};
 
-private ["_container","_oldMagazineName","_newMagazineName","_magazineCargo","_magazines","_quantities","_magIndex"];
+private ["_container", "_oldMagazineName", "_newMagazineName", "_magazineCargo", "_magazines", "_quantities", "_magIndex"];
 
 _container = _this select 0;
 _oldMagazineName = _this select 1;
@@ -22,12 +22,19 @@ _magIndex = _magazines find _oldMagazineName;
 
 if (_magIndex != -1) then
 {
-	_magazines set [_magIndex, _newMagazineName];
+	if (_newMagazineName == "") then
+	{
+		_magazines = [_magazines, _magIndex] call BIS_fnc_removeIndex;
+		_quantities = [_quantities, _magIndex] call BIS_fnc_removeIndex;
+	}
+	else
+	{
+		_magazines set [_magIndex, _newMagazineName];
+	};
 	
 	clearMagazineCargoGlobal _container;
 
-	for "_x" from 0 to (count _magazines) - 1 do
 	{
-		_container addMagazineCargoGlobal [_magazines select _x, _quantities select _x];
-	};
+		_container addMagazineCargoGlobal [_x, _quantities select _forEachIndex];
+	} forEach _magazines;
 };

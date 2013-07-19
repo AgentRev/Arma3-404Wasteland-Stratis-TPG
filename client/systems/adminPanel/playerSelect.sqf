@@ -77,11 +77,11 @@ if (_uid call isAdmin) then {
 		{
 			_warnText = ctrlText _warnMessage;
 	        _playerName = name player;
-			[compile format ["titleText ['Admin %1: %2', 'plain']; titleFadeOut 10" ,_playerName, _warnText], "BIS_fnc_spawn", _target, false] call BIS_fnc_MP;
+			[_warnText, "adminMessage", _target, false] call TPG_fnc_MP;
 		};
 	    case 2: //Slay
 	    {
-			[{player setDamage 1; endMission "LOSER"; deleteVehicle player}, "BIS_fnc_spawn", _target, false] call BIS_fnc_MP;
+			[{player setDamage 1; endMission "LOSER"; deleteVehicle player}, "BIS_fnc_spawn", _target, false] call TPG_fnc_MP;
 	    };
 	    case 3: //Unlock Team Switcher
 	    {      
@@ -89,13 +89,10 @@ if (_uid call isAdmin) then {
 	        {
 			    if(_x select 0 == _targetUID) then
 			    {
-			    	pvar_teamSwitchList set [_forEachIndex, "REMOVETHISCRAP"];
-					pvar_teamSwitchList = pvar_teamSwitchList - ["REMOVETHISCRAP"];
-			        publicVariableServer "pvar_teamSwitchList";
+			    	pvar_teamSwitchList = [pvar_teamSwitchList, _forEachIndex] call BIS_fnc_removeIndex;
+			        publicVariable "pvar_teamSwitchList";
 	                
-					[{client_firstSpawn = nil}, "BIS_fnc_spawn", _target, false] call BIS_fnc_MP;
-					
-	                [{publicVariable "pvar_teamSwitchList"}, "BIS_fnc_spawn", false, false] call BIS_fnc_MP;
+					[{client_firstSpawn = nil}, "BIS_fnc_spawn", _target, false] call TPG_fnc_MP;
 			    };
 			}forEach pvar_teamSwitchList;			
 	    };
@@ -105,11 +102,8 @@ if (_uid call isAdmin) then {
 	        {
 			    if(_x select 0 == _targetUID) then
 			    {
-			    	pvar_teamKillList set [_forEachIndex, "REMOVETHISCRAP"];
-					pvar_teamKillList = pvar_teamKillList - ["REMOVETHISCRAP"];
-			        publicVariableServer "pvar_teamKillList";
-					
-					[{publicVariable "pvar_teamKillList"}, "BIS_fnc_spawn", false, false] call BIS_fnc_MP;
+			    	pvar_teamKillList = [pvar_teamKillList, _forEachIndex] call BIS_fnc_removeIndex;
+			        publicVariable "pvar_teamKillList";
 			    };
 			}forEach pvar_teamKillList;       		
 	    };
@@ -117,7 +111,7 @@ if (_uid call isAdmin) then {
 	    {      
 			_targetUID = getPlayerUID _target;
 	        {
-			    if(getPlayerUID _x == _targetUID) then
+			    if(getPlayerUID _x == _targetUID) exitWith
 			    {
   					_x setVariable["cmoney",0,true];
 			    };
@@ -127,7 +121,7 @@ if (_uid call isAdmin) then {
 	    {      
 			_targetUID = getPlayerUID _target;
 	        {
-			    if(getPlayerUID _x == _targetUID) then
+			    if(getPlayerUID _x == _targetUID) exitWith
 			    {
   					removeAllWeapons _x;
 			    };
@@ -137,13 +131,11 @@ if (_uid call isAdmin) then {
 	    {      
 			_targetUID = getPlayerUID _target;
 	        {
-			    if(getPlayerUID _x == _targetUID) then
+			    if(getPlayerUID _x == _targetUID) exitWith
 			    {
   					createGearDialog [_x, "RscDisplayInventory"];
 			    };
 			}forEach playableUnits;        		
 	    };
 	};
-} else {
-  exit;  
 };

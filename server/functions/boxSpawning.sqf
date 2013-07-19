@@ -6,7 +6,7 @@
 
 if(!X_Server) exitWith {};
 
-private ["_counter","_pos","_markerName","_marker","_hint","_safePos","_boxes", "_nerfBoxes", "_currBox", "_boxInstance"];
+private ["_counter","_pos","_markerName","_marker","_hint","_safePos","_boxes", "_nerfBoxes", "_currBox", "_boxInstance", "_oldMagName", "_magName"];
 
 _counter = 0;
 
@@ -52,24 +52,25 @@ for "_i" from 1 to (call nbVehicleMarkers) step 25 do
 			default							{ _boxInstance addMagazineCargoGlobal ["20Rnd_762x51_Mag", 5] };
 		};
 		
-		_boxInstance removeWeapon "srifle_LRR_F";
-		_boxInstance removeWeapon "srifle_GM6_F";
-		_boxInstance removeMagazines "7Rnd_408_Mag";
-		_boxInstance removeMagazines "5Rnd_127x108_Mag";
+		// Remove snipers
+		[_boxInstance, "srifle_LRR_F", ""] call fn_replaceWeapons;
+		[_boxInstance, "srifle_GM6_F", ""] call fn_replaceWeapons;
+		[_boxInstance, "7Rnd_408_Mag", ""] call fn_replaceMagazines;
+		[_boxInstance, "5Rnd_127x108_Mag", ""] call fn_replaceMagazines;
 		
 		// Replace the SDAR's shitty 5.56mm 20Rnd UW mags by normal 5.56mm 30Rnd STANAG mags (inflicts twice more damage)
 		[_boxInstance, "20Rnd_556x45_UW_mag", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;
 	};
 	
-	// Replace full tracer mags by full ball mags for more stealth
-	[_boxInstance, "30Rnd_556x45_Stanag_Tracer_Green", "30Rnd_556x45_Stanag"] call fn_replaceMagazines;				// TRG-2x, Mk20
-	[_boxInstance, "30Rnd_65x39_caseless_mag_Tracer", "30Rnd_65x39_caseless_mag"] call fn_replaceMagazines;			// MX
-	[_boxInstance, "30Rnd_65x39_caseless_green_mag_Tracer", "30Rnd_65x39_caseless_green"] call fn_replaceMagazines;	// Katiba
-	
-	// Replace full tracer belts by "4 ball 1 tracer" belts for more stealth	
-	[_boxInstance, "100Rnd_65x39_caseless_mag_Tracer", "100Rnd_65x39_caseless_mag"] call fn_replaceMagazines;		// MX
-	[_boxInstance, "200Rnd_65x39_cased_Box_Tracer", "200Rnd_65x39_cased_Box"] call fn_replaceMagazines;				// Mk200
-	[_boxInstance, "150Rnd_762x51_Box_Tracer", "150Rnd_762x51_Box"] call fn_replaceMagazines;						// Zafir
+	// Replace tracer mags by ball mags for more stealth	
+	{
+		_magName = _x call getBallMagazine;
+		
+		if (_magName != _x) then
+		{
+			[_boxInstance, _x, _magName] call fn_replaceMagazines;
+		};		
+	} forEach ((getMagazineCargo _boxInstance) select 0);
 	
     _counter = _counter + 1;
 };

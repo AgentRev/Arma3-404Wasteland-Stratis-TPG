@@ -107,7 +107,7 @@ class gunshopd {
 
 			x = 0.3125 * safezoneW + safezoneX;
 			y = 0.225 * safezoneH + safezoneY;
-			w = 0.0916666 * safezoneW;
+			w = 0.105 * safezoneW;
 			h = 0.422222 * safezoneH;
 		};
 
@@ -118,7 +118,7 @@ class gunshopd {
 
 			x = 0.690104 * safezoneW + safezoneX;
 			y = 0.225 * safezoneH + safezoneY;
-			w = 0.0916666 * safezoneW;
+			w = 0.105 * safezoneW;
 			h = 0.422222 * safezoneH;
 		};
 
@@ -180,11 +180,11 @@ class gunshopd {
 		{
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\gunStore\sellWeapon.sqf'";
-			text = "Sell Current Weapon";
+			text = "Sell Current Weapon and Ammo";
 
 			x = 0.40625 * safezoneW + safezoneX;
 			y = 0.750 * safezoneH + safezoneY;
-			w = 0.096 * safezoneW;
+			w = 0.11 * safezoneW;
 			h = 0.040 * safezoneH;
 
 		};

@@ -106,9 +106,7 @@ _marker setMarkerText "Convoy";
 _picture = getText (configFile >> "CfgVehicles" >> "B_MRAP_01_F" >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> "B_MRAP_01_F" >> "displayName");
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A <t color='%4'>%3</t> is convoyed by two armored vehicles. Stop them!</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
-messageSystem = _hint;
-if (!isDedicated) then { call serverMessage };
-publicVariable "messageSystem";
+[_hint] call hintBroadcast;
 
 diag_log format["WASTELAND SERVER - Main Mission Waiting to be Finished: %1", _missionType];
 
@@ -134,9 +132,7 @@ if(_failed) then
 {
     // Mission failed
     _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
-    messageSystem = _hint;
-    if (!isDedicated) then { call serverMessage };
-    publicVariable "messageSystem";
+    [_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Failed: %1",_missionType];
 } else {
     // Mission complete
@@ -158,9 +154,7 @@ if(_failed) then
     _ammobox addMagazine ["HandGrenade", 5];
     
     _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The convoy has been sucessfully stopped. Now the weapons and cars are yours.</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
-    messageSystem = _hint;
-    if (!isDedicated) then { call serverMessage };
-    publicVariable "messageSystem";
+    [_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Success: %1",_missionType];
 };
 

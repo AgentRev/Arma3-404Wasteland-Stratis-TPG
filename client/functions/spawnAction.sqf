@@ -8,7 +8,25 @@ _switch = _this select 0;
 _button = _this select 1;
 
 player removeAllEventHandlers "HandleDamage";
+player removeAllEventHandlers "Take";
 player setVariable["cmoney",100,true];
+
+player switchMove "AmovPknlMstpSrasWpstDnon_gear";
+
+player addEventHandler ["Take",
+{
+	private "_vehicle";
+	_vehicle = _this select 1;
+	
+	if (_vehicle isKindOf "Car" && {!(_vehicle getVariable ["itemTakenFromVehicle", false])}) then
+	{
+		_vehicle setVariable ["itemTakenFromVehicle", true, true];
+	};
+}];
+
+// Remove stupid blur effects
+ppEffectDestroy BIS_fnc_feedback_fatigueBlur;
+ppEffectDestroy BIS_fnc_feedback_damageBlur;
 
 switch(_switch) do 
 {
@@ -48,12 +66,12 @@ if(isNil{client_firstSpawn}) then {
 				publicVariable "pvar_teamSwitchList";
                 
                 _side = "";
-                if(str(playerSide) == "WEST") then {
-                    _side = "Blufor";
+                if (playerSide == BLUFOR) then {
+                    _side = "BLUFOR";
                 };
                 
-                if(str(playerSide) == "EAST") then {
-                    _side = "Opfor";
+                if (playerSide == OPFOR) then {
+                    _side = "OPFOR";
                 };
                 
 				titleText [format["You have been locked to %1",_side],"PLAIN",0];

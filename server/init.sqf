@@ -13,19 +13,23 @@ serverSpawning = 1;
 vChecksum = compileFinal format ["'%1'", call generateKey];
 
 //Execute Server Side Scripts.
-[] execVM "server\antihack\setup.sqf";
+_serverCompiledScripts = [] execVM "server\antihack\setup.sqf";
+waitUntil {scriptDone _serverCompiledScripts};
 [] execVM "server\admins.sqf";
 [] execVM "server\functions\serverVars.sqf";
 _serverCompiledScripts = [] execVM "server\functions\serverCompile.sqf";
 [] execVM "server\functions\broadcaster.sqf";
 [] execVM "server\functions\relations.sqf";
 [] execVM "server\functions\serverTimeSync.sqf";
-waitUntil{scriptDone _serverCompiledScripts};
+[] execVM "server\functions\timeAcceleration.sqf";
+[] execVM "scripts\init.sqf";
+
+waitUntil {scriptDone _serverCompiledScripts};
 
 diag_log format["WASTELAND SERVER - Server Compile Finished"];
 
-#ifdef __DEBUG__
-#else
+"requestCompensateNegativeScore" addPublicVariableEventHandler { (_this select 1) call removeNegativeScore };
+
 //Execute Server Spawning.
 if (serverSpawning == 1) then {
     diag_log format["WASTELAND SERVER - Initializing Server Spawning"];
@@ -42,7 +46,7 @@ if (serverSpawning == 1) then {
     _heliSpawn = [] ExecVM "server\functions\staticHeliSpawning.sqf";
     waitUntil{sleep 0.1; scriptDone _heliSpawn};
 };
-#endif
+
 //Execute Server Missions.
 if (sideMissions == 1) then {
 	diag_log format["WASTELAND SERVER - Initializing Missions"];

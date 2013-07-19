@@ -31,6 +31,8 @@ R3F_LOG_CFG_remorqueurs =
     "MRAP_01_base_F",
 	"MRAP_02_base_F",
 	"MRAP_03_base_F",
+	"Wheeled_APC_F",
+	"Truck_F",
 	"Boat_Armed_01_base_F"
 ];
 
@@ -48,7 +50,9 @@ R3F_LOG_CFG_objets_remorquables =
 	"Boat_Armed_01_base_F",
 	"Heli_Light_01_base_F",
 	"Heli_Light_02_base_F",
-	"Heli_Attack_01_base_F"
+	"Heli_Transport_01_base_F",
+	"Heli_Attack_01_base_F",
+	"Heli_Attack_02_base_F"
 ];
 
 /****** LIFT WITH VEHICLE / HELIPORTER AVEC VEHICULE ******/
@@ -113,6 +117,8 @@ R3F_LOG_CFG_transporteurs =
 	["MRAP_01_base_F", 20],
 	["MRAP_02_base_F", 20],
 	["MRAP_03_base_F", 20],
+	["Wheeled_APC_F", 30],
+	["Truck_F", 50],
 	["Rubber_duck_base_F", 15],
 	["Boat_Armed_01_base_F", 20],
 	["Heli_Light_01_base_F", 10],

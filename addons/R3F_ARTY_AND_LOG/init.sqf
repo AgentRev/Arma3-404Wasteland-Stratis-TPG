@@ -64,13 +64,17 @@
 	#endif
 	
 	// Auto-détection permanente des objets sur le jeu
-	if !(isServer && isDedicated) then
+	if (isDedicated) then
 	{
-		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";
+		// Version allégée pour le serveur dédié
+		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets_dedie.sqf";
 	}
-	// Version allégée pour le serveur dédié
 	else
 	{
-		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets_dedie.sqf";
+		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";
 	};
+	
+	{
+		_x setVariable ["R3F_LOG_disabled", true];
+	} forEach ((nearestObjects [[0,0], R3F_LOG_CFG_objets_deplacables, 99999]) - (allMissionObjects "Building"));
 };

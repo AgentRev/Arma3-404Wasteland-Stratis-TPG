@@ -9,17 +9,17 @@ _uid = getPlayerUID player;
 
 switch (true) do
 {
-	case ([_uid, serverAdministrators] call isAdmin || isServer):
+	case ([_uid, serverOwners] call isAdmin || isServer):
 	{
 		execVM "client\systems\adminPanel\loadServerAdministratorMenu.sqf";
 		hint "Welcome Boss";
 	};
-	case ([_uid, administrators] call isAdmin):
+	case ([_uid, highAdmins] call isAdmin):
 	{
 		execVM "client\systems\adminPanel\loadAdministratorMenu.sqf";
 		hint "Welcome High Admin";
 	};
-	case ([_uid, moderators] call isAdmin):
+	case ([_uid, lowAdmins] call isAdmin):
 	{
 		execVM "client\systems\adminPanel\loadModeratorMenu.sqf";
 		hint "Welcome Admin";

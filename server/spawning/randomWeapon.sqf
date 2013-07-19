@@ -16,18 +16,7 @@ if (random 1 < 0.15) then { _car addItemCargoGlobal ["NVGoggles", 1]};
 
 //Get Random Gun From randomWeapons Array.
 _weapon = vehicleWeapons call BIS_fnc_selectRandom;
-_mag = (getArray (configFile >> "Cfgweapons" >> _weapon >> "magazines")) select 0;
-
-// Fuck tracers
-switch (_mag) do
-{
-	case "30Rnd_556x45_Stanag_Tracer_Green": 		{ _mag = "30Rnd_556x45_Stanag" };			// TRG-2x, Mk20
-	case "30Rnd_65x39_caseless_green_mag_Tracer": 	{ _mag = "30Rnd_65x39_caseless_green" };	// Katiba
-	case "30Rnd_65x39_caseless_mag_Tracer":			{ _mag = "30Rnd_65x39_caseless_mag" };		// MX
-	case "100Rnd_65x39_caseless_mag_Tracer": 		{ _mag = "100Rnd_65x39_caseless_mag" };		// MX
-	case "200Rnd_65x39_cased_Box_Tracer": 			{ _mag = "200Rnd_65x39_cased_Box" };		// Mk200
-	case "150Rnd_762x51_Box_Tracer":				{ _mag = "150Rnd_762x51_Box" };				// Zafir 
-};
+_mag = ((getArray (configFile >> "Cfgweapons" >> _weapon >> "magazines")) select 0) call getBallMagazine;
 
 _additionOne = _additionArray call BIS_fnc_selectRandom;
 _additionArray = _additionArray - [_additionOne];
@@ -35,10 +24,9 @@ _additionTwo = _additionArray call BIS_fnc_selectRandom;
 _additionArray = _additionArray - [_additionTwo];
 _additionThree = vehicleAddition2 call BIS_fnc_selectRandom;
 
-//Add guns and magazines, note the Global at the end..
-_car addMagazineCargoGlobal [_mag,1];
-_car addMagazineCargoGlobal [_mag,3];
+//Add guns and magazines, note the Global at the end
 _car addWeaponCargoGlobal [_weapon,1];
+_car addMagazineCargoGlobal [_mag,4];
 _car addItemCargoGlobal [_additionOne,2];
 _car addItemCargoGlobal [_additionTwo,2];
 _car addMagazineCargoGlobal [_additionThree,2];

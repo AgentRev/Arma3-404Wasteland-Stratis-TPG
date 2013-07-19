@@ -56,7 +56,7 @@ switch (_switch) do
 						hint format [_alreadyHaveType,_name];  
 					};
 				};
-			} forEach weaponsArray;
+			} forEach (call weaponsArray);
 
 			{
 				_name = _x select 0;
@@ -64,7 +64,6 @@ switch (_switch) do
 				if (_itemText == _name) then
 				{
 					_class = _x select 1;
-					_type = getNumber (configFile >> "CfgMagazines" >> _class >> "type");
 					
 					if ([player, _class] call fn_fitsInventory) then
 					{
@@ -76,7 +75,7 @@ switch (_switch) do
 						hint format [_notEnoughSpace,_name];
 					};
 				}
-			} forEach ammoArray;
+			} forEach (call ammoArray);
 
 			{
 				_name = _x select 0;
@@ -139,23 +138,30 @@ switch (_switch) do
                         {
                             if (uniform player == "") then
                             {
-                                player addUniform _class;
-                            }
-                            else
-                            {
-								gunStoreCart = gunStoreCart - (_x select 2);
-								hint format["You already have an uniform, please drop it before buying a new one"]; 
-                            };
-                        };
-						case "ghillie":
-                        {
-                            if (uniform player == "") then
-                            {
-								switch (faction player) do
+								switch (_name) do
 								{
-									case "BLU_F": { player addUniform "U_B_GhillieSuit" };
-									case "OPF_F": { player addUniform "U_O_GhillieSuit" };
-									case "IND_F": { player addUniform "U_I_GhillieSuit" };
+									case "Ghillie Suit": 
+									{
+										switch (faction player) do
+										{
+											case "BLU_F": { player addUniform "U_B_GhillieSuit" };
+											case "OPF_F": { player addUniform "U_O_GhillieSuit" };
+											default       { player addUniform "U_I_GhillieSuit" };
+										};
+									};
+									case "Wetsuit": 
+									{
+										switch (faction player) do
+										{
+											case "BLU_F": { player addUniform "U_B_Wetsuit" };
+											case "OPF_F": { player addUniform "U_O_Wetsuit" };
+											default       { player addUniform "U_I_Wetsuit" };
+										};
+									};
+									default
+									{
+										player addUniform _class;
+									};
 								};
                             }
                             else
@@ -188,9 +194,21 @@ switch (_switch) do
 								hint format["You already have goggles, please drop them before buying new ones"]; 
                             };
                         };
+						case "mag":
+                        {
+                            if ([player, _class] call fn_fitsInventory) then
+							{
+								player addMagazine _class;
+							}
+							else
+							{
+								gunStoreCart = gunStoreCart - (_x select 2);
+								hint format [_notEnoughSpace,_name];
+							};
+                        };
                     };
 				};
-            } forEach (accessoriesArray + gearArray);
+            } forEach ((call accessoriesArray) + (call gearArray));
 		};
 
 		player setVariable["cmoney",_playerMoney - gunStoreCart,true];

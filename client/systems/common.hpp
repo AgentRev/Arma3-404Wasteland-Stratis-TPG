@@ -87,7 +87,7 @@ class w_RscText {
 	style = ST_LEFT;
 	colorBackground[] = { 1 , 1 , 1 , 0 };
 	colorText[] = { 1 , 1 , 1 , 1 };
-	font = "PuristaSemibold";
+	font = "PuristaMedium";
 	sizeEx = 0.025;
 	h = 0.25;
 	text = "";
@@ -170,8 +170,8 @@ class w_RscListBox
     color[] = {0.7, 0.7, 0.7, 1};
     colorActive[] = {0,0,0,1};
     colorDisabled[] = {0,0,0,0.3};
-    font = "PuristaSemibold";
-    sizeEx = 0.023;
+    font = "PuristaMedium";
+    sizeEx = 0.026;
     soundSelect[] = {"",0.1,1};
     soundExpand[] = {"",0.1,1};
     soundCollapse[] = {"",0.1,1};
@@ -179,7 +179,7 @@ class w_RscListBox
     autoScrollSpeed = -1;
     autoScrollDelay = 5;
     autoScrollRewind = 0;
-
+	
     class ScrollBar
     {
 		color[] = {1, 1, 1, 1};
@@ -308,9 +308,9 @@ class w_RscButtonBase {
 	textureNoShortcut = "";
 	
 	period = 0.4;
-	font = "PuristaSemibold";
+	font = "PuristaMedium";
 	size = 0.023;
-	sizeEx = 0.023;
+	sizeEx = 0.024;
 	text = "";
 	
 	soundEnter[] = {"\A3\ui_f\data\Sound\MOUSE2", 0.09, 1};

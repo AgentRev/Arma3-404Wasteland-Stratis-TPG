@@ -2,28 +2,46 @@
 
 if(!X_Server) exitWith {};
 
-// Admin menu access levels
+if (loadFile "scripts\admins.sqf" != "") then
+{
+	execVM "scripts\admins.sqf";
+}
+else
+{
+	// Admin menu (U key) access levels
+	
+	/*******************************************************
+	 Player UID examples :
 
-// Moderators: manage players, remove hacked vehicles
-moderators = compileFinal
-'[
-	// Put player UIDs here
-]';
+		"1234567887654321", // Meatwad
+		"8765432112345678", // Master Shake
+		"1234876543211234", // Frylock
+		"1337133713371337"  // Carl
 
-// Administrators: manage players, remove hacked vehicles, show player tags
-administrators = compileFinal
-'[
-	// Put player UIDs here
-]';
+	 Important: Don't put a coma at the end of the last one
+	********************************************************/
 
-// Server Administrators: access to everything
-serverAdministrators = compileFinal
-'[
-	// Put player UIDs here
-]';
+	// Low Administrators: manage & spectate players, remove hacked vehicles
+	lowAdmins = compileFinal str
+	[
+		// Put player UIDs here
+	];
 
-// [compile format ["moderators = compileFinal '%1'; administrators = compileFinal '%2'; serverAdministrators = compileFinal '%3'", call moderators, call administrators, call serverAdministrators], "BIS_fnc_spawn", true, true] call BIS_fnc_MP;
+	// High Administrators: manage & spectate players, remove hacked vehicles, show player tags
+	highAdmins = compileFinal str
+	[
+		// Put player UIDs here
+	];
 
-publicVariable "moderators";
-publicVariable "administrators";
-publicVariable "serverAdministrators";
+	// Server Owners: access to everything
+	serverOwners = compileFinal str
+	[
+		// Put player UIDs here
+	];
+	
+	/********************************************************/
+
+	publicVariable "lowAdmins";
+	publicVariable "highAdmins";
+	publicVariable "serverOwners";
+};

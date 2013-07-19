@@ -44,6 +44,17 @@ else
 					// On mémorise aussi sur le réseau que le canon est attaché en remorque
 					_objet setVariable ["R3F_LOG_est_transporte_par", _remorqueur, true];
 					
+					player playMove "AinvPknlMstpSlayWrflDnon_medic";
+					
+					player addEventHandler ["AnimDone", 
+					{
+						if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
+						{
+							player switchMove "";
+							player removeAllEventHandlers "AnimDone";
+						};
+					}];
+					
 					if ((getPosASL player) select 2 > 0) then
 					{
 					
@@ -56,42 +67,40 @@ else
 						
 						player setDir 270;
 						player setPos (getPos player);
+						sleep 0.05;
+						detach player;
 					};
-					
-					player playMove "AinvPknlMstpSlayWrflDnon_medic";
-					
-					player addEventHandler ["AnimDone", 
-					{
-						if (_this select 1 == "AinvPknlMstpSlayWrflDnon_medic") then
-						{
-							player switchMove "";
-							player removeAllEventHandlers "AnimDone";
-						};
-					}];
 					
 					sleep 2;
 					
-					_speedBoatCompensateZ = 0;
-					_lightHeliCompensateY = 0;
-					_lightHeliCompensateZ = 0;
+					_compensateY = 0;
+					_compensateZ = 0;
 					
-					if ((typeOf _remorqueur) isKindOf "Boat_Armed_01_base_F" && !((typeOf _objet) isKindOf "Boat_Armed_01_base_F")) then
+					if (_remorqueur isKindOf "Boat_Armed_01_base_F" && !(_objet isKindOf "Boat_Armed_01_base_F")) then
 					{
-						_speedBoatCompensateZ = 1.5;
+						_compensateZ = _compensateZ - 1.5;
 					};
-					if (!((typeOf _remorqueur) isKindOf "Boat_Armed_01_base_F") && (typeOf _objet) isKindOf "Boat_Armed_01_base_F") then
+					if (!(_remorqueur isKindOf "Boat_Armed_01_base_F") && _objet isKindOf "Boat_Armed_01_base_F") then
 					{
-						_speedBoatCompensateZ = -0.5;
+						_compensateZ = _compensateZ - 0.5;
 					};
-					if ((typeOf _objet) isKindOf "Heli_Light_01_base_F") then
+					if (_objet isKindOf "Heli_Light_01_base_F") then
 					{
-						_lightHeliCompensateY = -1.25;
-						_lightHeliCompensateZ = -2.2;
+						_compensateY = _compensateY - 1.25;
+						_compensateZ = _compensateZ - 2.2;
 					};
-					if ((typeOf _objet) isKindOf "Heli_Light_02_base_F") then
+					if (_objet isKindOf "Heli_Light_02_base_F") then
 					{
-						_lightHeliCompensateY = 3;
-						_lightHeliCompensateZ = 0.25;
+						_compensateY = _compensateY + 3;
+						_compensateZ = _compensateZ + 0.25;
+					};
+					if (_objet isKindOf "Heli_Transport_01_base_F") then
+					{
+						_compensateY = _compensateY + 1.25;
+					};
+					if (_objet isKindOf "Heli_Attack_02_base_F") then
+					{
+						_compensateZ = _compensateZ + 0.2;
 					};
 										
 					// Attacher à l'arrière du véhicule au ras du sol
@@ -100,11 +109,11 @@ else
 						
 						((boundingCenter _objet select 1) - (boundingCenter _remorqueur select 1)) +
 						((boundingBoxReal _remorqueur select 0 select 1) + (boundingCenter _remorqueur select 1)) + 
-						((boundingBoxReal _objet select 0 select 1) + (boundingCenter _objet select 1)) - 0.1 + _lightHeliCompensateY,
+						((boundingBoxReal _objet select 0 select 1) + (boundingCenter _objet select 1)) - 0.11 + _compensateY,
 						
 						((boundingCenter _objet select 2) - (boundingCenter _remorqueur select 2)) +
 						((boundingBoxReal _remorqueur select 0 select 2) + (boundingCenter _remorqueur select 2)) + 
-						((boundingBoxReal _objet select 1 select 2) - (boundingCenter _objet select 2)) + 0.1 + _speedBoatCompensateZ + _lightHeliCompensateZ
+						((boundingBoxReal _objet select 1 select 2) - (boundingCenter _objet select 2)) + 0.1 + _compensateZ
 					]];
 					
 					R3F_LOG_objet_selectionne = objNull;

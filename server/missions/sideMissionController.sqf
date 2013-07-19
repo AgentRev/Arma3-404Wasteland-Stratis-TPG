@@ -14,11 +14,17 @@ diag_log format["WASTELAND SERVER - Started Side Mission State"];
 
 //Side Mission Array
 /*
-[mission_ReconVeh,"mission_ReconVeh"]
-[mission_Truck,"mission_Truck"]
+	[mission_ReconVeh,"mission_ReconVeh"]
+	[mission_Truck,"mission_Truck"]
 */
-_SMarray = [[mission_WepCache,"mission_WepCache"],      
-            [mission_AirWreck,"mission_AirWreck"]];
+_SMarray =
+[
+	[mission_Truck,"mission_Truck"],
+	[mission_WepCache,"mission_WepCache"],
+	[mission_WepCache,"mission_WepCache"],
+	[mission_AirWreck,"mission_AirWreck"],
+	[mission_AirWreck,"mission_AirWreck"]
+];
 
 _lastMission = "nomission";
 while {true} do
@@ -41,9 +47,8 @@ while {true} do
     
 	_missionRunning = [] spawn _mission;
     diag_log format["WASTELAND SERVER - Execute New Side Mission: %1",_missionType];
-    _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t color='%3' size='1.0'>Starting in %1 Minutes</t>", sideMissionDelayTime / 60, sideMissionColor, subTextColor];
-	messageSystem = _hint;
-	publicVariable "messageSystem";
+    _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t color='%3' size='1.0'>Starting in %1 minutes</t>", sideMissionDelayTime / 60, sideMissionColor, subTextColor];
+	[_hint] call hintBroadcast;
     _lastMission = _missionType;
 	waitUntil{sleep 0.1; scriptDone _missionRunning};
     sleep 5;

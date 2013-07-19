@@ -28,9 +28,9 @@ _display displayAddEventHandler ["KeyDown", "_return = false; if(respawnDialogAc
 _respawnText = _display displayCtrl respawn_Content_Text;
 _missionUptimeText = _display displayCtrl respawn_MissionUptime_Text;
 
-if(playerSide in [west]) then {_side = "Blufor"};
-if(playerSide in [east]) then {_side = "Opfor"};
-if(str(playerSide) == "GUER") then {_side = "Independent"};
+if(playerSide == BLUFOR) then {_side = "BLUFOR"};
+if(playerSide == OPFOR) then {_side = "OPFOR"};
+if(playerSide in [INDEPENDENT,sideEnemy]) then {_side = "Independent"};
 _respawnText ctrlSetStructuredText parseText (format["You are on %1.<br/>Please select a spawn point.",_side]);
 respawnDialogActive = true;
 
@@ -85,7 +85,7 @@ while {respawnDialogActive} do
                 _friendlyCount = 0;
                 _enemyCount = 0; 
                 
-            }forEach cityList; 
+            } forEach (call cityList); 
 
             {
                 _button = _display displayCtrl (_x select 0);
@@ -128,12 +128,12 @@ while {respawnDialogActive} do
             }foreach _dynamicControlsArray;
             
             {
-                if(_side == "Blufor") then {
+                if(_side == "BLUFOR") then {
                     _button = _display displayCtrl (_dynamicControlsArray select _forEachIndex select 0);
                     _centrePos = (pvar_beaconListBlu select _forEachIndex) select 1;
 
                     {
-                        _onTeam = str(side _x) in ["EAST","GUER"];   
+                        _onTeam = (side _x) in [OPFOR,INDEPENDENT,sideEnemy];   
                         if(_onTeam) then {
                             if((getPos _x distance _centrePos) < 100) then {
                                 if(!(side _x == playerSide)) then {
@@ -157,12 +157,12 @@ while {respawnDialogActive} do
             }forEach pvar_beaconListBlu;
 
             {
-                if(_side == "Opfor") then {
+                if(_side == "OPFOR") then {
                     _button = _display displayCtrl (_dynamicControlsArray select _forEachIndex select 0);
                     _centrePos = (pvar_beaconListRed select _forEachIndex) select 1;
 
                     {
-                        _onTeam = str(side _x) in ["WEST","GUER"];   
+                        _onTeam = (side _x) in [BLUFOR,INDEPENDENT,sideEnemy];   
                         if(_onTeam) then {
                             if((getPos _x distance _centrePos) < 100) then {
                                 if(!(side _x == playerSide)) then {
@@ -221,7 +221,7 @@ while {respawnDialogActive} do
                 };
                 _friendlyCount = 0;
                 _enemyCount = 0; 
-            }forEach cityList; 
+            } forEach (call cityList); 
 
             {
                 _button = _display displayCtrl (_x select 0);

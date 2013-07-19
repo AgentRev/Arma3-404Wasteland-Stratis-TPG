@@ -31,7 +31,7 @@ switch(_switch) do
 		// Populate the gun shop weapon list
 		{
 			_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
-		} forEach weaponsArray;
+		} forEach (call weaponsArray);
 	};
 	
 	case 1:
@@ -39,7 +39,7 @@ switch(_switch) do
 		// Populate the gun shop ammo list
 		{
 			_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
-		} forEach ammoArray;	
+		} forEach (call ammoArray);	
 	};
 
 	case 2:
@@ -47,7 +47,7 @@ switch(_switch) do
 		// Populate the gun shop equipment list
 		{
 			_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
-		} forEach accessoriesArray;	
+		} forEach (call accessoriesArray);	
 	};
 	
 	case 3:
@@ -55,6 +55,6 @@ switch(_switch) do
 		// Populate the gun shop gear list
 		{
 			_gunlistIndex = _gunlist lbAdd format["%1",_x select 0];
-		} forEach gearArray;	
+		} forEach (call gearArray);	
 	};
 };

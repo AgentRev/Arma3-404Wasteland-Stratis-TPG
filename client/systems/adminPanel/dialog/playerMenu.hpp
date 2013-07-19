@@ -30,7 +30,7 @@ class PlayersMenu
 		class DialogTitleText: w_RscText
 		{
 			idc = -1;
-			text = "Player Menu";
+			text = "Player Management";
 
 			x = 0.203125 * safezoneW + safezoneX;
 			y = 0.175 * safezoneH + safezoneY;

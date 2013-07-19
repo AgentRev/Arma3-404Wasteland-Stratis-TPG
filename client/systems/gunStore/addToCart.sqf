@@ -27,10 +27,12 @@ if (local player) then {
 	_itemText = _gunlist lbText _selectedItem;
 
 	//Check Items Price
-	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach weaponsArray;
-	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach ammoArray;
-	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach accessoriesArray;
-	{if(_itemText == _x select 0) then{_price = _x select 2;}}forEach gearArray;
+	{
+		if (_itemText == _x select 0) exitWith
+		{
+			_price = _x select 2;
+		};
+	} forEach (call allGunStoreItems);
 
 	gunStoreCart = gunStoreCart + _price;
 	_totalText CtrlsetText format["Total: $%1", gunStoreCart];

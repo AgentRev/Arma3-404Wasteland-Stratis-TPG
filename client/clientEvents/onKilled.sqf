@@ -55,9 +55,10 @@ if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide =
 	};
 };
 
-if ((_player != _killer) && (vehicle _player != vehicle _killer) && (side _player == resistance) && (side _killer == resistance)) then
+if (side _killer == INDEPENDENT && {side _player == INDEPENDENT} && {_killer != _player} && {vehicle _killer != vehicle _player}) then
 {
-	[[_killer], "removeNegativeScore", false, false] call BIS_fnc_MP;
+	requestCompensateNegativeScore = _killer;
+	publicVariableServer "requestCompensateNegativeScore";
 };
 
 if(!isNull(pvar_PlayerTeamKiller)) then {

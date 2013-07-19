@@ -6,35 +6,42 @@
 //	@file Args:
 
 //Initialize Values
-private["_primary","_weapon_value","_magSell","_weaponMags","_mag","_magValue"];
+private["_primary","_weapon_value","_magSell","_weaponMags","_magasines","_mag","_magValue"];
 _magSell = 0;
 _weapon_value = 50; // This is for weapons that aren't in the gunstore stock list.
 _primary = currentWeapon player;
 if (_primary == "") exitWith {hint "You don't have a current weapon in your hand to sell!";};
 
-{ if (_x select 1 == _primary) then {_weapon_value = _x select 3 } } forEach weaponsArray;
+{
+	if (_x select 1 == _primary) exitWith
+	{
+		_weapon_value = _x select 3;
+	};
+} forEach (call weaponsArray);
 
 // if(isNil {_weapon_value}) exitWith {hint "The store does not want this item."};
 
 _weaponMags = getArray (configFile >> "Cfgweapons" >> _primary >> "magazines");
+_magasines = magazines player;
+_magasines set [count _magasines, currentMagazine player];
 
 {
 	_mag = _x;
 	
-	if (_mag in _weaponMags) then
+	if (_mag != "" && _mag in _weaponMags) then
     {
 		_magValue = 10;
 		
 		{
-			if (_x select 1 == _mag) then
+			if (_x select 1 == _mag) exitWith
 			{
 				_magValue = (ceil (((_x select 2) / 2) / 5)) * 5;
 			};
-		} forEach ammoArray;
+		} forEach (call ammoArray);
 		
 		_weapon_value = _weapon_value + _magValue;
     };
-} forEach magazines player;
+} forEach _magazines;
 
 player removeWeapon _primary;
 { player removeMagazines _x } forEach _weaponMags;

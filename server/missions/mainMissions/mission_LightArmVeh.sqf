@@ -20,7 +20,6 @@ _startTime = floor(netTime);
 _startTime = floor(time);
 #endif
 
-
 diag_log format["WASTELAND SERVER - Main Mission Started: %1",_missionType];
 
 //Get Mission Location
@@ -37,13 +36,12 @@ diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 _vehicleClass = ["O_MRAP_02_gmg_F","B_MRAP_01_hmg_F","B_MRAP_01_gmg_F","O_MRAP_02_hmg_F"] call BIS_fnc_selectRandom;
 
 //Vehicle Class, Posistion, Fuel, Ammo, Damage
-_vehicle = [_vehicleClass,_randomPos,0.1,1,0.75,"NONE"] call createMissionVehicle;
+_vehicle = [_vehicleClass,_randomPos,1,1,0,"NONE"] call createMissionVehicle;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A<t color='%4'> %3</t>, has been spoted in the area marked</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
-messageSystem = _hint;
-publicVariable "messageSystem";
+[_hint] call hintBroadcast;
 
 CivGrpM = createGroup civilian;
 [CivGrpM,_randomPos] spawn createMidGroup;
@@ -82,15 +80,13 @@ if(_result == 1) then
     {deleteVehicle _x;}forEach units CivGrpM;
     deleteGroup CivGrpM;
     _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>Objective failed, better luck next time</t>", _missionType, _picture, _vehicleName, failMissionColor, subTextColor];
-	messageSystem = _hint;
-	publicVariable "messageSystem";
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Failed: %1",_missionType];
 } else {
 	//Mission Complete.
     deleteGroup CivGrpM;
     _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The light armored vehicle has been captured</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
-	messageSystem = _hint;
-	publicVariable "messageSystem";
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Success: %1",_missionType];
 };
 

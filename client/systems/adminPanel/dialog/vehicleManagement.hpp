@@ -144,7 +144,7 @@ class VehicleManagement {
 		{
 			idc = vehicleManagementTankButton;
 			onButtonClick = "[3] execVM 'client\systems\adminPanel\populateVehicles.sqf'";
-			text = "Tanks";
+			text = "Armor";
 			x = 0.38 * safezoneW + safezoneX;
 			y = 0.730 * safezoneH + safezoneY;
 			w = 0.065 * safezoneW;

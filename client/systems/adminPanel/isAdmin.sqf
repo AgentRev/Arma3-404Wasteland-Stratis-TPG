@@ -26,16 +26,16 @@ _findUIDinArray =
 				case 1:
 				{
 					if (serverCommandAvailable "#kick") then { _found = true }
-					else {_adminList = call moderators };
+					else {_adminList = call lowAdmins };
 				};
 				case 2:
 				{
-					_adminList = call administrators;
+					_adminList = call highAdmins;
 				};
 				case 3:
 				{
 					if (isServer || serverCommandAvailable "#exec ban") then { _found = true }
-					else { _adminList = call serverAdministrators };
+					else { _adminList = call serverOwners };
 				};
 			};
 		};

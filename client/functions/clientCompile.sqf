@@ -13,6 +13,8 @@ onKeyPress = compile preprocessFile "client\clientEvents\onKeyPress.sqf";
 fn_fitsInventory = compile preprocessFileLineNumbers "client\functions\fn_fitsInventory.sqf";
 findHackedVehicles = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\findHackedVehicles.sqf";
 isAdmin = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\isAdmin.sqf";
+serverMessage = compile preprocessFileLineNumbers "client\functions\serverMessage.sqf";
+adminMessage = compileFinal preprocessFileLineNumbers "client\functions\adminMessage.sqf";
 
 // Player details and actions
 loadPlayerMenu = compile preprocessFile "client\systems\playerMenu\init.sqf";
@@ -25,7 +27,6 @@ repairVehicle = compile preprocessFile "client\systems\playerMenu\repair.sqf";
 
 // Sync client with server time
 timeSync = compile preprocessFileLineNumbers "client\functions\clientTimeSync.sqf";
-serverMessage = compile preprocessFileLineNumbers "client\functions\serverMessage.sqf";
 
 // Update scripts
 updateMissionsMarkers = compile preprocessFileLineNumbers "client\functions\updatePlayerMissionMarkers.sqf";

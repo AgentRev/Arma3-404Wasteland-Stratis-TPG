@@ -13,9 +13,29 @@
 
 enableBoats = true;
 
+// To calculate price for vests
+_getCapacity = 
+{
+	private ["_item", "_capacity", "_containerClass"];
+	_item = _this select 0;
+	
+	if (_item isKindOf "Bag_Base") then
+	{
+		_capacity = getNumber (configFile >> "CfgVehicles" >> _item >> "maximumLoad");
+	}
+	else
+	{
+		_containerClass = getText (configFile >> "CfgWeapons" >> _item >> "ItemInfo" >> "containerClass");
+		_capacity = getNumber (configFile >> "CfgVehicles" >> _containerClass >> "maximumLoad");
+	};
+	
+	_capacity
+};
+
+
 //Gunstore Weapon List - Gun Store Base List
 // Text name, classname, buy cost, sell amount
-weaponsArray =
+weaponsArray = compileFinal str
 [
 		// Handguns
 	["P07","hgun_P07_F",50,25],
@@ -64,11 +84,12 @@ weaponsArray =
 
 //Gun Store Ammo List
 //Text name, classname, buy cost
-ammoArray =
+ammoArray = compileFinal str
 [
 	["9mm 16Rnd Mag","16Rnd_9x21_Mag",5],							// P07, Rook-40
 	["9mm 30Rnd Mag","30Rnd_9x21_Mag",10],							// Scorpion
-	["9mm 30Rnd Vermin Mag","30Rnd_45ACP_Mag_SMG_01",15],			// Vermin
+	[".45 ACP 9Rnd Mag","9Rnd_45ACP_Mag",5],						// ACP-C2
+	[".45 ACP 30Rnd Vermin Mag","30Rnd_45ACP_Mag_SMG_01",15],		// Vermin
 	["5.56mm 20Rnd UW Mag","20Rnd_556x45_UW_mag",5],				// SDAR (junk ammo)
 	["5.56mm 30Rnd STANAG Mag","30Rnd_556x45_Stanag",10],			// SDAR	(good ammo), TRG-2x, Mk20
 	["6.5mm 30Rnd Caseless Mag","30Rnd_65x39_caseless_green",15],	// Katiba
@@ -96,28 +117,29 @@ ammoArray =
 
 //Gun Store Equipment List
 //Text name, classname, buy cost
-accessoriesArray =
+accessoriesArray = compileFinal str
 [
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
 	["NV Goggles","NVGoggles",100,"item"],
 	["Rangefinder","Rangefinder", 150,"binoc"],
 	["Laser Designator","Laserdesignator", 100,"binoc"],
-	["Laser Batteries","Laserbatteries", 50,"item"],
+	["Laser Batteries","Laserbatteries", 50,"mag"],
     ["First Aid Kit","FirstAidKit", 25,"item"],
     ["Medikit","Medikit", 100,"item"],
     ["Toolkit","ToolKit", 100,"item"],
 	["Mine Detector","MineDetector", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 50,"item"],
+	["Suppressor .45 ACP","muzzle_snds_acp", 50,"item"],
 	["Suppressor 5.56mm","muzzle_snds_M", 75,"item"],
     ["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
+	["Suppressor 6.5mm LMG","muzzle_snds_H_MG", 100,"item"],
 	["Suppressor 7.62mm","muzzle_snds_B", 125,"item"],
-	["LMG Suppressor 6.5mm","muzzle_snds_H_MG", 100,"item"],
     ["Flash Light","acc_flashlight", 50,"item"],
     ["ACO Sight (Red)","optic_Aco", 50,"item"],
 	["ACO Sight (Green)","optic_ACO_grn", 50,"item"],
 	["Holosight","optic_Holosight", 50,"item"],
-	["MRCO","optic_MRCO", 75,"item"],
+	["MRCO Sight","optic_MRCO", 75,"item"],
 	["RCO Sight","optic_Hamr", 100,"item"],
 	["ARCO Sight","optic_Arco", 100,"item"],
 	["SOS Sight","optic_SOS", 150,"item"]
@@ -125,38 +147,39 @@ accessoriesArray =
 
 //Gun Store Gear List
 //Text name, classname, buy cost
-gearArray = [
-	["Bergen Backpack (MTP)","B_Bergen_mcamo", 500,"bpack"],		// 25% more capacity than default backpack (B_Kitbag_Base), 50% more than older backpack (B_AssaultPack_Base)
-	["Bergen Backpack (Tan)","B_Bergen_sgg", 500,"bpack"],
-	["Bergen Backpack (Black)","B_Bergen_blk", 500,"bpack"],
-	["Carryall Backpack (MTP)","B_Carryall_mcamo", 750,"bpack"],	// 40% more capacity than default backpack (B_Kitbag_Base)
-	["Carryall Backpack (Khaki)","B_Carryall_khk", 750,"bpack"],
-	["Carryall Backpack (Olive)","B_Carryall_oli", 750,"bpack"],
+gearArray = compileFinal str
+[
+	["Bergen Backpack (MTP)","B_Bergen_mcamo", 350, "bpack"],
+	["Bergen Backpack (Tan)","B_Bergen_sgg", 350, "bpack"],
+	["Bergen Backpack (Black)","B_Bergen_blk", 350, "bpack"],
+	["Carryall Backpack (MTP)","B_Carryall_mcamo", 500, "bpack"],
+	["Carryall Backpack (Khaki)","B_Carryall_khk", 500, "bpack"],
+	["Carryall Backpack (Olive)","B_Carryall_oli", 500, "bpack"],
 	
-	["Parachute","B_Parachute", 500,"bpack"],
+	["Parachute","B_Parachute", 250,"bpack"],
 	
-	["Ghillie Suit","U_I_GhillieSuit", 200,"ghillie"],
+	["Ghillie Suit","U_I_GhillieSuit", 250,"uni"],
 	
 	// Most vest camos are not implemented yet
 	
-	["Carrier Lite (Green)","V_PlateCarrier1_rgr", 100,"vest"],
+	// ["Carrier Lite (Green)","V_PlateCarrier1_rgr", 100,"vest"],
 	// ["Carrier Lite (Black)","V_PlateCarrier1_blk", 100,"vest"],
 	// ["Carrier Lite (Coyote)","V_PlateCarrier1_cbr", 100,"vest"],
-	["Carrier Rig (Green)","V_PlateCarrier2_rgr", 140,"vest"],
+	["Carrier Rig (Green)","V_PlateCarrier2_rgr", ["V_PlateCarrier2_rgr"] call _getCapacity, "vest"],
 	// ["Carrier Rig (Black)","V_PlateCarrier2_blk", 140,"vest"],
 	// ["Carrier Rig (Coyote)","V_PlateCarrier2_cbr", 140,"vest"],
-    ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", 150,"vest"],
+    // ["Carrier GL Rig (Green)","V_PlateCarrierGL_rgr", ["V_PlateCarrierGL_rgr"] call _getCapacity, "vest"],
 	// ["Carrier GL Rig (Black)","V_PlateCarrierGL_blk", 150,"vest"],
 	// ["Carrier GL Rig (Coyote)","V_PlateCarrierGL_cbr", 150,"vest"],
-	["LBV Harness","V_HarnessO_brn", 180,"vest"],
+	["LBV Harness","V_HarnessO_brn", ["V_HarnessO_brn"] call _getCapacity, "vest"],
 	// ["LBV Harness (Gray)","V_HarnessO_gry", 180,"vest"],
-	["LBV Grenadier Harness","V_HarnessOGL_brn", 200,"vest"],
+	["LBV Grenadier Harness","V_HarnessOGL_brn", ["V_HarnessOGL_brn"] call _getCapacity, "vest"],
 	// ["LBV Grenadier Harness (Gray)","V_HarnessOGL_gry", 200,"vest"],
-	["ELBV Harness","V_HarnessOSpec_brn", 220,"vest"],
+	["ELBV Harness","V_HarnessOSpec_brn", ["V_HarnessOSpec_brn"] call _getCapacity, "vest"],
 	// ["ELBV Harness (Gray)","V_HarnessOSpec_gry", 220,"vest"],
-	["GA Carrier Lite (Digi)","V_PlateCarrierIA1_dgtl", 100,"vest"],
-	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", 140,"vest"],
-	["GA Carrier GL Rig (Digi)","V_PlateCarrierIAGL_dgtl", 150,"vest"],
+	// ["GA Carrier Lite (Digi)","V_PlateCarrierIA1_dgtl", 100,"vest"],
+	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", ["V_PlateCarrierIA2_dgtl"] call _getCapacity, "vest"],
+	// ["GA Carrier GL Rig (Digi)","V_PlateCarrierIAGL_dgtl", ["V_PlateCarrierIAGL_dgtl"] call _getCapacity, "vest"],
 	
 	["Diving Goggles","G_Diving", 50,"gogg"],
 	["Wetsuit","U_B_Wetsuit", 100,"uni"],
@@ -185,7 +208,7 @@ gearArray = [
 
 //General Store Item List
 //Display Name, Class Name, Description, Picture, Buy Price, Sell Price.
-generalStore =
+generalStore = compileFinal str
 [
 	["Water","water",localize "STR_WL_ShopDescriptions_Water","client\icons\water.paa",30,15],
 	["Canned Food","canfood",localize "STR_WL_ShopDescriptions_CanFood","client\icons\cannedfood.paa",30,15],
@@ -197,9 +220,11 @@ generalStore =
     ["Camo Net", "camonet", localize "STR_WL_ShopDescriptions_Camo", "",300,150]  
 ];
 
+allGunStoreItems = compileFinal str ((call weaponsArray) + (call ammoArray) + (call accessoriesArray) + (call gearArray));
+
 // Stratis town and city array
 //Marker Name, Radius, City Name
-cityList =
+cityList = compileFinal str
 [
 	["Town_1",200,"Air Station Mike-28"],
 	["Town_2",100,"Agios Loannis"],
@@ -214,4 +239,5 @@ cityList =
 	["Town_11",180,"Kamino Firing Range"],
 	["Town_12",220,"Camp Maxwell"]
 ];
+
 cityLocations = [];

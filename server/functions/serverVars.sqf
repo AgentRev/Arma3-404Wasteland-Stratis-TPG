@@ -14,13 +14,6 @@ if(!X_Server) exitWith {};
 
 diag_log format["WASTELAND SERVER - Initializing Server Vars"];
 
-CVG_weapons = [];
-CVG_weapons = CVG_rifles;
-CVG_weapons = CVG_weapons + CVG_Scoped;
-CVG_weapons = CVG_weapons + CVG_Heavy;
-CVG_weapons = CVG_weapons + CVG_pistols;
-CVG_weapons = CVG_weapons + CVG_Launchers;
-
 #ifdef __A2NET__
 missionStartTime = 0;
 netTime = 0;
@@ -57,22 +50,23 @@ nbVehicleMarkers = compileFinal "118";
 nbHeliMarkers = compileFinal "24";
 nbBoatMarkers = compileFinal "12";
 
-//Civilian Vehicle List - Random Spawns
-civilianVehicles =
+// Utility Vehicle List - Random Spawns
+utilityVehicles =
 [
 	"C_Offroad_01_F"
 ];
 
-//Light Military Vehicle List - Random Spawns
-lightMilitaryVehicles =
+// Light Vehicle List - Random Spawns
+lightVehicles =
 [
+	"C_Quadbike_01_F",
 	"B_Quadbike_01_F",
 	"O_Quadbike_01_F",
 	"I_Quadbike_01_F"
 ];
 
-//Medium Military Vehicle List - Random Spawns
-mediumMilitaryVehicles =
+// Medium Vehicle List - Random Spawns
+mediumVehicles =
 [
 	"B_MRAP_01_F",
 	"O_MRAP_02_F",
@@ -105,7 +99,7 @@ objectList =
 	"Land_HBarrier_3_F",
 	"Land_Scaffolding_F",
 	"Land_HBarrierBig_F",
-	"B_supplyCrate_F",
+	"I_supplyCrate_F",
 	"Land_CargoBox_V1_F",
 	"Land_Mil_WallBig_4m_F",
 	"Land_Mil_WallBig_4m_F",
@@ -114,9 +108,7 @@ objectList =
 	"Land_CncBarrierMedium4_F",
 	"Land_CncBarrierMedium4_F",
 	"Land_BagBunker_Small_F",
-	"Land_BagBunker_Small_F",
-	"Land_BagFence_Long_F",
-	"Land_BagFence_Long_F"
+	"Land_BagBunker_Small_F"
 ];
 
 //Object List - Random Spawns.
@@ -155,12 +147,14 @@ vehicleWeapons =
 
 vehicleAddition =
 [
-	"muzzle_snds_M"
+	"muzzle_snds_M",
 	"muzzle_snds_H",
 	"muzzle_snds_L",
 	"muzzle_snds_B",
 	"muzzle_snds_H_MG",
-	"optic_MRCO",
+	"muzzle_snds_acp",
+	"optic_SOS",
+	// "optic_MRCO", // JUNK!
 	"optic_Arco",
 	"optic_Hamr",
 	"optic_Aco",
@@ -168,6 +162,7 @@ vehicleAddition =
 	"optic_Holosight",
 	"acc_flashlight",
 	"acc_pointer_IR",
+	"Medikit",
 	"Medikit",
 	"FirstAidKit",
 	"ToolKit"
@@ -203,5 +198,6 @@ MissionSpawnMarkers =
 	["Mission_17",false],
 	["Mission_18",false],
 	["Mission_19",false],
-	["Mission_20",false]
+	["Mission_20",false],
+	["Mission_21",false]
 ];

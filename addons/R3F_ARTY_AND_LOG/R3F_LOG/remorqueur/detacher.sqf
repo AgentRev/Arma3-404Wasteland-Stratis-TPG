@@ -26,18 +26,6 @@ else
 	// Ne pas permettre de décrocher un objet s'il est porté héliporté
 	if ({_remorqueur isKindOf _x} count R3F_LOG_CFG_remorqueurs > 0) then
 	{
-		// On mémorise sur le réseau que le véhicule remorque quelque chose
-		_remorqueur setVariable ["R3F_LOG_remorque", objNull, true];
-		// On mémorise aussi sur le réseau que le objet est attaché en remorque
-		_objet setVariable ["R3F_LOG_est_transporte_par", objNull, true];
-		
-		detach _objet;
-		
-		_objetPos = getPosATL _objet;
-		_objet setPosATL [_objetPos select 0, _objetPos select 1, 0];
-		
-		_objet setVelocity [0,0,0];
-		
 		player playMove "AinvPknlMstpSlayWrflDnon_medic";
 		
 		player addEventHandler ["AnimDone", 
@@ -49,7 +37,47 @@ else
 			};
 		}];
 		
-		sleep 6;
+		if ((getPosASL player) select 2 > 0) then
+		{
+			player attachTo [_remorqueur, [
+					(boundingBox _remorqueur select 1 select 0),
+					(boundingBox _remorqueur select 0 select 1) + 1,
+					(boundingBox _remorqueur select 0 select 2) - (boundingBox player select 0 select 2)
+				]];
+				
+			player setDir 270;
+			player setPos (getPos player);
+			sleep 0.05;
+			detach player;
+		};
+		
+		sleep 2;
+		
+		// On mémorise sur le réseau que le véhicule remorque quelque chose
+		_remorqueur setVariable ["R3F_LOG_remorque", objNull, true];
+		// On mémorise aussi sur le réseau que le objet est attaché en remorque
+		_objet setVariable ["R3F_LOG_est_transporte_par", objNull, true];
+		
+		if (_objet isKindOf "Car") then
+		{
+			detach _objet;
+		}
+		else
+		{
+			if (local _objet) then
+			{
+				[netId _objet] execVM "server\functions\detachTowedObject.sqf";
+			}
+			else
+			{
+				requestDetachTowedObject = netId _objet;
+				publicVariable "requestDetachTowedObject";
+			};
+		};
+		
+		// _objet setVelocity [0,0,0];
+		
+		sleep 4;
 		
 		if ({_objet isKindOf _x} count R3F_LOG_CFG_objets_deplacables > 0) then
 		{

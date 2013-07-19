@@ -19,9 +19,13 @@ if (_uid call isAdmin) then {
 					"Access General Store",
 					"Access Respawn Dialog",
 					"Access Proving Grounds",
-	                "Show Server FPS",
-	                "Test Function"
+	                "Show Server FPS"
 	];
+	
+	/*if (isServer) then
+	{
+		_panelOptions set [count _panelOptions, "Test Function"];
+	};*/
 	
 	{
 		_debugSelect lbAdd _x;

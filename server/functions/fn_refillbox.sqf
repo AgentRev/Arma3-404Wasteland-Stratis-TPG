@@ -3,59 +3,74 @@
 //	@file Author: [404] Pulse , [404] Costlyy , [404] Deadbeat
 //	@file Created: 22/1/2012 00:00
 //	@file Args: [ OBJECT (Weapons box that needs filling), STRING (Name of the fill to give to object)]
+
 if (!isServer) exitWith {};
-private ["_selectedBox", "_selectedBoxPos", "_finishedBox", "_currBox"];
 
+private ["_box", "_boxType", "_box", "_boxItems", "_mag"];
 _box = _this select 0;
-_selectedBox = _this select 1;
+_boxType = _this select 1;
 
-switch (_selectedBox) do
+// Clear prexisting cargo first
+clearMagazineCargoGlobal _box;
+clearWeaponCargoGlobal _box;
+clearItemCargoGlobal _box;
+
+switch (_boxType) do
 {
     case "mission_Side_USLaunchers": // Used in the airwreck side mission
 	{
-    	_currBox = _box;
-
-        // Clear prexisting weapons first
-        clearMagazineCargoGlobal _currBox;
-		clearWeaponCargoGlobal _currBox;
-
-		// Add new weapons before ammunition
-		_currBox addWeaponCargoGlobal ["launch_NLAW_F",2];
-		_currBox addWeaponCargoGlobal ["launch_RPG32_F",2];
-		_currBox addWeaponCargoGlobal ["launch_Titan_F",2];
-		
-		// Add ammunition
-		_currBox addMagazineCargoGlobal ["NLAW_F",4];
-		_currBox addMagazineCargoGlobal ["RPG32_F",4];
-		_currBox addMagazineCargoGlobal ["Titan_AA",4];
-		_currBox addMagazineCargoGlobal ["ClaymoreDirectionalMine_Remote_Mag",3];
-		_currBox addMagazineCargoGlobal ["DemoCharge_Remote_Mag",3];
+    	// Item type, Item, # of items, # of magazines per weapon
+		_boxItems =
+		[
+			["wep", "launch_NLAW_F", 2, 2],
+			["wep", "launch_RPG32_F", 2, 2],
+			["wep", "launch_Titan_F", 2, 2],
+			["mag", "ClaymoreDirectionalMine_Remote_Mag", 3],
+			["mag", "DemoCharge_Remote_Mag", 3]
+		];
     };
     case "mission_Side_USSpecial": // Used in the airwreck side mission
 	{
-    	_currBox = _box;
-        
-        // Clear prexisting weapons first
-        clearMagazineCargoGlobal _currBox;
-		clearWeaponCargoGlobal _currBox;
-        
-        // Add new weapons before ammunition
-		_currBox addWeaponCargoGlobal ["arifle_MX_SW_F",2];
-		_currBox addWeaponCargoGlobal ["LMG_Mk200_F",2];
-		_currBox addWeaponCargoGlobal ["LMG_Zafir_F",1];
-		_currBox addWeaponCargoGlobal ["arifle_MXM_F",2];
-		_currBox addWeaponCargoGlobal ["srifle_EBR_F",2];
-		_currBox addWeaponCargoGlobal ["hgun_Rook40_F",3];
-		_currBox addWeaponCargoGlobal ["hgun_ACPC2_F",3];
-		
-		_currBox addItemCargoGlobal ["NVGoggles",5];
-		_currBox addWeaponCargoGlobal ["Binocular",5];
-
-		_currBox addMagazineCargoGlobal ["16Rnd_9x21_Mag",20];
-		_currBox addMagazineCargoGlobal ["30Rnd_65x39_caseless_mag",15];
-		_currBox addMagazineCargoGlobal ["20Rnd_762x51_Mag",10];
-		_currBox addMagazineCargoGlobal ["100Rnd_65x39_caseless_mag",8];
-		_currBox addMagazineCargoGlobal ["200Rnd_65x39_cased_Box",8];
-		_currBox addMagazineCargoGlobal ["150Rnd_762x51_Box",4];
+    	// Item type, Item, # of items, # of magazines per weapon
+		_boxItems =
+		[
+			["itm", "NVGoggles", 5],
+			["wep", "Binocular", 5],
+			["itm", "Medikit", 4],
+			["itm", "Toolkit", 2],
+			["wep", "arifle_MXM_F", 2, 5],
+			["wep", "srifle_EBR_F", 2, 5],
+			["wep", "arifle_MX_SW_F", 2, 4],
+			["wep", "LMG_Mk200_F", 2, 4],
+			["wep", "LMG_Zafir_F", 1, 4],
+			["wep", "hgun_ACPC2_F", 5, 3],
+			["mag", "16Rnd_9x21_Mag", 10],
+			["mag", "30Rnd_65x39_caseless_mag", 5]
+		];
     };
 };
+
+// Add items
+{
+	switch (_x select 0) do
+	{
+		case "wep":
+		{
+			_box addWeaponCargoGlobal [_x select 1, _x select 2];
+			
+			if (count _x > 3 && {_x select 3 > 0}) then
+			{
+				_mag = ((getArray (configFile >> "Cfgweapons" >> (_x select 1) >> "magazines")) select 0) call getBallMagazine;
+				_box addMagazineCargoGlobal [_mag, (_x select 2) * (_x select 3)];
+			};
+		};
+		case "mag":
+		{
+			_box addMagazineCargoGlobal [_x select 1, _x select 2];
+		};
+		case "itm":
+		{
+			_box addItemCargoGlobal [_x select 1, _x select 2];
+		};
+	};
+} forEach _boxItems;

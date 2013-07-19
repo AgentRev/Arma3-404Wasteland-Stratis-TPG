@@ -27,24 +27,24 @@ removeGoggles _player;
 
 switch (playerSide) do
 {
-    case west:
+    case BLUFOR:
     {
 		_player addUniform "U_B_CombatUniform_mcam";
-		_player addVest "V_PlateCarrier1_rgr";
+		_player addVest "V_PlateCarrier2_rgr";
 		_player addHeadgear "H_HelmetB";
     };
 
-    case east:
+    case OPFOR:
     {
         _player addUniform "U_O_CombatUniform_ocamo";
-		_player addVest "V_PlateCarrier1_cbr";
+		_player addVest "V_PlateCarrier2_cbr";
 		_player addHeadgear "H_HelmetO_ocamo";
     };
 	
 	default
     {
 		_player addUniform "U_I_CombatUniform";
-		_player addVest "V_PlateCarrierIA1_dgtl";
+		_player addVest "V_PlateCarrierIA2_dgtl";
 		_player addHeadgear "H_HelmetIA";
     };
 };
@@ -53,23 +53,23 @@ _player addBackpack "B_Kitbag_Base";
 _player addMagazine "16Rnd_9x21_Mag";
 _player addMagazine "16Rnd_9x21_Mag";
 _player addMagazine "16Rnd_9x21_Mag";
+_player addItem "FirstAidKit";
 _player addWeapon "hgun_P07_F";
 _player selectWeapon "hgun_P07_F";
 
-_player addrating 1000000;
-_player switchMove "AmovPknlMstpSrasWpstDnon_gear";
+_player addrating 9999999;
 
 thirstLevel = 100;
 hungerLevel = 100;
 
 //_player setVariable["cmoney",100,true];
-_player setVariable["canfood",1,false];
+_player setVariable["canfood",0,false];
 _player setVariable["medkits",0,false];
-_player setVariable["water",1,false];
+_player setVariable["water",0,false];
 _player setVariable["fuel",0,false];
 _player setVariable["repairkits",0,false];
 _player setVariable["fuelFull", 0, false];
-_player setVariable["fuelEmpty", 1, false];
+_player setVariable["fuelEmpty", 0, false];
 //_player setVariable["bombs",false,false];
 _player setVariable["spawnBeacon",0,false];
 _player setVariable["camonet",0,false];

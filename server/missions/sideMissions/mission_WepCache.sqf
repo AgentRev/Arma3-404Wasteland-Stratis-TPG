@@ -33,15 +33,6 @@ diag_log format["WASTELAND SERVER - Side Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-#ifdef __DEBUG__
-_marker = createMarkerLocal ["WeaponCache_Marker", _randomPos];
-"WeaponCache_Marker" setMarkerShapeLocal "ICON";
-"WeaponCache_Marker" setMarkerTypeLocal "mil_dot";
-"WeaponCache_Marker" setMarkerColorLocal "ColorRed";
-"WeaponCache_Marker" setMarkerSizeLocal [1,1];
-"WeaponCache_Marker" setMarkerTextLocal "Mission Here";
-#endif
-
 _box = createVehicle ["Box_NATO_Support_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
 
@@ -52,12 +43,11 @@ _box2 = createVehicle ["Box_East_Support_F",[(_randomPos select 0), (_randomPos 
 
 _box2 addEventHandler ["handledamage", {false}];
 
-_hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>A supply drop has been spotted near the marker</t>", _missionType,  sideMissionColor, subTextColor];
-messageSystem = _hint;
-publicVariable "messageSystem";
+_hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>A weapon cache has been spotted near the marker.</t>", _missionType,  sideMissionColor, subTextColor];
+[_hint] call hintBroadcast;
 
-CivGrpS = createGroup civilian;
-[CivGrpS,_randomPos] spawn createSmallGroup;
+_CivGrpS = createGroup civilian;
+[_CivGrpS,_randomPos] spawn createMidGroup;
 
 diag_log format["WASTELAND SERVER - Side Mission Waiting to be Finished: %1",_missionType];
 #ifdef __A2NET__
@@ -76,7 +66,7 @@ waitUntil
 	#endif
     if(_currTime - _startTime >= sideMissionTimeout) then {_result = 1;};
     {if((isPlayer _x) AND (_x distance _box <= missionRadiusTrigger)) then {_playerPresent = true};}forEach playableUnits;
-    _unitsAlive = ({alive _x} count units CivGrpS);
+    _unitsAlive = ({alive _x} count units _CivGrpS);
     (_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1)) OR ((damage _box) == 1)
 };
 
@@ -85,18 +75,16 @@ if(_result == 1) then
 	//Mission Failed.
     deleteVehicle _box;
     deleteVehicle _box2;
-    {deleteVehicle _x;}forEach units CivGrps;
-    deleteGroup CivGrpS;
+    {deleteVehicle _x;}forEach units _CivGrpS;
+    deleteGroup _CivGrpS;
     _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%2' size='1.25'>%1</t><br/><t align='center' color='%3'>Objective failed, better luck next time.</t>", _missionType, failMissionColor, subTextColor];
-	messageSystem = _hint;
-    publicVariable "messageSystem";
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Side Mission Failed: %1",_missionType];
 } else {
 	//Mission Complete.
-    deleteGroup CivGrpS;
-    _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>The ammo caches have been collected, well done team.</t>", _missionType, successMissionColor, subTextColor];
-	messageSystem = _hint;
-    publicVariable "messageSystem";
+    deleteGroup _CivGrpS;
+    _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>The weapon cache has been captured, well done.</t>", _missionType, successMissionColor, subTextColor];
+	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Side Mission Success: %1",_missionType];
 };
 

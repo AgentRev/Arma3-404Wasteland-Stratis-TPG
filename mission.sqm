@@ -4,31 +4,37 @@ class Mission
 	addOns[]=
 	{
 		"a3_map_stratis",
+		"A3_Characters_F_Beta",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Civil",
+		"A3_Structures_F_Ind_Cargo",
+		"A3_Structures_F_Ind_FuelStation",
 		"A3_Structures_F_Mil_Radar",
 		"A3_Weapons_F"
 	};
 	addOnsAuto[]=
 	{
 		"a3_map_stratis",
+		"A3_Characters_F_Beta",
 		"A3_Characters_F_BLUFOR",
 		"A3_Characters_F_OPFOR",
 		"A3_Characters_F_INDEP",
 		"A3_Characters_F_Civil",
+		"A3_Structures_F_Ind_Cargo",
+		"A3_Structures_F_Ind_FuelStation",
 		"A3_Structures_F_Mil_Radar"
 	};
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="404 Wasteland v1.08f Beta";
+		briefingName="404 Wasteland v1.08g Beta";
 		resistanceWest=0;
-		startWeather=0.10000001;
+		startWeather=0.1;
 		startWind=0.1;
 		startWaves=0.1;
-		forecastWeather=0.30000001;
+		forecastWeather=0.3;
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
@@ -37,8 +43,8 @@ class Mission
 		day=21;
 		hour=13;
 		minute=15;
-		startFogDecay=0.0049333;
-		forecastFogDecay=0.0049333;
+		startFogDecay=0.005;
+		forecastFogDecay=0.005;
 	};
 	class Groups
 	{
@@ -1339,7 +1345,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4147.7075,157.70811,3307.1665};
+					position[]={4147.6982,157.70564,3307.1978};
 					azimut=157;
 					id=84;
 					side="LOGIC";
@@ -1347,7 +1353,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore1";
-					init="this addEventHandler['handledamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos(getMarkerPos 'Store_Gun_1');";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_1')";
 				};
 			};
 		};
@@ -1359,7 +1365,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5522.9912,77.353127,4698.0908};
+					position[]={5522.9795,77.35244,4698.1113};
 					azimut=352;
 					id=85;
 					side="LOGIC";
@@ -1367,7 +1373,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore2";
-					init="this addEventHandler['handledamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos(getMarkerPos 'Store_Gun_2');";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_2')";
 				};
 			};
 		};
@@ -1379,7 +1385,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2461.9829,74.104134,5692.8682};
+					position[]={2461.9604,74.104752,5692.8784};
 					azimut=173;
 					id=86;
 					side="LOGIC";
@@ -1387,14 +1393,14 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore3";
-					init="this addEventHandler['handledamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos(getMarkerPos 'Store_Gun_3');";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_3')";
 				};
 			};
 		};
 	};
 	class Vehicles
 	{
-		items=1;
+		items=5;
 		class Item0
 		{
 			position[]={3754.6758,8.5163479,7957.3662};
@@ -1402,12 +1408,52 @@ class Mission
 			side="EMPTY";
 			vehicle="Land_Radar_F";
 			skill=0.60000002;
-			init="this addEventHandler['handledamage', {false}];";
+			init="this addEventHandler ['HandleDamage', {false}]; this setVariable ['R3F_LOG_disabled', true]; this setVectorUp [0,0,1]";
+		};
+		class Item1
+		{
+			position[]={2971.1858,171.39999,1871.3271};
+			azimut=90;
+			id=4;
+			side="EMPTY";
+			vehicle="Land_FuelStation_Feed_F";
+			skill=0.60000002;
+			init="this addEventHandler ['HandleDamage', {false}]; this setVariable ['R3F_LOG_disabled', true]";
+		};
+		class Item2
+		{
+			position[]={2967.7649,171.39999,1871.3911};
+			azimut=90;
+			id=5;
+			side="EMPTY";
+			vehicle="Land_CargoBox_V1_F";
+			skill=0.60000002;
+			init="this addEventHandler ['HandleDamage', {false}]; this setVariable ['R3F_LOG_disabled', true]; this attachTo [nearestObject [this, 'Land_FuelStation_Feed_F'], [0,0,-1.43]]";
+		};
+		class Item3
+		{
+			position[]={6407.8569,7.5998974,5416.0137};
+			azimut=41.934799;
+			id=1;
+			side="EMPTY";
+			vehicle="Land_FuelStation_Feed_F";
+			skill=0.60000002;
+			init="this addEventHandler ['HandleDamage', {false}]; this setVariable ['R3F_LOG_disabled', true]";
+		};
+		class Item4
+		{
+			position[]={6405.1143,7.6407204,5413.0996};
+			azimut=41.934799;
+			id=3;
+			side="EMPTY";
+			vehicle="Land_CargoBox_V1_F";
+			skill=0.60000002;
+			init="this addEventHandler ['HandleDamage', {false}]; this setVariable ['R3F_LOG_disabled', true]; this attachTo [nearestObject [this, 'Land_FuelStation_Feed_F'], [0,0,-1.43]]";
 		};
 	};
 	class Markers
 	{
-		items=190;
+		items=194;
 		class Item0
 		{
 			position[]={4339.3457,226.45149,3824.2236};
@@ -1494,140 +1540,140 @@ class Mission
 		};
 		class Item12
 		{
-			position[]={2524.1465,34.068382,2093.5562};
+			position[]={2369.0054,107.78507,1632.3721};
 			name="Mission_1";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item13
 		{
-			position[]={3712.7583,53.192314,2523.0771};
+			position[]={3797.8179,7.8620515,2339.3105};
 			name="Mission_2";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item14
 		{
-			position[]={2602.4868,63.697041,2793.2163};
+			position[]={2609.8635,59.23555,2659.0366};
 			name="Mission_3";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item15
 		{
-			position[]={4506.9668,52.249435,3076.8628};
+			position[]={4790.9663,113.56647,3089.8618};
 			name="Mission_4";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item16
 		{
-			position[]={2688.9312,77.785332,931.95801};
+			position[]={2715.1575,80.801727,976.29785};
 			name="Mission_5";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item17
 		{
-			position[]={2780.7786,154.7764,3368.6128};
+			position[]={2864.2209,149.7159,3345.5703};
 			name="Mission_6";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item18
 		{
-			position[]={3672.2375,153.23082,3638.752};
+			position[]={3795.1182,179.96071,3651.8213};
 			name="Mission_7";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item19
 		{
-			position[]={5014.8281,58.343174,3995.3354};
+			position[]={5086.8369,170.01425,4296.3008};
 			name="Mission_8";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item20
 		{
-			position[]={2915.8479,129.57027,4214.1479};
+			position[]={3377.8274,141.65503,4405.0322};
 			name="Mission_9";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item21
 		{
-			position[]={2135.1462,93.530121,3803.5366};
+			position[]={2136.9324,94.061569,3819.6113};
 			name="Mission_10";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item22
 		{
-			position[]={2489.0286,116.47917,4959.7319};
+			position[]={2513.9607,120.13379,4931.1489};
 			name="Mission_11";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item23
 		{
-			position[]={3393.9939,170.61929,4975.9399};
+			position[]={4227.2729,155.06749,4898.0361};
 			name="Mission_12";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item24
 		{
-			position[]={3015.7996,9.4032001,5521.6206};
+			position[]={3435.9529,105.78931,5226.6699};
 			name="Mission_13";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item25
 		{
-			position[]={4877.0576,134.52586,5248.7798};
+			position[]={5319.2207,184.33072,5605.3867};
 			name="Mission_14";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item26
 		{
-			position[]={3672.2375,55.997234,6134.8364};
+			position[]={3743.0247,109.84108,6364.2837};
 			name="Mission_15";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item27
 		{
-			position[]={3645.2244,106.17321,7088.4277};
+			position[]={3638.9399,3.7452478,7473.6738};
 			name="Mission_16";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item28
 		{
-			position[]={4517.7734,121.45521,6467.1079};
+			position[]={4291.2466,135.89871,6334.2549};
 			name="Mission_17";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item29
 		{
-			position[]={5949.5103,27.598513,5632.3784};
+			position[]={6207.9512,3.8842688,5598.8716};
 			name="Mission_18";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item30
 		{
-			position[]={5800.9336,26.945276,4578.8354};
+			position[]={5812.1519,85.699165,4799.9253};
 			name="Mission_19";
 			type="Empty";
 			colorName="ColorOrange";
 		};
 		class Item31
 		{
-			position[]={1659.7026,5.5,5294.7041};
+			position[]={1703.0079,5.5,5450.6704};
 			name="Mission_20";
 			type="Empty";
 			colorName="ColorOrange";
@@ -1676,7 +1722,7 @@ class Mission
 		};
 		class Item38
 		{
-			position[]={4209.0718,137.8638,5021.0425};
+			position[]={4261.8638,38.708981,5321.9023};
 			name="heliSpawn_7";
 			type="Empty";
 			colorName="ColorGreen";
@@ -1704,7 +1750,7 @@ class Mission
 		};
 		class Item42
 		{
-			position[]={3830.374,183.16658,3703.0669};
+			position[]={4371.5664,226.87125,3815.4233};
 			name="heliSpawn_11";
 			type="Empty";
 			colorName="ColorGreen";
@@ -2655,87 +2701,112 @@ class Mission
 		};
 		class Item178
 		{
-			position[]={1880.5028,0.0043556052,3514.9331};
+			position[]={1868.8657,-0.073477276,3502.7339};
 			name="boatSpawn_1";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item179
 		{
-			position[]={1879.4114,0,3556.7524};
+			position[]={1874.0571,0.0015925678,3547.9048};
 			name="boatSpawn_2";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item180
 		{
-			position[]={1931.1322,0,2704.8198};
+			position[]={1929.152,0.00034829427,2700.4634};
 			name="boatSpawn_3";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item181
 		{
-			position[]={1944.4106,0.00049651158,2684.3965};
+			position[]={1942.6158,4.5275523e-005,2676.6025};
 			name="boatSpawn_4";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item182
 		{
-			position[]={2807.0933,-0.012075786,6084.498};
+			position[]={2805.927,0.013563043,6077.8735};
 			name="boatSpawn_5";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item183
 		{
-			position[]={2364.2605,0,1124.8096};
+			position[]={2356.9426,0,1117.5205};
 			name="boatSpawn_6";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item184
 		{
-			position[]={2163.5796,0,5874.8423};
+			position[]={2166.7053,0,5875.2886};
 			name="boatSpawn_7";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item185
 		{
-			position[]={2170.7219,-0.0034300995,5908.0674};
+			position[]={2173.4011,-0.0042454996,5907.1748};
 			name="boatSpawn_8";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item186
 		{
-			position[]={6524.4258,-0.00038842787,5458.1426};
+			position[]={6526.1284,-0.0008324738,5462.6836};
 			name="boatSpawn_9";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item187
 		{
-			position[]={6532.3398,0,4887.8652};
+			position[]={6533.4756,-6.9669593e-005,4880.3936};
 			name="boatSpawn_10";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item188
 		{
-			position[]={4276.043,0,2623.7725};
+			position[]={4274.9077,-3.3009033e-005,2618.0952};
 			name="boatSpawn_11";
 			type="Empty";
 			colorName="ColorBlue";
 		};
 		class Item189
 		{
-			position[]={5409.3433,0.01093974,3723.4351};
+			position[]={5408.7134,0.0050846664,3721.2261};
 			name="boatSpawn_12";
 			type="Empty";
 			colorName="ColorBlue";
+		};
+		class Item190
+		{
+			position[]={4030.6226,26.638126,5444.9502};
+			name="Mission_21";
+			type="Empty";
+			colorName="ColorOrange";
+		};
+		class Item191
+		{
+			position[]={2711.29,2.5995,5793.75};
+			name="Fuel_Marina";
+			type="loc_Fuelstation";
+		};
+		class Item192
+		{
+			position[]={2971.1858,171.39999,1871.3271};
+			name="Fuel_Connor";
+			type="loc_Fuelstation";
+		};
+		class Item193
+		{
+			position[]={6407.8569,7.5998974,5416.0137};
+			name="Fuel_Kamino";
+			type="loc_Fuelstation";
 		};
 	};
 };

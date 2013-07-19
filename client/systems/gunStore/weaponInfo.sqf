@@ -43,7 +43,15 @@ _descCapacity =
 	{
 		case "vest":
 		{
-			_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrier1_rgr" >> "ItemInfo" >> "containerClass");
+			if (playerSide in [BLUFOR,OPFOR]) then
+			{
+				_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrier2_rgr" >> "ItemInfo" >> "containerClass");
+			}
+			else
+			{
+				_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrierIA2_dgtl" >> "ItemInfo" >> "containerClass");
+			};
+			
 			_defaultCapacity = getNumber (configFile >> "CfgVehicles" >> _containerClass >> "maximumLoad");
 			
 			_containerClass = getText (configFile >> "CfgWeapons" >> _item >> "ItemInfo" >> "containerClass");
@@ -64,11 +72,11 @@ _descCapacity =
 	
 	if (_diff > 0) then
 	{
-		_text = format ["%1", abs _diff] + "% more capacity than default " + _text;
+		_text = (str abs _diff) + "% more capacity than default " + _text;
 	};
 	if (_diff < 0) then
 	{
-		_text = format ["%1", abs _diff] + "% less capacity than default " + _text;
+		_text = (str abs _diff) + "% less capacity than default " + _text;
 	};
 	if (_diff == 0) then
 	{
@@ -88,14 +96,10 @@ _descCapacity =
     
 	_itempicture ctrlSettext "";
 	
-	private ["_weapArr", "_weapLen"];
-	_weapArr = toArray _weap_type;
-	_weapLen = count _weapArr;
 	_picture = getText(_weapon >> "picture");
 	
 	// Show scope on gunstore's sniper pictures
-	if (toString [_weapArr select (_weapLen - 6), _weapArr select (_weapLen - 5), _weapArr select (_weapLen - 4), _weapArr select (_weapLen - 3), _weapArr select (_weapLen - 2), _weapArr select (_weapLen - 1)] ==
-		"_SOS_F") then
+	if ([_weap_type, (count toArray _weap_type) - 6] call BIS_fnc_trimString == "_SOS_F") then
 	{
 		private ["_picArr", "_picLen"];
 		_picArr = toArray _picture;
@@ -111,7 +115,7 @@ _descCapacity =
 	_gunpicture ctrlSettext _picture;
     
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
-}}forEach weaponsArray;
+}} forEach (call weaponsArray);
 
 {if(_itemText == _x select 0) then{
 	_weap_type = _x select 1; 
@@ -126,13 +130,19 @@ _descCapacity =
 	_itempicture ctrlSettext _picture;
 	
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
-}}forEach ammoArray;
+}} forEach (call ammoArray);
 
 {if(_itemText == _x select 0) then{
 	_weap_type = _x select 1; 
 	_price = _x select 2;
 	
 	_weapon = (configFile >> "CfgWeapons" >> _weap_type);
+	
+	if (_x select 3 == "mag") then
+	{
+		_weapon = (configFile >> "CfgMagazines" >> _weap_type);
+	};
+	
 	_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", getText(_weapon >> "displayName"), getText(_weapon >> "descriptionShort")]);
     
 	_gunpicture ctrlSettext "";
@@ -141,15 +151,15 @@ _descCapacity =
 	_itempicture ctrlSettext _picture;
     
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
-}}forEach accessoriesArray;
+}} forEach (call accessoriesArray);
 
 {if(_itemText == _x select 0) then{
 	_weap_type = _x select 1; 
 	_price = _x select 2;
 	
-	_weapon = "";
-	_description = "";
+	_weapon = (configFile >> "CfgWeapons" >> _weap_type);
 	_name = "";
+	_description = "";
 	
 	switch (_x select 3) do
 	{
@@ -164,7 +174,7 @@ _descCapacity =
 			}
 			else
 			{
-				_name = _x select 0;
+				_name = _itemText;
 				_description = [_weap_type, "bpack"] call _descCapacity;
 			};
 			
@@ -172,8 +182,6 @@ _descCapacity =
 		};
 		case "vest":
 		{
-			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
-			
 			if (["Rebreather", _weap_type] call BIS_fnc_inString) then
 			{
 				_description = "Underwater oxygen supply";
@@ -183,39 +191,32 @@ _descCapacity =
 				_description = [_weap_type, "vest"] call _descCapacity;
 			};
 			
-			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, _description]);
-		};
-		case "ghillie":
-		{
-			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
-			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Disguise as a swamp monster"]);
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _itemText, _description]);
 		};
 		case "gogg":
 		{
 			_weapon = (configFile >> "CfgGlasses" >> _weap_type);
-			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _x select 0, "Increases underwater visibility"]);
+			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _itemText, "Increases underwater visibility"]);
 		};
 		default
 		{
-			_weapon = (configFile >> "CfgWeapons" >> _weap_type);
-			
-			if (_weap_type == "U_B_Wetsuit") then
+			switch (_itemText) do
 			{
-				_name = "Wetsuit";
-				_description = "Allows for faster swimming";
-			}
-			else
-			{
-				if (_x select 3 == "hat") then
+				case "Ghillie Suit": 
 				{
-					_name = _x select 0;
-				}
-				else
+					_name = _itemText;
+					_description = "Disguise as a swamp monster";
+				};
+				case "Wetsuit": 
+				{
+					_name = _itemText;
+					_description = "Allows for faster swimming";
+				};
+				default
 				{
 					_name = getText (_weapon >> "displayName");
+					_description = getText( _weapon >> "descriptionShort");
 				};
-				
-				_description = getText( _weapon >> "descriptionShort");
 			};
 			
 			_gunInfo ctrlSetStructuredText parseText (format ["%1<br/>%2", _name, _description]);
@@ -228,4 +229,4 @@ _descCapacity =
 	_itempicture ctrlSettext _picture;
     
 	_gunlisttext ctrlSetText format ["Price: $%1", _price];	
-}}forEach gearArray;
+}} forEach (call gearArray);

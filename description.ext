@@ -2,12 +2,14 @@ respawn="BASE";
 respawnDelay=15;
 disabledAI=1;
 //disableChannels[]={2};
+joinUnassigned = 0; 
 enableItemsDropping = 0;
-author = "404Games and AgentRev"; // Author
 onLoadName = "404Wasteland"; // Mission name
+author = "404Games and AgentRev"; // Author
+
 class Header
 {
-	gameType=Wasteland;
+	gameType=DM;
 	minPlayers=1;
 	maxPlayers=84;
 };

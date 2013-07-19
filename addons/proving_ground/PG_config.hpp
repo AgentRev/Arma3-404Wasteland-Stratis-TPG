@@ -72,13 +72,13 @@ class balca_debug_main
 				action = "closeDialog 0;_core = c_proving_ground_core;_dir = direction player;_pos = getPos player;_core setPos [(_pos select 0)+10*sin(_dir),(_pos select 1)+10*cos(_dir),0];_core setDir _dir;_marker = createMarkerLocal ['respawn_west',_pos];createMarkerLocal ['respawn_east',_pos];createMarkerLocal ['respawn_guerrila',_pos];createMarkerLocal ['respawn_civilian',_pos];closeDialog 0;"; 
 			};
 
-			class balca_get_bot_btn : balca_debug_btn
+			/*class balca_get_bot_btn : balca_debug_btn
 			{
 				x = 0; w = column_weight-column_div;
 				y = btn_height*7;
 				text = "Get bot in team";
 				action = "((group player) createUnit [typeOf player,getpos player,[],0.1,""FORM""]) setSkill 1"; 
-			};
+			};*/
 
 			class balca_dVeh_btn : balca_debug_btn
 			{
@@ -146,13 +146,13 @@ class balca_debug_main
 				action = """hitmarker"" call c_proving_ground_fnc_bulletcam;"; 
 			};
 
-			class balca_status_btn : balca_debug_btn
+			/*class balca_status_btn : balca_debug_btn
 			{
 				x = column_weight; w = column_weight-column_div;
 				y = btn_height*7;
 				text = "Status display";
 				action = "closeDialog 0;call c_proving_ground_fnc_status";
-			};
+			};*/
 
 			class balca_console_btn : balca_debug_btn
 			{
@@ -198,7 +198,7 @@ class balca_debug_main
 			{
 				x = column_weight*2; w = column_weight-column_div;
 				y = btn_height*4;
-				text = "BIS help";
+				text = "BIS Functions Viewer";
 				action = "closeDialog 0;[] call BIS_fnc_help"; 
 			};
 
@@ -206,7 +206,7 @@ class balca_debug_main
 			{
 				x = column_weight*2; w = column_weight-column_div;
 				y = btn_height*5;
-				text = "BIS cfgviewer";
+				text = "BIS Config Viewer";
 				action = "closeDialog 0;[] call BIS_fnc_configviewer"; 
 			};
 			class balca_close_btn : balca_debug_btn
