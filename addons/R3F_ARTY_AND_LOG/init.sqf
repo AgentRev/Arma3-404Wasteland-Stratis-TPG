@@ -72,9 +72,10 @@
 	else
 	{
 		execVM "addons\R3F_ARTY_AND_LOG\surveiller_nouveaux_objets.sqf";
+		
+		// Disable R3F on map objects that are not network-synced
+		{
+			_x setVariable ["R3F_LOG_disabled", true];
+		} forEach ((nearestObjects [[0,0], R3F_LOG_CFG_objets_deplacables, 99999]) - (allMissionObjects "All"));
 	};
-	
-	{
-		_x setVariable ["R3F_LOG_disabled", true];
-	} forEach ((nearestObjects [[0,0], R3F_LOG_CFG_objets_deplacables, 99999]) - (allMissionObjects "Building"));
 };
