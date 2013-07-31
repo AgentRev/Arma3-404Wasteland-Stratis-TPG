@@ -97,9 +97,9 @@ objectList =
 	"Land_HBarrierBig_F",
 	"Land_HBarrierBig_F",
 	"Land_HBarrier_3_F",
-	"Land_Scaffolding_F",
+//	"Land_Scaffolding_F", disabled due to physics issues
 	"Land_HBarrierBig_F",
-	"I_supplyCrate_F",
+	"B_supplyCrate_F",
 	"Land_CargoBox_V1_F",
 	"Land_Mil_WallBig_4m_F",
 	"Land_Mil_WallBig_4m_F",
