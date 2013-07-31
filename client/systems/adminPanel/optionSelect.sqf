@@ -4,68 +4,25 @@
 //	@file Created: 20/11/2012 05:19
 //	@file Args:
 
-#define serverAdminMenu_option 50007
-#define modMenu_option 50005
 #define debugMenu_option 50003
 #define adminMenu_option 50001
 disableSerialization;
 
-private ["_panelType","_displayAdmin","_displayMod","_displayServerAdmin","_displayDebug","_modSelect","_adminSelect","_serverAdminSelect","_debugSelect"];
+private ["_panelType","_displayAdmin","_displayDebug","_adminSelect","_debugSelect"];
 _uid = getPlayerUID player;
 if (_uid call isAdmin) then {
 	_panelType = _this select 0;
 	
-	_displayAdmin = uiNamespace getVariable "AdminMenu";
-	_displayMod = uiNamespace getVariable "ModMenu";
-	_displayServerAdmin = uiNamespace getVariable "ServerAdminMenu";
-	_displayDebug = uiNamespace getVariable "DebugMenu";
+	_displayAdmin = uiNamespace getVariable ["AdminMenu", displayNull];
+	_displayDebug = uiNamespace getVariable ["DebugMenu", displayNull];
 	
-	_modSelect = _displayMod displayCtrl modMenu_option;
-	_adminSelect = _displayAdmin displayCtrl adminMenu_option;
-	_serverAdminSelect = _displayServerAdmin displayCtrl serverAdminMenu_option;
-	_debugSelect = _displayDebug displayCtrl debugMenu_option;
-	
-	switch (_panelType) do
+	switch (true) do
 	{
-	    case 0: //Moderator panel
-		{
-			switch (lbCurSel _modSelect) do
-			{
-			    case 0: //Player Menu
-				{
-	                closeDialog 0;
-					execVM "client\systems\adminPanel\playerMenu.sqf";
-				};
-				case 1: //Basic Vehicle Menu
-				{
-					closeDialog 0;
-					execVM "client\systems\adminPanel\vehicleManagement.sqf";
-				};
-			};
-		};
-		case 1: //Administrator panel
-		{
-			switch (lbCurSel _adminSelect) do
-			{
-			    case 0: //Player Menu
-				{
-	                closeDialog 0;
-					execVM "client\systems\adminPanel\playerMenu.sqf";
-				};
-				case 1: //Full Vehicle Management
-				{
-	                closeDialog 0;
-					execVM "client\systems\adminPanel\vehicleManagement.sqf";
-				};
-			    case 2: //Tags
-			    {
-					execVM "client\systems\adminPanel\playerTags.sqf";
-			    };
-			};
-		};
-	    case 2: //Server Administrator panel
+	    case (!isNull _displayAdmin): //Admin panel
 	    {
-			switch (lbCurSel _serverAdminSelect) do
+			_adminSelect = _displayAdmin displayCtrl adminMenu_option;
+			
+			switch (lbCurSel _adminSelect) do
 			{
 			    case 0: //Player Menu
 				{
@@ -98,8 +55,10 @@ if (_uid call isAdmin) then {
 			    };
 			};
 	    };
-	    case 3: //Debug panel
-	    {      
+	    case (!isNull _displayDebug): //Debug panel
+	    {
+			_debugSelect = _displayDebug displayCtrl debugMenu_option;
+			
 			switch (lbCurSel _debugSelect) do
 			{
 			    case 0: //Access Gun Store
@@ -142,6 +101,4 @@ if (_uid call isAdmin) then {
 			};		
 	    };
 	};
-} else {
-  exit;  
 };
