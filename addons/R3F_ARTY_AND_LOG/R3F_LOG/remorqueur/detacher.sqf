@@ -61,6 +61,7 @@ else
 		if (_objet isKindOf "Car") then
 		{
 			detach _objet;
+			_objet setVelocity [0,0,0.01];
 		}
 		else
 		{
@@ -74,8 +75,6 @@ else
 				publicVariable "requestDetachTowedObject";
 			};
 		};
-		
-		// _objet setVelocity [0,0,0];
 		
 		sleep 4;
 		
