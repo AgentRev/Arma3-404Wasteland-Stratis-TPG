@@ -70,7 +70,7 @@ weaponsArray = compileFinal str
 	
 		// Marksman Rifles
 	["MXM","arifle_MXM_F",250,125],
-    ["EBR","srifle_EBR_F",250,125],
+    ["Mk18 ABR","srifle_EBR_F",250,125],
 	
 		// Sniper Rifles
 	["M320 LRR","srifle_LRR_SOS_F",1000,500],
@@ -78,8 +78,8 @@ weaponsArray = compileFinal str
 	
     	//Rocket Launchers
     ["PCML Rocket Launcher","launch_NLAW_F",500,250],
-    ["RPG-42 Alamut","launch_RPG32_F",500,250],
-	["Titan MPRL Launcher","launch_Titan_F",650,375]
+    ["RPG-42 Alamut Launcher","launch_RPG32_F",500,250],
+	["Titan MPRL AA Launcher","launch_Titan_F",650,375]
 ];
 
 //Gun Store Ammo List
@@ -135,7 +135,7 @@ accessoriesArray = compileFinal str
     ["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
 	["Suppressor 6.5mm LMG","muzzle_snds_H_MG", 100,"item"],
 	["Suppressor 7.62mm","muzzle_snds_B", 125,"item"],
-    ["Flash Light","acc_flashlight", 50,"item"],
+    ["Flashlight","acc_flashlight", 50,"item"],
     ["ACO Sight (Red)","optic_Aco", 50,"item"],
 	["ACO Sight (Green)","optic_ACO_grn", 50,"item"],
 	["Holosight","optic_Holosight", 50,"item"],
