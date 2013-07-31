@@ -33,7 +33,7 @@ diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-_vehicleClass = ["B_APC_Wheeled_01_cannon_F","O_APC_Wheeled_02_rcws_F"] call BIS_fnc_selectRandom;
+_vehicleClass = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","O_APC_Wheeled_02_rcws_F","O_APC_Tracked_02_cannon_F"] call BIS_fnc_selectRandom;
 
 //Vehicle Class, Posistion, Fuel, Ammo, Damage, State
 _vehicle = [_vehicleClass,_randomPos,1,1,0,"NONE"] call createMissionVehicle;
@@ -43,16 +43,17 @@ switch (_vehicleClass) do
 	case "B_APC_Wheeled_01_cannon_F":
 	{
 		_vehicle removeMagazinesTurret ["2000Rnd_65x39_belt", [0]];
-		_vehicle addMagazineTurret ["1000Rnd_65x39_Belt", [0]];
+		_vehicle addMagazineTurret ["1000Rnd_65x39_belt_Tracer_Red", [0]];
 		_vehicle setVehicleAmmo 0.5;
 	};
-	case "O_APC_Wheeled_02_rcws_F":
+	case "O_APC_Tracked_02_cannon_F":
 	{
-		// _vehicle removeMagazinesTurret ["96Rnd_40mm_G_belt", [0]];
-		// _vehicle addMagazineTurret ["64Rnd_40mm_G_belt", [0]];
-		_vehicle setVehicleAmmo 0.5555;
+		_vehicle removeMagazinesTurret ["1000Rnd_65x39_belt", [0]];
+		_vehicle addMagazineTurret ["1000Rnd_65x39_belt_Tracer_Red", [0]];
 	};
 };
+
+_vehicle setVehicleAmmo 0.5;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
