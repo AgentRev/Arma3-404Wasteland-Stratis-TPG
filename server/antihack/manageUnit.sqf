@@ -48,6 +48,9 @@ if (isServer) then
 
 if (!isDedicated && isNil _checksum) then
 {
+	if (isNil "fn_findString") then { fn_findString = compileFinal preprocessFileLineNumbers "server\functions\fn_findString.sqf" };
+	if (isNil "fn_filterString") then { fn_filterString = compileFinal preprocessFileLineNumbers "server\functions\fn_filterString.sqf" };
+
 	if (!isServer) then
 	{
 		TPG_fnc_MPexec = compileFinal (_assignPacketKey + (preprocessFileLineNumbers "server\functions\remote\fn_MPexec.sqf"));
