@@ -7,11 +7,14 @@
 
 #include "dialog\gunstoreDefines.sqf";
 disableSerialization;
-if(gunStoreCart > (player getVariable "cmoney")) exitWith {hint "You do not have enough money"};
+
+if (!isNil "storePurchaseActive" && {typeName storePurchaseActive == typeName true} && {storePurchaseActive}) exitWith {};
+if (gunStoreCart > player getVariable "cmoney") exitWith { hint "You do not have enough money" };
 
 private ["_name"];
 
 //Initialize Values
+if (isNil "storePurchaseActive" || {typeName storePurchaseActive != typeName {}}) then { storePurchaseActive = true };
 _switch = _this select 0;
 
 _playerMoney = player getVariable "cmoney";
@@ -219,3 +222,5 @@ switch (_switch) do
 		lbClear _cartlist;
 	};
 };
+
+if (isNil "storePurchaseActive" || {typeName storePurchaseActive != typeName {}}) then { storePurchaseActive = false };
