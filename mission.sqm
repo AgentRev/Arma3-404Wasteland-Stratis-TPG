@@ -29,7 +29,7 @@ class Mission
 	randomSeed=14957468;
 	class Intel
 	{
-		briefingName="404 Wasteland v1.08g Beta";
+		briefingName="404 Wasteland v1.08h Beta";
 		resistanceWest=0;
 		startWeather=0.1;
 		startWind=0.1;
@@ -1353,7 +1353,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore1";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_1')";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_1'); this enableSimulation false";
 				};
 			};
 		};
@@ -1373,7 +1373,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore2";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_2')";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_2'); this enableSimulation false";
 				};
 			};
 		};
@@ -1393,7 +1393,7 @@ class Mission
 					leader=1;
 					skill=0.60000002;
 					text="gunStore3";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_3')";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_3'); this enableSimulation false";
 				};
 			};
 		};
@@ -2824,10 +2824,10 @@ class Intro
 	class Intel
 	{
 		timeOfChanges=1800.0002;
-		startWeather=0.30000001;
+		startWeather=0.3;
 		startWind=0.1;
 		startWaves=0.1;
-		forecastWeather=0.30000001;
+		forecastWeather=0.3;
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
@@ -2836,8 +2836,8 @@ class Intro
 		day=21;
 		hour=13;
 		minute=15;
-		startFogDecay=0.0049333;
-		forecastFogDecay=0.0049333;
+		startFogDecay=0.005;
+		forecastFogDecay=0.005;
 	};
 };
 class OutroWin
@@ -2854,10 +2854,10 @@ class OutroWin
 	class Intel
 	{
 		timeOfChanges=1800.0002;
-		startWeather=0.30000001;
+		startWeather=0.3;
 		startWind=0.1;
 		startWaves=0.1;
-		forecastWeather=0.30000001;
+		forecastWeather=0.3;
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
@@ -2866,8 +2866,8 @@ class OutroWin
 		day=21;
 		hour=13;
 		minute=15;
-		startFogDecay=0.0049333;
-		forecastFogDecay=0.0049333;
+		startFogDecay=0.005;
+		forecastFogDecay=0.005;
 	};
 };
 class OutroLoose
@@ -2884,10 +2884,10 @@ class OutroLoose
 	class Intel
 	{
 		timeOfChanges=1800.0002;
-		startWeather=0.30000001;
+		startWeather=0.3;
 		startWind=0.1;
 		startWaves=0.1;
-		forecastWeather=0.30000001;
+		forecastWeather=0.3;
 		forecastWind=0.1;
 		forecastWaves=0.1;
 		forecastLightnings=0.1;
@@ -2896,7 +2896,7 @@ class OutroLoose
 		day=21;
 		hour=13;
 		minute=15;
-		startFogDecay=0.0049333;
-		forecastFogDecay=0.0049333;
+		startFogDecay=0.005;
+		forecastFogDecay=0.005;
 	};
 };
