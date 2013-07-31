@@ -77,11 +77,9 @@ _man4 addMagazine "30Rnd_556x45_Stanag";
 _man4 addMagazine "30Rnd_556x45_Stanag";
 
 {
-	_x addrating 9999999;
-	_x addEventHandler ["Killed",
-	{
-		(_this select 1) call removeNegativeScore;
-	}];
+	_x allowFleeing 0;
+	_x addRating 9999999;
+	_x addEventHandler ["Killed", {(_this select 1) call removeNegativeScore; [_this select 0] call server_playerDied}];
 } forEach units _group;
 
 _leader = leader _group;

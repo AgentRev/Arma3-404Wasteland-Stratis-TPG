@@ -123,11 +123,9 @@ _man7 addMagazine "1Rnd_HE_Grenade_shell";
 _man7 addMagazine "1Rnd_HE_Grenade_shell";
 
 {
-	_x addrating 9999999;
-	_x addEventHandler ["Killed",
-	{
-		(_this select 1) call removeNegativeScore;
-	}];
+	_x allowFleeing 0;
+	_x addRating 9999999;
+	_x addEventHandler ["Killed", {(_this select 1) call removeNegativeScore; [_this select 0] call server_playerDied}];
 } forEach units _group;
 
 _leader = leader _group;
