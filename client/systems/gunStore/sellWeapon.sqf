@@ -6,7 +6,7 @@
 //	@file Args:
 
 //Initialize Values
-private["_primary","_weapon_value","_magSell","_weaponMags","_magasines","_mag","_magValue"];
+private["_primary","_weapon_value","_magSell","_weaponMags","_magazines","_mag","_magValue"];
 _magSell = 0;
 _weapon_value = 50; // This is for weapons that aren't in the gunstore stock list.
 _primary = currentWeapon player;
@@ -22,8 +22,8 @@ if (_primary == "") exitWith {hint "You don't have a current weapon in your hand
 // if(isNil {_weapon_value}) exitWith {hint "The store does not want this item."};
 
 _weaponMags = getArray (configFile >> "Cfgweapons" >> _primary >> "magazines");
-_magasines = magazines player;
-_magasines set [count _magasines, currentMagazine player];
+_magazines = magazines player;
+_magazines set [count _magazines, currentMagazine player];
 
 {
 	_mag = _x;
