@@ -29,7 +29,7 @@ if (isNil "_moneyBag") exitWith
 {
 	player globalChat "You are too far to pick the money up.";
 	mutexScriptInProgress = false;
-}
+};
 
 if (!((toLower _moneyBag getVariable ["owner", ""]) in ["world", getPlayerUID player])) exitWith
 {
