@@ -8,9 +8,11 @@
 #include "dialog\genstoreDefines.sqf";
 disableSerialization;
 
+if (!isNil "storePurchaseActive" && {typeName storePurchaseActive == typeName true} && {storePurchaseActive}) exitWith {};
 if(genStoreCart > (player getVariable "cmoney")) exitWith {hint "You do not have enough money"};
 
 //Initialize Values
+if (isNil "storePurchaseActive" || {typeName storePurchaseActive != typeName {}}) then { storePurchaseActive = true };
 _playerMoney = player getVariable "cmoney";
 _size = 0;
 
@@ -125,3 +127,5 @@ _playerMoneyText CtrlsetText format["Cash: $%1", player getVariable "cmoney"];
 genStoreCart = 0;
 _totalText CtrlsetText format["Total: $%1", genStoreCart];
 lbClear _cartlist;
+
+if (isNil "storePurchaseActive" || {typeName storePurchaseActive != typeName {}}) then { storePurchaseActive = false };
