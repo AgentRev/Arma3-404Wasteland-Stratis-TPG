@@ -28,9 +28,9 @@ if (_uid call isAdmin) then {
 			_target = _x;
 			_check = 1;
 		};
-	}forEach playableUnits;
+	} forEach playableUnits;
 	
-	if (_check == 0) then {exit;};
+	if (_check == 0) exitWith {};
 	
 	switch (_switch) do
 	{
@@ -43,7 +43,7 @@ if (_uid call isAdmin) then {
 					_spectateButton ctrlSetText "Spectating";
 					player commandChat format ["Viewing %1.", name _target];
 					
-					camDestroy _camadm;
+					if (!isNil "_camadm") then { camDestroy _camadm };
 					_camadm = "camera" camCreate ([(position vehicle _target select 0) - 5,(position vehicle _target select 1), (position vehicle _target select 2) + 10]);
 					_camadm cameraEffect ["external", "TOP"];
 					_camadm camSetTarget (vehicle _target);
@@ -69,7 +69,7 @@ if (_uid call isAdmin) then {
 					_spectateButton ctrlSetText "Spectate";
 					player commandchat format ["No Longer Viewing.", name _target];
 					player cameraEffect ["terminate","back"];
-					camDestroy _camadm;
+					if (!isNil "_camadm") then { camDestroy _camadm };
 				};
 			};
 		};
