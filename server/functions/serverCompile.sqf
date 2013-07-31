@@ -64,5 +64,5 @@ hintBroadcast = compile preprocessFileLineNumbers "server\functions\hintBroadcas
 //Player Management
 server_playerDied = compile preprocessFileLineNumbers "server\functions\serverPlayerDied.sqf";
 
-if (isNil "TPG_fnc_MP") then { TPG_fnc_MP = compileFinal str BIS_fnc_MP };
-if (isNil "TPG_fnc_MPexec") then { TPG_fnc_MPexec = compileFinal str BIS_fnc_MPexec };
+if (isNil "TPG_fnc_MP") then { TPG_fnc_MP = BIS_fnc_MP };
+if (isNil "TPG_fnc_MPexec") then { TPG_fnc_MPexec = BIS_fnc_MPexec };
