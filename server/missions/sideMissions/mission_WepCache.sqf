@@ -46,8 +46,8 @@ _box2 addEventHandler ["handledamage", {false}];
 _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>A weapon cache has been spotted near the marker.</t>", _missionType,  sideMissionColor, subTextColor];
 [_hint] call hintBroadcast;
 
-_CivGrpS = createGroup civilian;
-[_CivGrpS,_randomPos] spawn createMidGroup;
+_CivGrpM = createGroup civilian;
+[_CivGrpM,_randomPos] spawn createMidGroup;
 
 diag_log format["WASTELAND SERVER - Side Mission Waiting to be Finished: %1",_missionType];
 #ifdef __A2NET__
@@ -66,7 +66,7 @@ waitUntil
 	#endif
     if(_currTime - _startTime >= sideMissionTimeout) then {_result = 1;};
     {if((isPlayer _x) AND (_x distance _box <= missionRadiusTrigger)) then {_playerPresent = true};}forEach playableUnits;
-    _unitsAlive = ({alive _x} count units _CivGrpS);
+    _unitsAlive = ({alive _x} count units _CivGrpM);
     (_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1)) OR ((damage _box) == 1)
 };
 
@@ -75,14 +75,14 @@ if(_result == 1) then
 	//Mission Failed.
     deleteVehicle _box;
     deleteVehicle _box2;
-    {deleteVehicle _x;}forEach units _CivGrpS;
-    deleteGroup _CivGrpS;
+    {deleteVehicle _x;}forEach units _CivGrpM;
+    deleteGroup _CivGrpM;
     _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Objective Failed</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%2' size='1.25'>%1</t><br/><t align='center' color='%3'>Objective failed, better luck next time.</t>", _missionType, failMissionColor, subTextColor];
 	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Side Mission Failed: %1",_missionType];
 } else {
 	//Mission Complete.
-    deleteGroup _CivGrpS;
+    deleteGroup _CivGrpM;
     _hint = parseText format ["<t align='center' color='%2' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%2'>------------------------------</t><br/><t align='center' color='%3' size='1.25'>%1</t><br/><t align='center' color='%3'>The weapon cache has been captured, well done.</t>", _missionType, successMissionColor, subTextColor];
 	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Side Mission Success: %1",_missionType];
