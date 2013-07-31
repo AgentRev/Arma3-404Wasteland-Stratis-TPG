@@ -30,6 +30,4 @@ if (_uid call isAdmin) then {
 	{
 		_debugSelect lbAdd _x;
 	} forEach _panelOptions;
-} else {
-  exit;  
 };

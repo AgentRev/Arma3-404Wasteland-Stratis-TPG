@@ -30,6 +30,4 @@ if (_uid call isAdmin) then {
 		sleep 0.5;
 	};
 	{ clearGroupIcons group _x } forEach playableUnits;
-} else {
-  exit;  
 };

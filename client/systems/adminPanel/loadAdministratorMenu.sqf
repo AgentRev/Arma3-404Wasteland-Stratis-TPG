@@ -23,6 +23,4 @@ if ([_uid, 2] call isAdmin) then {
 	{
 		_adminSelect lbAdd _x;
 	} forEach _panelOptions;
-} else {
-  exit;  
 };

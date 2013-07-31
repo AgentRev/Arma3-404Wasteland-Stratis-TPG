@@ -35,6 +35,4 @@ if (_uid call isAdmin) then {
 	}forEach vehicles;
 	
 	_vehicleCountText ctrlSetText format["Vehicles on Server: %1", _vehicleCount];
-} else {
-  exit;  
 };

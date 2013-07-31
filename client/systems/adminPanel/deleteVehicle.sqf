@@ -36,6 +36,4 @@ if (_uid call isAdmin) then {
 	
 	closeDialog 0;
 	execVM "client\systems\adminPanel\vehicleManagement.sqf";
-} else {
-  exit;  
 };

@@ -83,6 +83,4 @@ if (_uid call isAdmin) then {
 	        };
 	    } foreach playableUnits;
 	};
-} else {
-  exit;  
 };
