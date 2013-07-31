@@ -26,12 +26,13 @@ true spawn {
 
 // Server & Client Functions
 generateKey = compileFinal preprocessFileLineNumbers "server\antihack\generateKey.sqf";
-fn_findString = compileFinal preprocessFileLineNumbers "server\functions\fn_findString.sqf";
-fn_filterString = compileFinal preprocessFileLineNumbers "server\functions\fn_filterString.sqf";
 fn_vehicleInit = compile preprocessFileLineNumbers "server\functions\fn_vehicleInit.sqf";
 findSafePos = compile preprocessFileLineNumbers "server\functions\findSafePos.sqf";
 removeNegativeScore = compile preprocessFileLineNumbers "server\functions\removeNegativeScore.sqf";
 detachTowedObject = compile preprocessFileLineNumbers "server\functions\detachTowedObject.sqf";
+
+if (isNil "fn_findString") then { fn_findString = compileFinal preprocessFileLineNumbers "server\functions\fn_findString.sqf" };
+if (isNil "fn_filterString") then { fn_filterString = compileFinal preprocessFileLineNumbers "server\functions\fn_filterString.sqf" };
 
 //init Wasteland Core
 [] execVM "config.sqf";
@@ -65,6 +66,6 @@ if(X_Server) then {
 "requestDetachTowedObject" addPublicVariableEventHandler { [_this select 1] call detachTowedObject };
 
 [] execVM "addons\proving_Ground\init.sqf";
-//[0.1, 0.5, 0.5] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+[0] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 execVM "server\functions\adjustBuildings.sqf";
