@@ -57,5 +57,5 @@ if (sideMissions == 1) then {
 };
 
 if (isDedicated) then {
-	_id = [] execFSM "server\WastelandServClean.fsm";
+	execVM "server\WastelandServClean.sqf";
 };
