@@ -78,9 +78,10 @@ FZF_IC_Icons =
         };
         player setVariable ["FZF_IC_Hud_pIcons", _pIcons];
     };
-
-	private "_index";
+	
+	private ["_index", "_FZF_IC_Hud_Disp", "_HUD_ICON"];
 	_index = 0;
+	_FZF_IC_Hud_Disp = uiNamespace getVariable "FZF_IC_Hud_Disp";
     {
         private ["_pos","_unit", "_distance", "_name"];
         _unit = _x;
@@ -103,36 +104,29 @@ FZF_IC_Icons =
 					_scale = 1 min ((1 - ((_distance) - 3) / 15) max 0.3); 
 				};
 							
-				with uinamespace do{  //update posistion
-					HUD_ICON = FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
-					HUD_ICON ctrlSetStructuredText parseText _picon;
-					HUD_ICON ctrlSetPosition [_sx, _sy, 0.4, 0.65];
-					HUD_ICON ctrlSetScale _scale;
-					HUD_ICON ctrlSetFade ((1- _scale ) / 2);
-					HUD_ICON ctrlCommit 0;
-					HUD_ICON ctrlShow true;
-				};			
+				_HUD_ICON = _FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
+				_HUD_ICON ctrlSetStructuredText parseText _picon;
+				_HUD_ICON ctrlSetPosition [_sx, _sy, 0.4, 0.65];
+				_HUD_ICON ctrlSetScale _scale;
+				_HUD_ICON ctrlSetFade ((1- _scale ) / 2);
+				_HUD_ICON ctrlCommit 0;
+				_HUD_ICON ctrlShow true;	
+				
 			} else {
-				with uinamespace do{  //stop displaying the icon of the unit
-					HUD_ICON = FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
-					HUD_ICON ctrlShow false;
-				};		
+				_HUD_ICON = _FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
+				_HUD_ICON ctrlShow false;
 			};
 			
 		} else {
-			with uinamespace do{
-				HUD_ICON = FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
-				HUD_ICON ctrlShow false;
-			};		
+			_HUD_ICON = _FZF_IC_Hud_Disp displayCtrl (icons_idc + _index);
+			_HUD_ICON ctrlShow false;
 		};
         _index = _index + 1;
 		//sleep 0.0001;
     } forEach(_units);
 		if (_remove_icon) then {
-			with uinamespace do{
-			HUD_ICON = FZF_IC_Hud_Disp displayCtrl (icons_idc + _index );
-			HUD_ICON ctrlShow false;
-			};	
+			_HUD_ICON = _FZF_IC_Hud_Disp displayCtrl (icons_idc + _index );
+			_HUD_ICON ctrlShow false;
 //			player sideChat "Removed Unit From screen " + str(_index );
 		};
 	
@@ -180,6 +174,7 @@ FZF_IC_INIT =
                 call FZF_IC_Icons;
                 sleep 0.01;
             };
+			systemChat "Reset";
             FZF_ICHud_Layer cutText ["", "PLAIN"];
 
         };
