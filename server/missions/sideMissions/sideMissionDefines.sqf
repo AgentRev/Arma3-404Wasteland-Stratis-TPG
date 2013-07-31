@@ -10,17 +10,17 @@
 #include "setup.sqf"
 #ifdef __DEBUG__
 
-	#define sideMissionTimeout 600
-	#define sideMissionDelayTime 30
+	#define sideMissionTimeout 1800
+	#define sideMissionDelayTime 10
 
 #else
 
 	#define sideMissionTimeout 1200
-	#define sideMissionDelayTime 600
+	#define sideMissionDelayTime 900
 
 #endif
 
-#define missionRadiusTrigger 50
+#define missionRadiusTrigger 99999
 #define sideMissionColor "#4BC9B0"
 #define failMissionColor "#FF1717"
 #define successMissionColor "#17FF41"
