@@ -45,7 +45,7 @@ Converted to server-side, junk removed, and modded for 404 Wasteland by AgentRev
 NOTE: Some parameters have changed since the previous release, especially static/dynamic respawning, and removal of init commands.
 	  Please ajust your vehicle spawn scripts accordingly if you plan to use this respawn scripts as-is.
 ================================================================================================================== */
-  
+
 if (!isServer) exitWith {};
 
 // Define variables
@@ -84,6 +84,18 @@ _sleepTime = 5;
 	};
 } forEach [_delay, _deserted];
 
+_wheels = [];
+_hitPoints = configFile >> "CfgVehicles" >> (typeOf _unit) >> "HitPoints";
+
+for "_i" from 0 to (count _hitPoints - 1) do
+{
+	_hitPoint = configName (_hitPoints select _i);
+	if ([["Wheel","Track"], _hitPoint] call fn_findString == count toArray _hitPoint - 5) then
+	{
+		_wheels set [count _wheels, _hitPoint];
+	};
+};
+
 _unit spawn vehicleRepair;
 
 // Start monitoring the vehicle
@@ -93,10 +105,8 @@ while {_run} do
 	
 	if (alive _unit) then
 	{
-		_blownTire = _unit getHitPointDamage "HitLFWheel" == 1 ||
-					{_unit getHitPointDamage "HitLF2Wheel" == 1} ||
-					{_unit getHitPointDamage "HitRFWheel" == 1} ||
-					{_unit getHitPointDamage "HitRF2Wheel" == 1};
+		_blownTire = false;
+		{ _blownTire = (_blownTire || {_unit getHitPointDamage _x == 1}) } forEach _wheels;
 	};
 	
 	if ((_blownTire || {!canMove _unit}) && {{alive _unit} count crew _unit == 0}) then
@@ -128,10 +138,11 @@ while {_run} do
 	
 	// Check if the vehicle is deserted, or if something was taken from it, and that it's not being towed or moved.
 	
-	if (((_deserted > 0 && {getPosASL _unit distance _position > 10} && {{alive _unit} count crew _unit == 0}) || 
-		{_unit getVariable ["itemTakenFromVehicle", false]}) &&
-		{isNull (_unit getVariable ["R3F_LOG_est_transporte_par", objNull])} && 
-		{isNull (_unit getVariable ["R3F_LOG_est_deplace_par", objNull])}) then 
+	if (_deserted > 0 && 
+	   {getPosASL _unit distance _position > 10 || _unit getVariable ["itemTakenFromVehicle", false]} &&
+	   {{alive _unit} count crew _unit == 0} &&
+	   {isNull (_unit getVariable ["R3F_LOG_est_transporte_par", objNull])} && 
+	   {isNull (_unit getVariable ["R3F_LOG_est_deplace_par", objNull])}) then 
 	{
 		if (_desertedTimeout == 0) then {
 			_desertedTimeout = time + _deserted;
@@ -173,18 +184,14 @@ while {_run} do
 		
 		_towedUnit = _unit getVariable ["R3F_LOG_remorque", objNull];
 		
-		if (!isNull _towedUnit) then
+		if (!isNil "_towedUnit" && {!isNull _towedUnit}) then
 		{
 			detach _towedUnit;
 			_towedUnit setVariable ["R3F_LOG_est_transporte_par", objNull, true];
 			_unit setVariable ["R3F_LOG_remorque", objNull, true];
 			
 			_pos = getPosATL _towedUnit;
-			
-			if (_pos select 2 < 1) then {
-				_towedUnit setPosATL [_pos select 0, _pos select 1, 1];
-			};
-			_towedUnit setVelocity [0,0,0];
+			_towedUnit setPosATL [_pos select 0, _pos select 1, 0];
 		};
 		
 		if (typeName _static == "ARRAY") then { _position = _static; }
