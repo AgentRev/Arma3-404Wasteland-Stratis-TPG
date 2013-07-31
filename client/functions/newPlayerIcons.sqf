@@ -174,7 +174,6 @@ FZF_IC_INIT =
                 call FZF_IC_Icons;
                 sleep 0.01;
             };
-			systemChat "Reset";
             FZF_ICHud_Layer cutText ["", "PLAIN"];
 
         };
