@@ -38,6 +38,18 @@ _vehicleClass = ["B_Heli_Light_01_F", "I_Heli_Transport_02_F", "O_Heli_Light_02_
 // Vehicle spawning: Name, Position, Fuel, Ammo, Damage, "NONE"
 _vehicle = [_vehicleClass,_randomPos,0.5,1,0,"NONE"] call createMissionVehicle;
 
+if ("CMFlareLauncher" in getArray (configFile >> "CfgVehicles" >> _vehicleClass >> "weapons")) then
+{
+	{
+		if (_x isKindOf "60Rnd_CMFlare_Chaff_Magazine") then
+		{
+			_vehicle removeMagazinesTurret [_x, [-1]];
+		};
+	} forEach (_vehicle magazinesTurret [-1]);
+	
+	_vehicle addMagazineTurret ["120Rnd_CMFlare_Chaff_Magazine", [-1]];
+};
+
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A <t color='%4'>%3</t> has been immobilized, go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];

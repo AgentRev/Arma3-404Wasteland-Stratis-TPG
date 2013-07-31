@@ -53,25 +53,33 @@ _vehicle = [_vehicleClass,_randomPos,1,_vehAmmo,0,"NONE"] call createMissionVehi
 
 if ("CMFlareLauncher" in getArray (configFile >> "CfgVehicles" >> _vehicleClass >> "weapons")) then
 {
-	_vehicle removeMagazinesTurret ["168Rnd_CMFlare_Chaff_Magazine", [-1]];
-	_vehicle removeMagazinesTurret ["192Rnd_CMFlare_Chaff_Magazine", [-1]];
-	_vehicle removeMagazinesTurret ["240Rnd_CMFlare_Chaff_Magazine", [-1]];
-	_vehicle addMagazineTurret ["168Rnd_CMFlare_Chaff_Magazine", [-1]];
+	{
+		if (_x isKindOf "60Rnd_CMFlare_Chaff_Magazine") then
+		{
+			_vehicle removeMagazinesTurret [_x, [-1]];
+		};
+	} forEach (_vehicle magazinesTurret [-1]);
+	
+	_vehicle addMagazineTurret ["120Rnd_CMFlare_Chaff_Magazine", [-1]];
 };
-if (_vehicle isKindOf "Heli_Attack_01_base_F") then
+
+switch (true) do
 {
-	_vehicle removeMagazinesTurret ["24Rnd_PG_missiles", [0]];
-	_vehicle removeMagazinesTurret ["4Rnd_AAA_missiles", [0]];
-	_vehicle addMagazineTurret ["24Rnd_PG_missiles", [0]];
-	_vehicle addMagazineTurret ["2Rnd_AAA_missiles", [0]];
-};
-if (_vehicle isKindOf "Heli_Attack_02_base_F") then
-{
-	_vehicle removeMagazinesTurret ["250Rnd_30mm_APDS_shells", [0]];
-	_vehicle removeMagazinesTurret ["38Rnd_80mm_rockets", [0]];
-	_vehicle removeMagazinesTurret ["8Rnd_LG_scalpel", [0]];
-	_vehicle addMagazineTurret ["14Rnd_80mm_rockets", [0]];
-	_vehicle addMagazineTurret ["2Rnd_LG_scalpel", [0]];
+	case (_vehicle isKindOf "Heli_Attack_01_base_F"):
+	{
+		_vehicle removeMagazinesTurret ["24Rnd_PG_missiles", [0]];
+		_vehicle removeMagazinesTurret ["4Rnd_AAA_missiles", [0]];
+		_vehicle addMagazineTurret ["24Rnd_PG_missiles", [0]];
+		_vehicle addMagazineTurret ["2Rnd_AAA_missiles", [0]];
+	};
+	case (_vehicle isKindOf "Heli_Attack_02_base_F"):
+	{
+		_vehicle removeMagazinesTurret ["250Rnd_30mm_APDS_shells", [0]];
+		_vehicle removeMagazinesTurret ["38Rnd_80mm_rockets", [0]];
+		_vehicle removeMagazinesTurret ["8Rnd_LG_scalpel", [0]];
+		_vehicle addMagazineTurret ["14Rnd_80mm_rockets", [0]];
+		_vehicle addMagazineTurret ["2Rnd_LG_scalpel", [0]];
+	};
 };
 
 reload _vehicle;
