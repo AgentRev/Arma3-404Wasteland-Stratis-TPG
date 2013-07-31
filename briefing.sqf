@@ -101,7 +101,7 @@ BigHub<br/><br/><br/>
 <font face='PuristaBold' size='16'>GoT</font><br/>
 JoSchaap<br/><br/><br/>
 <font face='PuristaBold' size='16'>OpenDayZ</font><br/>
-AXA<br/><br/><br/>
+AWA<br/><br/><br/>
 <font face='PuristaBold' size='16'>Others</font><br/>
 Sanjo<br/>
 meat147<br/>
