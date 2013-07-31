@@ -14,7 +14,7 @@ if (isServer) then {
 	_id = PlayerCDeath spawn serverPlayerDied; 
 };
 
-if(!local _player) exitwith {};
+if (!local _player) exitWith { closeDialog 0 }; 
 
 if((_player != _killer) && (vehicle _player != vehicle _killer) && (playerSide == side _killer) && (str(playerSide) in ["WEST", "EAST"])) then {
 	pvar_PlayerTeamKiller = objNull;
