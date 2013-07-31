@@ -15,15 +15,15 @@ _obj addEventHandler ["handledamage", {false}];
 
 switch (_Objtype) do
 {
-	case "Land_Barrelwater_F":
+	/*case "Land_Barrelwater_F":
 	{
 		_obj setVariable["water",20,true];
 	};
 	case "Land_WoodenBox_F":
 	{
 		_obj setVariable["food",20,true];
-	};
-	case "I_supplyCrate_F":
+	};*/
+	case "B_supplyCrate_F":
 	{
 		clearMagazineCargoGlobal _obj;
 		clearWeaponCargoGlobal _obj;
