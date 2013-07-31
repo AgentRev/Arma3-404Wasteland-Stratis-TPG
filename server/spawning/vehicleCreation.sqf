@@ -42,7 +42,7 @@ _pos = [
 		call findSafePos;
 
 //Vehicle Initialization
-_vehicle = createVehicle [_vehicleType, _pos, [], 0, "None"];
+_vehicle = createVehicle [_vehicleType, _pos, [], 3, "None"];
 _vehicle setVariable [call vChecksum, true, false];
 
 if (_type == 3) then { _vehicle setPosASL [_pos select 0, _pos select 1, 0] }
