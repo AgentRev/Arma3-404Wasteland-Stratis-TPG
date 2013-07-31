@@ -25,11 +25,11 @@ if (count _this > 4) then { _debug = _this select 4; } else { _debug = false; };
 
 // Minimum time in minutes for the weather (fog and overcast) to change. Must be greater than or equal to 1 and less than or equal to 
 // _maxWeatherChangeTimeMin. When weather changes, it is fog OR overcast that changes, not both at the same time. (Suggested value: 10).
-_minWeatherChangeTimeMin = 10;
+_minWeatherChangeTimeMin = 30;
 
 // Maximum time in minutes for the weather (fog and overcast) to change. Must be greater than or equal to _minWeatherChangeTimeMin.
 // (Suggested value: 20).
-_maxWeatherChangeTimeMin = 20;
+_maxWeatherChangeTimeMin = 60;
 
 // Minimum time in minutes that weather (fog and overcast) stays constant between weather changes. Must be less than or equal to 0 and 
 // greater than or equal to _minWeatherChangeTimeMin. (Suggested value: 5).
@@ -45,7 +45,7 @@ _minimumFog = 0;
 
 // Fog intensity never exceeds this value. Must be between 0 and 1 and greater than or equal to _minimumFog
 // (0 = no fog, 1 = pea soup). (Suggested value: 0.8).
-_maximumFog = 0.4;
+_maximumFog = 0.15;
 
 // Overcast intensity never falls below this value. Must be between 0 and 1 and less than or equal to _maximumOvercast
 // (0 = no overcast, 1 = maximum overcast). (Suggested value: 0).
@@ -69,7 +69,7 @@ _minimumWind = 0;
 
 // Wind vector strength never exceeds this value. Must be greater or equal to 0 and greater than or equal to _minimumWind.
 // (Suggested value: 8).
-_maximumWind = 8;
+_maximumWind = 2;
 
 // Probability in percent for wind to change when weather changes. If set to 0 then wind will never change. If set to 100 then rain will 
 // change every time the weather (fog or overcast) start to change. (Suggested value: 25);
@@ -154,7 +154,7 @@ drn_fnc_DynamicWeather_SetWeatherLocal = {
     _currentWindX = _this select 6;
     _currentWindZ = _this select 7;
     
-    // Set current weather values
+	// Set current weather values
     0 setOvercast _currentOvercast;
     0 setFog _currentFog;
     drn_var_DynamicWeather_Rain = _currentRain;
@@ -162,10 +162,10 @@ drn_fnc_DynamicWeather_SetWeatherLocal = {
     
     // Set forecast
     if (_currentWeatherChange == "OVERCAST") then {
-        _timeUntilCompletion setOvercast _targetWeatherValue;
+        _timeUntilCompletion setOvercast (_targetWeatherValue ^ 2);
     };
     if (_currentWeatherChange == "FOG") then {
-        _timeUntilCompletion setFog _targetWeatherValue;
+        _timeUntilCompletion setFog (_targetWeatherValue ^ 2);
     };
 };
 
