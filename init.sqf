@@ -12,7 +12,7 @@ enableSaving[false,false];
 
 X_Server = false;
 hitStateVar = false;
-versionName = "v1.08g Beta";
+versionName = "v1.08h Beta";
 
 if (isServer) then { X_Server = true };
 
