@@ -13,8 +13,8 @@ onKeyPress = compile preprocessFile "client\clientEvents\onKeyPress.sqf";
 fn_fitsInventory = compile preprocessFileLineNumbers "client\functions\fn_fitsInventory.sqf";
 findHackedVehicles = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\findHackedVehicles.sqf";
 isAdmin = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\isAdmin.sqf";
-serverMessage = compile preprocessFileLineNumbers "client\functions\serverMessage.sqf";
-adminMessage = compileFinal preprocessFileLineNumbers "client\functions\adminMessage.sqf";
+serverMessage = compileFinal preprocessFileLineNumbers "client\functions\serverMessage.sqf";
+titleTextMessage = compileFinal preprocessFileLineNumbers "client\functions\titleTextMessage.sqf";
 
 // Player details and actions
 loadPlayerMenu = compile preprocessFile "client\systems\playerMenu\init.sqf";
