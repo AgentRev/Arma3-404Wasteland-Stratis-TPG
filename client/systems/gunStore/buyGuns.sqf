@@ -1,4 +1,3 @@
-
 //	@file Version: 1.0
 //	@file Name: buyGuns.sqf
 //	@file Author: [404] Deadbeat, [404] Costlyy
@@ -83,15 +82,15 @@ switch (_switch) do
 			{
 				_name = _x select 0;
 				
-                if (_itemText == _name) then
-                {
-                    _class = _x select 1;
+				if (_itemText == _name) then
+				{
+					_class = _x select 1;
 					
 					switch (_x select 3) do
-                    {
-                    	case "binoc":
-                        {
-                            if ((_playerSlots select 5) > 0 || {[player, _class] call fn_fitsInventory}) then
+					{
+						case "binoc":
+						{
+							if ((_playerSlots select 5) > 0 || {[player, _class] call fn_fitsInventory}) then
 							{
 								player addWeapon _class;
 							}
@@ -100,9 +99,9 @@ switch (_switch) do
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format [_notEnoughSpace,_name];
 							};
-                        };
-                        case "item":
-                        {
+						};
+						case "item":
+						{
 							if ([player, _class] call fn_fitsInventory) then
 							{
 								player addItem _class;
@@ -112,7 +111,7 @@ switch (_switch) do
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format [_notEnoughSpace,_name];
 							};
-                        };
+						};
 						case "bpack":
 						{
 							if (backpack player == "") then
@@ -125,22 +124,22 @@ switch (_switch) do
 								hint format["You already have a backpack, please drop it before buying a new one"]; 
 							};
 						};
-                        case "vest":
-                        {
-                            if (vest player == "") then
-                            {
-                                player addVest _class;
-                            }
-                            else
-                            {
+						case "vest":
+						{
+							if (vest player == "") then
+							{
+								player addVest _class;
+							}
+							else
+							{
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format["You already have a vest, please drop it before buying a new one"]; 
-                            };
-                        };
-                        case "uni":
-                        {
-                            if (uniform player == "") then
-                            {
+							};
+						};
+						case "uni":
+						{
+							if (uniform player == "") then
+							{
 								switch (_name) do
 								{
 									case "Ghillie Suit": 
@@ -166,40 +165,40 @@ switch (_switch) do
 										player addUniform _class;
 									};
 								};
-                            }
-                            else
-                            {
+							}
+							else
+							{
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format["You already have an uniform, please drop it before buying a new one"]; 
-                            };
-                        };
-                        case "hat":
-                        {
-                            if (headgear player == "") then
-                            {
-                                player addHeadgear _class;
-                            }
-                            else
-                            {
+							};
+						};
+						case "hat":
+						{
+							if (headgear player == "") then
+							{
+								player addHeadgear _class;
+							}
+							else
+							{
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format["You already have headgear, please drop it before buying a new one"]; 
-                            };
-                        };
+							};
+						};
 						case "gogg":
-                        {
-                            if (goggles player == "") then
-                            {
-                                player addGoggles _class;
-                            }
-                            else
-                            {
+						{
+							if (goggles player == "") then
+							{
+								player addGoggles _class;
+							}
+							else
+							{
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format["You already have goggles, please drop them before buying new ones"]; 
-                            };
-                        };
+							};
+						};
 						case "mag":
-                        {
-                            if ([player, _class] call fn_fitsInventory) then
+						{
+							if ([player, _class] call fn_fitsInventory) then
 							{
 								player addMagazine _class;
 							}
@@ -208,10 +207,10 @@ switch (_switch) do
 								gunStoreCart = gunStoreCart - (_x select 2);
 								hint format [_notEnoughSpace,_name];
 							};
-                        };
-                    };
+						};
+					};
 				};
-            } forEach ((call accessoriesArray) + (call gearArray));
+			} forEach ((call accessoriesArray) + (call gearArray));
 		};
 
 		player setVariable["cmoney",_playerMoney - gunStoreCart,true];
