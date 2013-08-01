@@ -31,7 +31,7 @@ if (isNil "_moneyBag") exitWith
 	mutexScriptInProgress = false;
 };
 
-if (!((toLower _moneyBag getVariable ["owner", ""]) in ["world", getPlayerUID player])) exitWith
+if (!((toLower (_moneyBag getVariable ["owner", ""])) in ["world", getPlayerUID player])) exitWith
 {
 	player globalChat "This object is already in use.";
 	mutexScriptInProgress = false;
@@ -60,6 +60,7 @@ for "_i" from 1 to _lockDuration do
 	if (player distance _moneyBag > _bagDistance) exitWith
 	{
 		_moneyBag setVariable ["owner", "world", true];
+		player switchMove _originalState;
 		mutexScriptInProgress = false;
 		player globalChat "You are too far to pick the money up.";
 	};
@@ -70,6 +71,7 @@ for "_i" from 1 to _lockDuration do
 		deleteVehicle _moneyBag;
 		if (_money < 0) then { _money = 0 };
 		player setVariable ["cmoney", (player getVariable ["cmoney", 0]) + _money, true];
+		player switchMove _originalState;
 		mutexScriptInProgress = false;
 		
 		if (_money > 0) then
@@ -80,7 +82,5 @@ for "_i" from 1 to _lockDuration do
 		{
 			player globalChat "The money bag is empty.";
 		};
-		
-		player switchMove _originalState;
 	};
 };
