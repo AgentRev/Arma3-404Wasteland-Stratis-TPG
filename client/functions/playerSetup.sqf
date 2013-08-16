@@ -1,4 +1,3 @@
-
 //	@file Version: 1.0
 //	@file Name: playerSetup.sqf
 //	@file Author: [404] Deadbeat
@@ -16,8 +15,15 @@ _player addEventHandler ["HandleDamage", {false}];
 enableSentences false;
 _player removeWeapon "ItemRadio";
 _player removeWeapon "ItemGPS";
-_player unassignItem "NVGoggles"; 
-_player removeItem "NVGoggles";
+
+{
+    if (["NVGoggles", _x] call fn_findString == 0) exitWith
+    {
+        _player unassignItem _x;
+        _player removeItem _x;
+    };
+} forEach assignedItems;
+
 removeAllWeapons _player;
 removeUniform _player;
 removeVest _player;
