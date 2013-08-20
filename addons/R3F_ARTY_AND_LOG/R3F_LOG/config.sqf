@@ -32,7 +32,7 @@ R3F_LOG_CFG_remorqueurs =
 	"MRAP_02_base_F",
 	"MRAP_03_base_F",
 	"Wheeled_APC_F",
-	"Tracked_APC_F",
+	"Tank_F",
 	"Truck_F",
 	"Boat_Armed_01_base_F"
 ];
@@ -119,7 +119,7 @@ R3F_LOG_CFG_transporteurs =
 	["MRAP_02_base_F", 20],
 	["MRAP_03_base_F", 20],
 	["Wheeled_APC_F", 30],
-	["Tracked_APC_F", 30],
+	["Tank_F", 30],
 	["Truck_F", 50],
 	["Rubber_duck_base_F", 15],
 	["Boat_Armed_01_base_F", 20],
