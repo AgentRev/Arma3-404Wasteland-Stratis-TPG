@@ -154,15 +154,40 @@ drn_fnc_DynamicWeather_SetWeatherLocal = {
     _currentWindX = _this select 6;
     _currentWindZ = _this select 7;
     
+	if (!isServer && {!isNil "drn_JIPWeatherSync"}) then
+	{
+		skipTime -1;
+	};
+	
 	// Set current weather values
-    0 setOvercast _currentOvercast;
+	if (date select 2 > 4 && date select 2 < 19) then
+	{
+		0 setOvercast _currentOvercast;
+	}
+	else
+	{
+		0 setOvercast (0.1 max _currentOvercast);
+	};
     0 setFog _currentFog;
     drn_var_DynamicWeather_Rain = _currentRain;
     setWind [_currentWindX, _currentWindZ, true];
+	
+	if (!isServer && {!isNil "drn_JIPWeatherSync"}) then
+	{
+		skipTime 1;
+		drn_JIPWeatherSync = nil;
+	};
     
     // Set forecast
     if (_currentWeatherChange == "OVERCAST") then {
-        _timeUntilCompletion setOvercast (_targetWeatherValue ^ 2);
+		if (date select 2 > 4 && date select 2 < 18) then
+		{
+			_timeUntilCompletion setOvercast (_targetWeatherValue ^ 2);
+		}
+		else
+		{
+			_timeUntilCompletion setOvercast (0.1 max (_targetWeatherValue ^ 2));
+		};
     };
     if (_currentWeatherChange == "FOG") then {
         _timeUntilCompletion setFog (_targetWeatherValue ^ 2);
@@ -176,6 +201,8 @@ if (!isServer) then {
 
     waitUntil {!isNil "drn_var_DynamicWeather_ServerInitialized"};
     
+	drn_JIPWeatherSync = true;
+	
     drn_AskServerDynamicWeatherEventArgs = [true];
     publicVariable "drn_AskServerDynamicWeatherEventArgs";
 };
