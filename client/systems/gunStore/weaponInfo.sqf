@@ -43,13 +43,11 @@ _descCapacity =
 	{
 		case "vest":
 		{
-			if (playerSide in [BLUFOR,OPFOR]) then
+			switch (playerSide) do
 			{
-				_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrier2_rgr" >> "ItemInfo" >> "containerClass");
-			}
-			else
-			{
-				_containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrierIA2_dgtl" >> "ItemInfo" >> "containerClass");
+				case BLUFOR: { _containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrier2_rgr" >> "ItemInfo" >> "containerClass") };
+				case OPFOR:  { _containerClass = getText (configFile >> "CfgWeapons" >> "V_HarnessO_brn" >> "ItemInfo" >> "containerClass") };
+				default      { _containerClass = getText (configFile >> "CfgWeapons" >> "V_PlateCarrierIA2_dgtl" >> "ItemInfo" >> "containerClass") };
 			};
 			
 			_defaultCapacity = getNumber (configFile >> "CfgVehicles" >> _containerClass >> "maximumLoad");
@@ -202,6 +200,11 @@ _descCapacity =
 		{
 			switch (_itemText) do
 			{
+				case "Default Uniform":
+				{
+					_name = _itemText;
+					_description = "In case you lost your clothes";
+				};
 				case "Ghillie Suit": 
 				{
 					_name = _itemText;
@@ -210,7 +213,7 @@ _descCapacity =
 				case "Wetsuit": 
 				{
 					_name = _itemText;
-					_description = "Allows for faster swimming";
+					_description = "Allows faster swimming";
 				};
 				default
 				{
