@@ -68,7 +68,7 @@ _vehicle setVehicleAmmo 0.5;
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
 
-if (((toArray toLower _vehicleName) select 0) in (toArray "aeio")) then
+if (((toArray _vehicleName) select 0) in (toArray "AEIMO")) then
 {
 	_vehDeterminer = "An";
 }
@@ -76,7 +76,6 @@ else
 {
 	_vehDeterminer = "A";
 };
-
 
 _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>%6 <t color='%4'>%3</t> has been immobilized, go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor, _vehDeterminer];
 [_hint] call hintBroadcast;
