@@ -48,7 +48,7 @@ switch (_switch) do
 					_class = _x select 1;
 					_type = getNumber (configFile >> "CfgWeapons" >> _class >> "type");
 					
-					if ((_type == 1 && (_playerSlots select 0) > 0) || {_type == 2 && (_playerSlots select 1) > 0} || {_type == 4 && (_playerSlots select 2) > 0}) then
+					if ((_type == 1 && primaryWeapon player == "") || {_type == 2 && handgunWeapon player == ""} || {_type == 4 && secondaryWeapon player == ""}) then
 					{
 						player addWeapon _class;
 					}
@@ -158,6 +158,15 @@ switch (_switch) do
 											case "BLU_F": { player addUniform "U_B_Wetsuit" };
 											case "OPF_F": { player addUniform "U_O_Wetsuit" };
 											default       { player addUniform "U_I_Wetsuit" };
+										};
+									};
+									case "Default Uniform": 
+									{
+										switch (faction player) do
+										{
+											case "BLU_F": { player addUniform "U_B_CombatUniform_mcam" };
+											case "OPF_F": { player addUniform "U_O_CombatUniform_ocamo" };
+											default       { player addUniform "U_I_CombatUniform" };
 										};
 									};
 									default
