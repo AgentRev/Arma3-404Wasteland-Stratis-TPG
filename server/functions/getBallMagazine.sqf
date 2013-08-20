@@ -3,16 +3,25 @@
 //	@file Author: AgentRev
 //	@file Created: 30/06/2012 15:06
 
-private ["_mag", "_index"];
+private ["_mag", "_magCfg"];
 
-// Fix case
-_mag = configName (configFile >> "CfgMagazines" >> _this);
+_mag = _this;
+_magCfg = configFile >> "CfgMagazines" >> _mag;
 
-_index = ["_Tracer", _mag] call fn_findString;
-
-if (_index != -1) then
+if (isClass _magCfg) then
 {
-	_mag = [_mag, 0, _index - 1] call BIS_fnc_trimString;
+	// Fix case
+	_mag = configName (_magCfg);
+
+	while {["_Tracer", configName (_magCfg)] call fn_findString != -1} do
+	{
+		_magCfg = inheritsFrom _magCfg;
+	};
+	
+	if (isClass _magCfg) then
+	{
+		_mag = configName (_magCfg);
+	};
 };
 
 _mag
