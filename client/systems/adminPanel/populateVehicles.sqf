@@ -101,7 +101,7 @@ if (_uid call isAdmin) then {
 					_vehicleClass = "Tank";
 				};
 				
-				if (_vehicleType isKindOf "Wheeled_APC_F" || _vehicleType isKindOf "Tracked_APC_F") then
+				if (_vehicleType isKindOf "Wheeled_APC_F") then
 				{
 					_vehicleClass = "APC";
 				};
@@ -152,7 +152,7 @@ if (_uid call isAdmin) then {
 					{
 						_vehicleClass = "Truck";
 					};
-					case (_vehicleType isKindOf "Wheeled_APC_F" || _vehicleType isKindOf "Tracked_APC_F"):
+					case (_vehicleType isKindOf "Wheeled_APC_F"):
 					{
 						_vehicleClass = "APC";
 					};
