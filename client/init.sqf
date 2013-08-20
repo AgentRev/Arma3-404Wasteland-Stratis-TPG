@@ -8,6 +8,7 @@ if (isDedicated) exitWith {};
 
 execVM "client\functions\bannedNames.sqf";
 
+showPlayerIcons = true;
 mutexScriptInProgress = false;
 respawnDialogActive = false;
 groupManagmentActive = false;
