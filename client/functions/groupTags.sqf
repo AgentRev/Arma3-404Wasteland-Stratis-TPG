@@ -42,16 +42,21 @@ while {true} do
         {
 			if(player distance _target < 300)then 
             {
-				if(getPlayerUID _target in _tempArray) then
-                {
-					if(isStreamFriendlyUIEnabled) then
+				_target = driver _target;
+				
+				if (!isNil "_target") then
+				{
+					if(getPlayerUID _target in _tempArray) then
 					{
-						_nameString = "<t size='0.5' shadow='2' color='#7FFF00'>[VEHICLE]</t>";
-					} else {
-						_nameString = "<t size='0.5' shadow='2' color='#7FFF00'>" + format['%1',_target getVariable ['unitname', name _target]] + "</t>";
+						if(isStreamFriendlyUIEnabled) then
+						{
+							_nameString = "<t size='0.5' shadow='2' color='#7FFF00'>[VEHICLE]</t>";
+						} else {
+							_nameString = "<t size='0.5' shadow='2' color='#7FFF00'>" + format['%1',_target getVariable ['unitname', name _target]] + "</t>";
+						};
+						if (!isNil "_nameString") then { [_nameString,0,0.8,__REFRESH,0,0,3] spawn bis_fnc_dynamicText };	    
 					};
-					if (!isNil "_nameString") then { [_nameString,0,0.8,__REFRESH,0,0,3] spawn bis_fnc_dynamicText };	    
-                };				
+				};				
 			};
 		}; 	
 	} else {
