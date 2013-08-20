@@ -78,7 +78,7 @@ else
 					
 					if (_remorqueur isKindOf "Boat_Armed_01_base_F" && !(_objet isKindOf "Boat_Armed_01_base_F")) then
 					{
-						_compensateZ = _compensateZ - 1.5;
+						_compensateZ = _compensateZ + 1.25;
 					};
 					if (!(_remorqueur isKindOf "Boat_Armed_01_base_F") && _objet isKindOf "Boat_Armed_01_base_F") then
 					{
