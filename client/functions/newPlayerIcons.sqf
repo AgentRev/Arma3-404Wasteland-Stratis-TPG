@@ -17,7 +17,7 @@ FZF_ICHud_Layer = 609;
 
 FZF_IC_Icons = 
 {
-    private ["_units", "_groupOnly", "_index", "_HUD_ICON"];
+	private ["_units", "_groupOnly", "_index", "_HUD_ICON"];
 	
 	if (playerSide == INDEPENDENT) then
 	{
@@ -80,7 +80,7 @@ FZF_IC_Icons =
 		
 			_index = _index + 1;
 		};
-    } forEach _units;
+	} forEach _units;
 	
 	if (!isNil "FZF_IC_Hud_pIcons_count") then
 	{
@@ -96,7 +96,7 @@ FZF_IC_Icons =
 
 FZF_IC_Hud_Debug =
 {
-    private ["_icon_text","_plIcon"];	
+	private ["_icon_text","_plIcon"];	
 	_plIcon = "client\icons\igui_side_blufor_ca.paa";
 	_icon_text = format ["<t align='left'><img image='%1'/>%2<br/></t>", _plIcon ,name cursorTarget];
 //	_icon_text = "<t align='left'>Test</t>";
@@ -119,13 +119,13 @@ FZF_IC_Hud_Debug =
 
 FZF_IC_INIT =
 {	
-    if (!isNil "FZF_IC_Handle") then
-    {
-        terminate FZF_IC_Handle;
-    };
+	if (!isNil "FZF_IC_Handle") then
+	{
+		terminate FZF_IC_Handle;
+	};
 
-    FZF_IC_Handle = [] spawn
-    {
+	FZF_IC_Handle = [] spawn
+	{
 		disableSerialization;
 		private ["_bluIcon", "_opfIcon", "_indIcon", "_FZF_IC_Hud_Disp"];
 		
@@ -133,22 +133,22 @@ FZF_IC_INIT =
 		_opfIcon = parseText "<t align='left'><img image='client\icons\igui_side_opfor_ca.paa'/></t>";
 		_indIcon = parseText "<t align='left'><img image='client\icons\igui_side_indep_ca.paa'/></t>";
 		
-        sleep 1;
-        while {true} do
-        {
-            waitUntil {sleep 1; SHOW_HUD};
-            FZF_ICHud_Layer cutRsc ["FZF_ICHud_Rsc", "PLAIN"];
+		sleep 1;
+		while {true} do
+		{
+			waitUntil {sleep 1; SHOW_HUD};
+			FZF_ICHud_Layer cutRsc ["FZF_ICHud_Rsc", "PLAIN"];
 			_FZF_IC_Hud_Disp = uiNamespace getVariable "FZF_IC_Hud_Disp";
 			
-            while {SHOW_HUD} do
+			while {SHOW_HUD} do
 			{
-                call FZF_IC_Icons;
-                sleep 0.01;
-            };
+				call FZF_IC_Icons;
+				sleep 0.01;
+			};
 			
-            FZF_ICHud_Layer cutText ["", "PLAIN"];
-        };
-    };	
+			FZF_ICHud_Layer cutText ["", "PLAIN"];
+		};
+	};	
 };
 
 FZF_ICHud_Load =
