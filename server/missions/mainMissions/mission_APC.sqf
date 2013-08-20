@@ -8,17 +8,29 @@
 
 if(!isServer) exitwith {};
 
-private ["_result","_missionMarkerName","_missionType","_startTime","_returnData","_randomPos","_randomIndex","_vehicleClass","_vehicle","_picture","_vehicleName","_hint","_currTime","_playerPresent","_unitsAlive"];
+private ["_result", "_missionMarkerName", "_missionType", "_hintVehClass", "_startTime", "_returnData", "_randomPos", "_randomIndex", "_vehicleClass", "_vehicle", "_picture", "_vehicleName", "_vehDeterminer", "_hint", "_currTime", "_playerPresent", "_unitsAlive"];
 
 //Mission Initialization.
 _result = 0;
 _missionMarkerName = "APC_Marker";
-_missionType = "Armored Personnel Carrier";
 #ifdef __A2NET__
 _startTime = floor(netTime);
 #else
 _startTime = floor(time);
 #endif
+
+_vehicleClass = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","O_APC_Wheeled_02_rcws_F","O_APC_Tracked_02_cannon_F"] call BIS_fnc_selectRandom;
+
+if (_vehicleClass isKindOf "Tank_F") then
+{
+	_missionType = "Infantry Fighting Vehicle";
+	_hintVehClass = "IFV";
+}
+else
+{
+	_missionType = "Armored Personnel Carrier";
+	_hintVehClass = "APC";
+};
 
 diag_log format["WASTELAND SERVER - Main Mission Started: %1",_missionType];
 
@@ -32,8 +44,6 @@ diag_log format["WASTELAND SERVER - Main Mission Waiting to run: %1",_missionTyp
 diag_log format["WASTELAND SERVER - Main Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
-
-_vehicleClass = ["B_APC_Wheeled_01_cannon_F","B_APC_Tracked_01_rcws_F","O_APC_Wheeled_02_rcws_F","O_APC_Tracked_02_cannon_F"] call BIS_fnc_selectRandom;
 
 //Vehicle Class, Posistion, Fuel, Ammo, Damage, State
 _vehicle = [_vehicleClass,_randomPos,1,1,0,"NONE"] call createMissionVehicle;
@@ -57,7 +67,18 @@ _vehicle setVehicleAmmo 0.5;
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
-_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A <t color='%4'>%3</t> has been immobilized, go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor];
+
+if (((toArray toLower _vehicleName) select 0) in (toArray "aeio")) then
+{
+	_vehDeterminer = "An";
+}
+else
+{
+	_vehDeterminer = "A";
+};
+
+
+_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Main Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>%6 <t color='%4'>%3</t> has been immobilized, go get it for your team.</t>", _missionType, _picture, _vehicleName, mainMissionColor, subTextColor, _vehDeterminer];
 [_hint] call hintBroadcast;
 
 _CivGrpM = createGroup civilian;
@@ -102,7 +123,7 @@ if(_result == 1) then
 } else {
 	//Mission Complete.
     deleteGroup _CivGrpM;
-    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The APC has been captured, brace yourselves.</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor];
+    _hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Objective Complete</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>The %6 has been captured, brace yourselves.</t>", _missionType, _picture, _vehicleName, successMissionColor, subTextColor, _hintVehClass];
 	[_hint] call hintBroadcast;
     diag_log format["WASTELAND SERVER - Main Mission Success: %1",_missionType];
 };
