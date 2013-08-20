@@ -16,6 +16,7 @@ _mvalue = _Dialog displayCtrl money_value;
 _rogue = _Dialog displayCtrl rogue_text;
 _uptime = _Dialog displayCtrl uptime_text;
 _groupButton = _Dialog displayCtrl groupButton;
+_playerIconsButton = _Dialog displayCtrl playerIconsButton;
 _foodtext ctrlSettext format["%1 / 100", round(hungerLevel)];
 _watertext ctrlSetText format["%1 / 100", round(thirstLevel)];
 _moneytext ctrlSetText format["%1", player getVariable "cmoney"];
