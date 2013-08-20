@@ -27,7 +27,7 @@ if (_wepIndex != -1) then
 	}
 	else
 	{
-		_weapons set [_magIndex, _newWeaponName];
+		_weapons set [_wepIndex, _newWeaponName];
 	};
 	
 	clearWeaponCargoGlobal _container;
