@@ -19,10 +19,10 @@ class playerSettings {
 		
 		class MainTitle : w_RscText {
 			idc = -1;
-			text = "Player Inventory Menu";
+			text = "Player Menu";
 			sizeEx = 0.04;
 			shadow = 2;		
-			x = 0.260; y = 0.112;
+			x = 0.275; y = 0.112;
 			w = 0.3; h = 0.05;
 		};
 		
@@ -128,8 +128,18 @@ class playerSettings {
 			text = "Group Management";
 			onButtonClick = "[] execVM 'client\systems\groups\loadGroupManagement.sqf'";
 			x = 0.150; y = 0.68;
-			w = 0.225; h = 0.033 * safezoneH;
+			w = 0.2; h = 0.033 * safezoneH;
 		};
+		
+		class PlayerIconsButton : w_RscButton {
+			idc = playerIconsButton;
+			text = "Toggle Player Icons";
+			onButtonClick = "showPlayerIcons = !showPlayerIcons";
+			x = 0.375; y = 0.68;
+			w = 0.2; h = 0.033 * safezoneH;
+		};
+		
+		showPlayerIcons = true;
 
 		class btnDistanceNear : w_RscButton {
 			text = "Near";
