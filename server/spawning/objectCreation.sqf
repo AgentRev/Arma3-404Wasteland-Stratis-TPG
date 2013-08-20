@@ -11,7 +11,7 @@ _objPos = _this select 0;
 _Objtype = objectList call BIS_fnc_selectRandom;
 _obj = createVehicle [_Objtype,_objPos,[], 50,"None"]; 
 
-_obj addEventHandler ["handledamage", {false}];
+_obj addEventHandler ["HandleDamage", {false}];
 
 switch (_Objtype) do
 {
@@ -36,6 +36,8 @@ switch (_Objtype) do
 		_obj addItemCargoGlobal ["ItemGPS", 5];
 		_obj addItemCargoGlobal ["Medikit", 4];
 		_obj addItemCargoGlobal ["ToolKit", 2];
+		_obj addWeaponCargoGlobal ["Laserdesignator", 1];
+		_obj addMagazineCargoGlobal ["Laserbatteries", 1];
 	};
 };
 
