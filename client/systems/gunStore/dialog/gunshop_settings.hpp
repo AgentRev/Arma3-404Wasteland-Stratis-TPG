@@ -176,15 +176,28 @@ class gunshopd {
 
 		};
 
-		class BuySellEquipment: w_RscButton
+		class SellUniform: w_RscButton
+		{
+			idc = -1;
+			onButtonClick = "[] execVM 'client\systems\gunStore\sellUniform.sqf'";
+			text = "Sell Uniform";
+
+			x = 0.40 * safezoneW + safezoneX;
+			y = 0.750 * safezoneH + safezoneY;
+			w = 0.075 * safezoneW;
+			h = 0.040 * safezoneH;
+
+		};
+
+		class SellWeapon: w_RscButton
 		{
 			idc = -1;
 			onButtonClick = "[] execVM 'client\systems\gunStore\sellWeapon.sqf'";
-			text = "Sell Current Weapon and Ammo";
+			text = "Sell Current Weapon";
 
-			x = 0.40625 * safezoneW + safezoneX;
+			x = 0.48 * safezoneW + safezoneX;
 			y = 0.750 * safezoneH + safezoneY;
-			w = 0.11 * safezoneW;
+			w = 0.075 * safezoneW;
 			h = 0.040 * safezoneH;
 
 		};
