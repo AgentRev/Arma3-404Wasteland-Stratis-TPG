@@ -38,13 +38,13 @@ _vehicle = ["O_Heli_Light_02_F",[(_randomPos select 0) + 50, (_randomPos select 
 
 _box = createVehicle ["Box_East_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
-
-_box addEventHandler ["handledamage", {false}];
+_box addEventHandler ["HandleDamage", {false}];
+_box setVariable ["R3F_LOG_disabled", true, true];
 
 _box2 = createVehicle ["Box_NATO_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
-
-_box2 addEventHandler ["handledamage", {false}];
+_box2 addEventHandler ["HandleDamage", {false}];
+_box2 setVariable ["R3F_LOG_disabled", true, true];
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
@@ -74,6 +74,9 @@ waitUntil
     _unitsAlive = ({alive _x} count units _CivGrpM);
     (_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1)) OR ((damage _box) == 1)
 };
+
+_box setVariable ["R3F_LOG_disabled", false, true];
+_box2 setVariable ["R3F_LOG_disabled", false, true];
 
 if(_result == 1) then
 {
