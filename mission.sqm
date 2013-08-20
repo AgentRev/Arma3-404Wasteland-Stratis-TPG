@@ -40,7 +40,7 @@ class Mission
 		forecastLightnings=0.1;
 		year=2035;
 		month=6;
-		day=21;
+		day=10;
 		hour=13;
 		minute=15;
 		startFogDecay=0.005;
@@ -1345,7 +1345,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={4147.6982,157.70564,3307.1978};
+					position[]={4147.23,158.117,3306.73};
 					azimut=157;
 					id=84;
 					side="LOGIC";
@@ -1353,7 +1353,7 @@ class Mission
 					leader=1;
 					skill=0.6;
 					text="gunStore1";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_1'); this enableSimulation false";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this spawn {sleep 1; _this enableSimulation false}";
 				};
 			};
 		};
@@ -1365,7 +1365,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={5522.9795,77.35244,4698.1113};
+					position[]={5522.9795,77.4978,4698.1113};
 					azimut=352;
 					id=85;
 					side="LOGIC";
@@ -1373,7 +1373,7 @@ class Mission
 					leader=1;
 					skill=0.6;
 					text="gunStore2";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_2'); this enableSimulation false";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this spawn {sleep 1; _this enableSimulation false}";
 				};
 			};
 		};
@@ -1385,7 +1385,7 @@ class Mission
 				items=1;
 				class Item0
 				{
-					position[]={2461.9604,74.104752,5692.8784};
+					position[]={2462.31,74.7487,5692.05};
 					azimut=173;
 					id=86;
 					side="LOGIC";
@@ -1393,7 +1393,7 @@ class Mission
 					leader=1;
 					skill=0.6;
 					text="gunStore3";
-					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this setPos (getMarkerPos 'Store_Gun_3'); this enableSimulation false";
+					init="this addEventHandler ['HandleDamage', {false}]; this disableAI 'MOVE'; this DisableAI 'ANIM'; this disableAI 'FSM'; removeAllWeapons this; this spawn {sleep 1; _this enableSimulation false}";
 				};
 			};
 		};
@@ -2484,21 +2484,21 @@ class Mission
 		};
 		class Item147
 		{
-			position[]={4147.6982,157.70564,3307.1978};
+			position[]={4147.23,158.117,3306.73};
 			name="Store_Gun_1";
 			type="Empty";
 			colorName="ColorBrown";
 		};
 		class Item148
 		{
-			position[]={5522.9795,77.35244,4698.1113};
+			position[]={5522.9795,77.4978,4698.1113};
 			name="Store_Gun_2";
 			type="Empty";
 			colorName="ColorBrown";
 		};
 		class Item149
 		{
-			position[]={2461.9604,74.104752,5692.8784};
+			position[]={2462.31,74.7487,5692.05};
 			name="Store_Gun_3";
 			type="Empty";
 			colorName="ColorBrown";
@@ -2833,7 +2833,7 @@ class Intro
 		forecastLightnings=0.1;
 		year=2035;
 		month=6;
-		day=21;
+		day=10;
 		hour=13;
 		minute=15;
 		startFogDecay=0.005;
@@ -2863,7 +2863,7 @@ class OutroWin
 		forecastLightnings=0.1;
 		year=2035;
 		month=6;
-		day=21;
+		day=10;
 		hour=13;
 		minute=15;
 		startFogDecay=0.005;
@@ -2893,7 +2893,7 @@ class OutroLoose
 		forecastLightnings=0.1;
 		year=2035;
 		month=6;
-		day=21;
+		day=10;
 		hour=13;
 		minute=15;
 		startFogDecay=0.005;
