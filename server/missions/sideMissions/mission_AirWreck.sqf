@@ -8,7 +8,7 @@
 
 if(!isServer) exitwith {};
 
-private ["_result","_missionMarkerName","_missionType","_startTime","_returnData","_randomPos","_randomIndex","_vehicleClass","_box","_box2","_vehicle","_picture","_vehicleName","_hint","_currTime","_playerPresent","_unitsAlive"];
+private ["_result", "_missionMarkerName", "_missionType", "_startTime", "_returnData", "_randomPos", "_randomIndex", "_vehicleClass", "_box", "_box2", "_vehicle", "_picture", "_vehicleName", "_hint", "_currTime", "_playerPresent", "_unitsAlive"];
 
 //Mission Initialization.
 _result = 0;
@@ -34,7 +34,7 @@ diag_log format["WASTELAND SERVER - Side Mission Resumed: %1",_missionType];
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
 //Vehicle Class, Posistion, Fuel, Ammo, Damage
-_vehicle = ["O_Heli_Light_02_F",[(_randomPos select 0) + 50, (_randomPos select 1) + 50,0],0,0,1,"NONE"] call createMissionVehicle;
+_vehicle = ["O_Heli_Light_02_unarmed_F",[(_randomPos select 0) + 50, (_randomPos select 1) + 50,0],0,0,1,"NONE"] call createMissionVehicle;
 
 _box = createVehicle ["Box_East_WpsSpecial_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
@@ -48,7 +48,7 @@ _box2 setVariable ["R3F_LOG_disabled", true, true];
 
 _picture = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "picture");
 _vehicleName = getText (configFile >> "cfgVehicles" >> typeOf _vehicle >> "displayName");
-_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A <t color='%4'>%3</t> has come down under enemy fire!</t>", _missionType, _picture, _vehicleName, sideMissionColor, subTextColor];
+_hint = parseText format ["<t align='center' color='%4' shadow='2' size='1.75'>Side Objective</t><br/><t align='center' color='%4'>------------------------------</t><br/><t align='center' color='%5' size='1.25'>%1</t><br/><t align='center'><img size='5' image='%2'/></t><br/><t align='center' color='%5'>A helicopter has come down under enemy fire!</t>", _missionType, _picture, _vehicleName, sideMissionColor, subTextColor];
 [_hint] call hintBroadcast;
 
 _CivGrpM = createGroup civilian;

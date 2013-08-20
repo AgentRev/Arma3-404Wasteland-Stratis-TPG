@@ -8,7 +8,7 @@
 
 if(!isServer) exitwith {};
 
-private ["_result","_missionMarkerName","_missionType","_startTime","_returnData","_randomPos","_randomIndex","_vehicleClass","_box","_box2","_picture","_vehicleName","_hint","_currTime","_playerPresent","_unitsAlive"];
+private ["_result", "_missionMarkerName", "_missionType", "_startTime", "_returnData", "_randomPos", "_randomIndex", "_vehicleClass", "_box", "_box2", "_picture", "_vehicleName", "_hint", "_currTime", "_playerPresent", "_unitsAlive"];
 
 //Mission Initialization.
 _result = 0;
@@ -33,12 +33,12 @@ diag_log format["WASTELAND SERVER - Side Mission Resumed: %1",_missionType];
 
 [_missionMarkerName,_randomPos,_missionType] call createClientMarker;
 
-_box = createVehicle ["Box_NATO_Support_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
+_box = createVehicle ["Box_East_Wps_F",[(_randomPos select 0), (_randomPos select 1),0],[], 0, "NONE"];
 [_box,"mission_Side_USLaunchers"] call fn_refillbox;
 _box addEventHandler ["HandleDamage", {false}];
 _box setVariable ["R3F_LOG_disabled", true, true];
 
-_box2 = createVehicle ["Box_East_Support_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
+_box2 = createVehicle ["Box_NATO_Wps_F",[(_randomPos select 0), (_randomPos select 1) - 10,0],[], 0, "NONE"];
 [_box2,"mission_Side_USSpecial"] call fn_refillbox;
 _box2 addEventHandler ["HandleDamage", {false}];
 _box2 setVariable ["R3F_LOG_disabled", true, true];
@@ -69,6 +69,9 @@ waitUntil
     _unitsAlive = ({alive _x} count units _CivGrpM);
     (_result == 1) OR ((_playerPresent) AND (_unitsAlive < 1)) OR ((damage _box) == 1)
 };
+
+_box setVariable ["R3F_LOG_disabled", false, true];
+_box2 setVariable ["R3F_LOG_disabled", false, true];
 
 if(_result == 1) then
 {
