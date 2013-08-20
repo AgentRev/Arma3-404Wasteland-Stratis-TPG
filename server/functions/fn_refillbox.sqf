@@ -1,6 +1,6 @@
 //	@file Version: 1.0
 //	@file Name: fn_refillbox.sqf  "fn_refillbox"
-//	@file Author: [404] Pulse , [404] Costlyy , [404] Deadbeat
+//	@file Author: [404] Pulse , [404] Costlyy , [404] Deadbeat, AgentRev
 //	@file Created: 22/1/2012 00:00
 //	@file Args: [ OBJECT (Weapons box that needs filling), STRING (Name of the fill to give to object)]
 
@@ -44,8 +44,10 @@ switch (_boxType) do
 			["wep", "LMG_Mk200_F", 2, 4],
 			["wep", "LMG_Zafir_F", 1, 4],
 			["wep", "hgun_ACPC2_F", 5, 3],
-			["mag", "16Rnd_9x21_Mag", 10],
-			["mag", "30Rnd_65x39_caseless_mag", 5]
+			["mag", "30Rnd_65x39_caseless_mag", 10],
+			["mag", "30Rnd_556x45_Stanag", 10],
+			["mag", "30Rnd_65x39_caseless_green", 10],
+			["mag", "16Rnd_9x21_Mag", 10]
 		];
     };
 };
