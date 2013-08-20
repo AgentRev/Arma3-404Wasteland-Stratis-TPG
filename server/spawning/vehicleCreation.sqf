@@ -7,7 +7,7 @@
 
 if(!X_Server) exitWith {};
 
-private ["_markerPos","_pos","_type","_num","_vehicleType","_vehicle"];
+private ["_markerPos","_pos","_type","_num","_vehicleType","_vehicle","_hitPoints","_hitPoint"];
 
 _markerPos = _this select 0;
 
@@ -56,16 +56,18 @@ clearWeaponCargoGlobal _vehicle;
 clearItemCargoGlobal _vehicle;
 
 //Set Vehicle Attributes
-_vehicle setFuel (0.50);
-_vehicle setDamage (random 0.50);
+_vehicle setFuel (random 0.5 + 0.25);
+_vehicle setDamage (random 0.5);
 
-// Compensation for quadbikes & pickups having their max speed halved when wheel damage is over 20%
-if (_type in [0,1]) then
+// Remove wheel damage
+_hitPoints = configFile >> "CfgVehicles" >> (typeOf _vehicle) >> "HitPoints";
+for "_i" from 0 to (count _hitPoints - 1) do
 {
-	_vehicle setHit ["wheel_1_1_steering", 0];
-	_vehicle setHit ["wheel_1_2_steering", 0];
-	_vehicle setHit ["wheel_2_1_steering", 0];
-	_vehicle setHit ["wheel_2_2_steering", 0];
+	_hitPoint = configName (_hitPoints select _i);
+	if ([_hitPoint, (count toArray _hitPoint) - 5] call BIS_fnc_trimString == "Wheel") then
+	{
+		_vehicle setHitPointDamage [_hitPoint, 0];
+	};
 };
 
 _vehicle setDir (random 360);
@@ -76,8 +78,6 @@ if (_vehicleType isKindOf "Boat_Armed_01_base_F") then
 {
 	private ["_vehicleCfg", "_turretsCfg", "_turretsCount", "_turretPath", "_turret"];
 	_vehicleCfg = configFile >> "CfgVehicles" >> _vehicleType;
-	
-	//_vehicle setVehicleAmmo 0;
 	
 	{
 		_vehicle removeMagazinesTurret [_x, [-1]];
@@ -130,4 +130,4 @@ if (_type != 3) then { [_vehicle] call randomWeapons };
 
 //Set original posistion then add to vehicle array
 
-_vehicle setVelocity [0,0,0];
+_vehicle setVelocity [0,0,0.01];
