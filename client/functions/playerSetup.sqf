@@ -22,7 +22,7 @@ _player removeWeapon "ItemGPS";
         _player unassignItem _x;
         _player removeItem _x;
     };
-} forEach assignedItems;
+} forEach assignedItems _player;
 
 removeAllWeapons _player;
 removeUniform _player;
@@ -43,7 +43,7 @@ switch (playerSide) do
     case OPFOR:
     {
         _player addUniform "U_O_CombatUniform_ocamo";
-		_player addVest "V_PlateCarrier2_cbr";
+		_player addVest "V_HarnessO_brn";
 		_player addHeadgear "H_HelmetO_ocamo";
     };
 	
