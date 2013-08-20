@@ -47,6 +47,7 @@ removeNegativeScore = compile preprocessFileLineNumbers "server\functions\remove
 //Spawning Compiles
 fn_replaceMagazines = compile preprocessFileLineNumbers "server\functions\fn_replaceMagazines.sqf";
 fn_replaceWeapons = compile preprocessFileLineNumbers "server\functions\fn_replaceWeapons.sqf";
+fn_selectRandomWeighted = compile preprocessFileLineNumbers "server\functions\fn_selectRandomWeighted.sqf";
 getBallMagazine = compile preprocessFileLineNumbers "server\functions\getBallMagazine.sqf";
 checkHackedVehicles = compileFinal preprocessFileLineNumbers "server\functions\checkHackedVehicles.sqf";
 vehicleRepair = compile preprocessFileLineNumbers "server\functions\vehicleRepair.sqf";
