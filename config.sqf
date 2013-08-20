@@ -100,7 +100,7 @@ ammoArray = compileFinal str
 	["7.62mm 150Rnd Belt Case","150Rnd_762x51_Box",100],            // Zafir
 	[".408 7Rnd Mag","7Rnd_408_Mag",50],                            // M320 LRR
 	["12.7mm 5Rnd Mag","5Rnd_127x108_Mag",50],                      // GM6 Lynx
-	["40mm HE Grenade Round","1Rnd_HE_Grenade_shell",100],          // Grenade Launchers
+	["40mm HE Grenade","1Rnd_HE_Grenade_shell",150],
 	["Frag Grenade","HandGrenade",100],
 	["PCML Missile","NLAW_F",250],
 	["RPG-42 Missile","RPG32_F",250],
@@ -112,7 +112,15 @@ ammoArray = compileFinal str
 	["M6 SLAM Mine","SLAMDirectionalMine_Wire_Mag",250],
 	["AT Mine","ATMine_Range_Mag",250],
 	["Explosive Charge","DemoCharge_Remote_Mag",250],
-	["Explosive Satchel","SatchelCharge_Remote_Mag",250]
+	["Explosive Satchel","SatchelCharge_Remote_Mag",250],
+	["40mm GL Flare (White)","UGL_FlareWhite_F",25],
+	["40mm GL Flare (Green)","UGL_FlareGreen_F",25],
+	["40mm GL Flare (Yellow)","UGL_FlareYellow_F",25],
+	["40mm GL Flare (Red)","UGL_FlareRed_F",25],
+	["Chemlight (Blue)","Chemlight_blue", 25],
+	["Chemlight (Green)","Chemlight_green", 25],
+	["Chemlight (Yellow)","Chemlight_yellow", 25],
+	["Chemlight (Red)","Chemlight_red", 25]
 ];
 
 //Gun Store Equipment List
@@ -122,24 +130,25 @@ accessoriesArray = compileFinal str
 	["GPS","ItemGPS", 100,"item"],
 	["Binoculars","Binocular",100,"binoc"],
 	["NV Goggles","NVGoggles",100,"item"],
-	["Rangefinder","Rangefinder", 150,"binoc"],
+	["Rangefinder","Rangefinder", 100,"binoc"],
 	["Laser Designator","Laserdesignator", 100,"binoc"],
-	["Laser Batteries","Laserbatteries", 50,"mag"],
+	["Laser Batteries","Laserbatteries", 25,"mag"],
 	["First Aid Kit","FirstAidKit", 25,"item"],
 	["Medikit","Medikit", 100,"item"],
 	["Toolkit","ToolKit", 100,"item"],
 	["Mine Detector","MineDetector", 100,"item"],
   	["Suppressor 9mm","muzzle_snds_L", 50,"item"],
-	["Suppressor .45 ACP","muzzle_snds_acp", 50,"item"],
-	["Suppressor 5.56mm","muzzle_snds_M", 75,"item"],
+	["Suppressor .45 ACP","muzzle_snds_acp", 75,"item"],
+	["Suppressor 5.56mm","muzzle_snds_M", 100,"item"],
 	["Suppressor 6.5mm","muzzle_snds_H", 100,"item"],
 	["Suppressor 6.5mm LMG","muzzle_snds_H_MG", 100,"item"],
 	["Suppressor 7.62mm","muzzle_snds_B", 125,"item"],
 	["Flashlight","acc_flashlight", 50,"item"],
+	["IR Laser Pointer","acc_pointer_IR", 50,"item"],
+	["MRCO Sight","optic_MRCO", 25,"item"],
 	["ACO Sight (Red)","optic_Aco", 50,"item"],
 	["ACO Sight (Green)","optic_ACO_grn", 50,"item"],
 	["Holosight","optic_Holosight", 50,"item"],
-	["MRCO Sight","optic_MRCO", 75,"item"],
 	["RCO Sight","optic_Hamr", 100,"item"],
 	["ARCO Sight","optic_Arco", 100,"item"],
 	["SOS Sight","optic_SOS", 150,"item"]
@@ -149,30 +158,33 @@ accessoriesArray = compileFinal str
 //Text name, classname, buy cost
 gearArray = compileFinal str
 [
-	["Bergen Backpack (MTP)","B_Bergen_mcamo", 350, "bpack"],
-	["Bergen Backpack (Tan)","B_Bergen_sgg", 350, "bpack"],
-	["Bergen Backpack (Black)","B_Bergen_blk", 350, "bpack"],
-	["Carryall Backpack (MTP)","B_Carryall_mcamo", 500, "bpack"],
-	["Carryall Backpack (Khaki)","B_Carryall_khk", 500, "bpack"],
-	["Carryall Backpack (Olive)","B_Carryall_oli", 500, "bpack"],
+	["Field Pack (Coyote)","B_FieldPack_cbr", 200, "bpack"],
+	["Field Pack (Khaki)","B_FieldPack_khk", 200, "bpack"],
+	["Field Pack (Black)","B_FieldPack_blk", 200, "bpack"],
+	["Bergen Pack (MTP)","B_Bergen_mcamo", 350, "bpack"],
+	["Bergen Pack (Sage)","B_Bergen_sgg", 350, "bpack"],
+	["Bergen Pack (Black)","B_Bergen_blk", 350, "bpack"],
+	["Carryall Pack (MTP)","B_Carryall_mcamo", 500, "bpack"],
+	["Carryall Pack (Khaki)","B_Carryall_khk", 500, "bpack"],
+	["Carryall Pack (Olive)","B_Carryall_oli", 500, "bpack"],
 	
 	["Parachute","B_Parachute", 250,"bpack"],
 	
 	["Ghillie Suit","U_I_GhillieSuit", 250,"uni"],
 	
+	["Default Uniform","U_B_CombatUniform_mcam", 25,"uni"],
+	
 	// Most vest camos are not implemented yet
 	
 	["Carrier Rig (Green)","V_PlateCarrier2_rgr", ["V_PlateCarrier2_rgr"] call _getCapacity, "vest"],
-	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", ["V_PlateCarrierIA2_dgtl"] call _getCapacity, "vest"],
 	["LBV Harness","V_HarnessO_brn", ["V_HarnessO_brn"] call _getCapacity, "vest"],
-	["LBV Grenadier Harness","V_HarnessOGL_brn", ["V_HarnessOGL_brn"] call _getCapacity, "vest"],
-	["ELBV Harness","V_HarnessOSpec_brn", ["V_HarnessOSpec_brn"] call _getCapacity, "vest"],
+	["GA Carrier Rig (Digi)","V_PlateCarrierIA2_dgtl", ["V_PlateCarrierIA2_dgtl"] call _getCapacity, "vest"],
 	
 	["Diving Goggles","G_Diving", 50,"gogg"],
 	["Wetsuit","U_B_Wetsuit", 100,"uni"],
-	["Rebreather 1","V_RebreatherB", 100,"vest"],
-	["Rebreather 2","V_RebreatherIR", 100,"vest"],
-	["Rebreather 3","V_RebreatherIA", 100,"vest"],
+	["Rebreather (NATO)","V_RebreatherB", 100,"vest"],
+	["Rebreather (CSAT)","V_RebreatherIR", 100,"vest"],
+	["Rebreather (AAF)","V_RebreatherIA", 100,"vest"],
 	
 	["Booniehat (MTP)","H_Booniehat_mcamo", 50,"hat"],
 	["Booniehat (Hex)","H_Booniehat_ocamo", 50,"hat"],
@@ -188,9 +200,9 @@ gearArray = compileFinal str
 	["Military Cap (MTP)","H_MilCap_mcamo", 50,"hat"],
 	["Military Cap (Hex)","H_MilCap_ocamo", 50,"hat"],
 	["Military Cap (Urban)","H_MilCap_oucamo", 50,"hat"],
-	["Pilot Helmet 1","H_PilotHelmetHeli_B", 50,"hat"],
-	["Pilot Helmet 2","H_PilotHelmetHeli_O", 50,"hat"],
-	["Pilot Helmet 3","H_PilotHelmetHeli_I", 50,"hat"]
+	["Pilot Helmet (NATO)","H_PilotHelmetHeli_B", 50,"hat"],
+	["Pilot Helmet (CSAT)","H_PilotHelmetHeli_O", 50,"hat"],
+	["Pilot Helmet (AAF)","H_PilotHelmetHeli_I", 50,"hat"]
 ];
 
 allGunStoreItems = compileFinal str ((call weaponsArray) + (call ammoArray) + (call accessoriesArray) + (call gearArray));
