@@ -15,6 +15,7 @@ findHackedVehicles = compileFinal preprocessFileLineNumbers "client\systems\admi
 isAdmin = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\isAdmin.sqf";
 serverMessage = compileFinal preprocessFileLineNumbers "client\functions\serverMessage.sqf";
 titleTextMessage = compileFinal preprocessFileLineNumbers "client\functions\titleTextMessage.sqf";
+isWeaponType = compile preprocessFileLineNumbers "client\functions\isWeaponType.sqf";
 
 // Player details and actions
 loadPlayerMenu = compile preprocessFile "client\systems\playerMenu\init.sqf";

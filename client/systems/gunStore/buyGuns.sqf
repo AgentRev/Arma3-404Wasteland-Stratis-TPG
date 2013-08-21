@@ -48,14 +48,22 @@ switch (_switch) do
 					_class = _x select 1;
 					_type = getNumber (configFile >> "CfgWeapons" >> _class >> "type");
 					
-					if ((_type == 1 && primaryWeapon player == "") || {_type == 2 && handgunWeapon player == ""} || {_type == 4 && secondaryWeapon player == ""}) then
+					if (([_class, 1] call isWeaponType && primaryWeapon player != "") || {[_class, 2] call isWeaponType && handgunWeapon player != ""} || {[_class, 4] call isWeaponType && secondaryWeapon player != ""}) then
 					{
-						player addWeapon _class;
+						gunStoreCart = gunStoreCart - (_x select 2);
+						hint format [_alreadyHaveType,_name];
 					}
 					else
 					{
-						gunStoreCart = gunStoreCart - (_x select 2);
-						hint format [_alreadyHaveType,_name];  
+						if (_type < 8) then
+						{
+							player addWeapon _class;
+						}
+						else
+						{
+							gunStoreCart = gunStoreCart - (_x select 2);
+							hint format [_notEnoughSpace,_name];
+						};
 					};
 				};
 			} forEach (call weaponsArray);
