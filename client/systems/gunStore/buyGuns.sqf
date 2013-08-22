@@ -26,7 +26,7 @@ _totalText = _dialog displayCtrl gunshop_total;
 _playerMoneyText = _Dialog displayCtrl gunshop_money;
 _size = lbSize _cartlist;
 
-_notEnoughSpace = "You do not have space for ""%1"""; 
+_notEnoughSpace = "You do not have enough space for ""%1"""; 
 _alreadyHaveType = "You already have a weapon of this type, please unequip it before purchasing ""%1"""; 
 
 switch (_switch) do 
@@ -48,21 +48,22 @@ switch (_switch) do
 					_class = _x select 1;
 					_type = getNumber (configFile >> "CfgWeapons" >> _class >> "type");
 					
-					if (([_class, 1] call isWeaponType && primaryWeapon player != "") || {[_class, 2] call isWeaponType && handgunWeapon player != ""} || {[_class, 4] call isWeaponType && secondaryWeapon player != ""}) then
+					if ((!([_class, 1] call isWeaponType) || primaryWeapon player == "") && 
+					    {!([_class, 2] call isWeaponType) || handgunWeapon player == ""} &&
+					    {!([_class, 4] call isWeaponType) || secondaryWeapon player == ""}) then
 					{
-						gunStoreCart = gunStoreCart - (_x select 2);
-						hint format [_alreadyHaveType,_name];
+						player addWeapon _class;
 					}
 					else
 					{
-						if (_type < 8) then
+						if ([player, _class, "backpack"] call fn_fitsInventory) then
 						{
-							player addWeapon _class;
+							(unitBackpack player) addWeaponCargoGlobal [_class, 1];
 						}
 						else
 						{
 							gunStoreCart = gunStoreCart - (_x select 2);
-							hint format [_notEnoughSpace,_name];
+							hint format [_alreadyHaveType,_name];
 						};
 					};
 				};
@@ -98,7 +99,7 @@ switch (_switch) do
 					{
 						case "binoc":
 						{
-							if ((_playerSlots select 5) > 0 || {[player, _class] call fn_fitsInventory}) then
+							if ([player, _class] call fn_fitsInventory) then
 							{
 								player addWeapon _class;
 							}
