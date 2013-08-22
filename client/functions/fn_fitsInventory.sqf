@@ -130,11 +130,6 @@ if (isClass (configFile >> "CfgWeapons" >> _item >> "LinkedItems")) then
 
 _result = (_itemSize > 0 && {_itemSize <= _uniformFree || _itemSize <= _vestFree || _itemSize <= _backpackFree});
 
-systemChat format ["_itemSize: %1", _itemSize];
-systemChat format ["_uniformFree: %1", _uniformFree];
-systemChat format ["_vestFree: %1", _vestFree];
-systemChat format ["_backpackFree: %1", _backpackFree];
-
 // If item goes in binocular slot, check if slot is empty
 
 if (getNumber (configFile >> "CfgWeapons" >> _item >> "type") == 4096 &&
