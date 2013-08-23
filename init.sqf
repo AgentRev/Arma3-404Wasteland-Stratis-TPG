@@ -66,6 +66,6 @@ if(X_Server) then {
 "requestDetachTowedObject" addPublicVariableEventHandler { [_this select 1] call detachTowedObject };
 
 [] execVM "addons\proving_Ground\init.sqf";
-[0] execVM "addons\scripts\DynamicWeatherEffects.sqf";
+[] execVM "addons\scripts\DynamicWeatherEffects.sqf";
 
 execVM "server\functions\adjustBuildings.sqf";
