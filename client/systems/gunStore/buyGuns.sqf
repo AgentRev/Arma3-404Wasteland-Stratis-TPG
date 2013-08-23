@@ -99,14 +99,21 @@ switch (_switch) do
 					{
 						case "binoc":
 						{
-							if ([player, _class] call fn_fitsInventory) then
+							if ([player, _class] call isAssignableBinocular) then
 							{
 								player addWeapon _class;
 							}
 							else
 							{
-								gunStoreCart = gunStoreCart - (_x select 2);
-								hint format [_notEnoughSpace,_name];
+								if ([player, _class, "backpack"] call fn_fitsInventory) then
+								{
+									(unitBackpack player) addWeaponCargoGlobal [_class, 1];
+								}
+								else
+								{
+									gunStoreCart = gunStoreCart - (_x select 2);
+									hint format [_notEnoughSpace,_name];
+								};
 							};
 						};
 						case "item":

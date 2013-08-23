@@ -16,6 +16,7 @@ isAdmin = compileFinal preprocessFileLineNumbers "client\systems\adminPanel\isAd
 serverMessage = compileFinal preprocessFileLineNumbers "client\functions\serverMessage.sqf";
 titleTextMessage = compileFinal preprocessFileLineNumbers "client\functions\titleTextMessage.sqf";
 isWeaponType = compile preprocessFileLineNumbers "client\functions\isWeaponType.sqf";
+isAssignableBinocular = compile preprocessFileLineNumbers "client\functions\isAssignableBinocular.sqf";
 
 // Player details and actions
 loadPlayerMenu = compile preprocessFile "client\systems\playerMenu\init.sqf";

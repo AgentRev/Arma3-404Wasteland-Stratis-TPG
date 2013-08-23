@@ -4,7 +4,7 @@
 //	@file Created: 05/05/2013 00:22
 //	@file Args: _player, _item
 
-private ["_player", "_item", "_allowedContainers", "_allowedSlots", "_allSlots", "_uniformFree", "_vestFree", "_backpackFree", "_uniform", "_vest", "_backpack", "_containerClass", "_uniformCapacity", "_vestCapacity", "_backpackCapacity", "_itemSize", "_result", "_slotFull"];
+private ["_player", "_item", "_allowedContainers", "_allowedSlots", "_allSlots", "_uniformFree", "_vestFree", "_backpackFree", "_uniform", "_vest", "_backpack", "_containerClass", "_uniformCapacity", "_vestCapacity", "_backpackCapacity", "_itemSize"];
 
 _player = _this select 0;
 _item = _this select 1;
@@ -128,24 +128,6 @@ if (isClass (configFile >> "CfgWeapons" >> _item >> "LinkedItems")) then
 	};
 };
 
-_result = (_itemSize > 0 && {_itemSize <= _uniformFree || _itemSize <= _vestFree || _itemSize <= _backpackFree});
+// Return boolean
 
-// If item goes in binocular slot, check if slot is empty
-
-if (getNumber (configFile >> "CfgWeapons" >> _item >> "type") == 4096 &&
-   {getNumber (configFile >> "CfgWeapons" >> _item >> "ItemInfo" >> "type") != 616}) then
-{
-	_slotFull = false;
-	
-	{
-		if (getNumber (configFile >> "CfgWeapons" >> _x >> "type") == 4096 &&
-		   {getNumber (configFile >> "CfgWeapons" >> _x >> "ItemInfo" >> "type") != 616}) exitWith
-		{
-			_slotFull = true;
-		};
-	} forEach assignedItems _player;
-	
-	if (!_slotFull) then { _result = true };
-};
-
-_result
+(_itemSize > 0 && {_itemSize <= _uniformFree || _itemSize <= _vestFree || _itemSize <= _backpackFree})
