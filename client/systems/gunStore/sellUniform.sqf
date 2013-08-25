@@ -26,7 +26,7 @@ if ([["U_B_CombatUniform_mcam","U_O_CombatUniform_ocamo","U_I_CombatUniform"], _
 		default { _tempUniform = _uniform };
 	};
 	
-	systemChat _tempUniform;
+	//systemChat _tempUniform;
 	
 	{
 		if (_x select 1 == _tempUniform) then
